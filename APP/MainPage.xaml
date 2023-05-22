@@ -1,40 +1,26 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="APP.MainPage">
+             xmlns:controls="clr-namespace:APP.Views"
+             x:Class="APP.MainPage"
+             BackgroundColor="Black">
 
-    <ScrollView>
-        <VerticalStackLayout
-            Spacing="25"
-            Padding="30,0"
-            VerticalOptions="Center">
+    <ScrollView HorizontalOptions="StartAndExpand">
+        <VerticalStackLayout>
+            <Label Margin="0,10,0,10" HorizontalOptions="Center" Text="Your Wallet"></Label>
+            <BoxView BackgroundColor="#333333" HeightRequest="1" HorizontalOptions="FillAndExpand" />
+            <Label x:Name="PortfolioAmount" Margin="20" HorizontalOptions="Center" Text=""></Label>
+            <Label TextColor="White" Margin="20" HorizontalOptions="Center" Text="Testing Text"></Label>
+            <Border>
+            <Grid Margin="0" VerticalOptions="FillAndExpand" x:Name="grid" BackgroundColor="Black" HorizontalOptions="Fill">
 
-            <Image
-                Source="androidapple.jpg"
-                SemanticProperties.Description="Cute APP bot waving hi to you!"
-                HeightRequest="200"
-                HorizontalOptions="Center" />
+            </Grid></Border>
+            <Grid>
 
-            <Label
-                Text="Swopblock APP"
-                SemanticProperties.HeadingLevel="Level1"
-                FontSize="32"
-                HorizontalOptions="Center" />
-
-            <Label
-                Text="Welcome to autonomous self-custodial crypto trading."
-                SemanticProperties.HeadingLevel="Level2"
-                SemanticProperties.Description="Welcome to autonomous self-custodial crypto trading."
-                FontSize="18"
-                HorizontalOptions="Center" />
-
-            <Button
-                x:Name="CounterBtn"
-                Text="Like me"
-                SemanticProperties.Hint="Counts the number of times you liked"
-                Clicked="OnCounterClicked"
-                HorizontalOptions="Center" />
-
+                <controls:TimePeriodLabels HorizontalOptions="CenterAndExpand" ZIndex="0" Margin="0,700,0,0"/>
+                <controls:NumberPad></controls:NumberPad>
+            </Grid>
+            
         </VerticalStackLayout>
     </ScrollView>
 

@@ -11,7 +11,9 @@ public static class MauiProgram
 			{
 				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
 				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
-			});
+                fonts.AddFont("guida-bold-pro.otf", "GuidaBold");
+                fonts.AddFont("guida-light-pro.otf", "GuidaLight");
+            });
 
 		return builder.Build();
 	}

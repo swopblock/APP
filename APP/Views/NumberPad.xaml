@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="APP.Views.NumberPad">
+    <VerticalStackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+        <Grid Padding="100" HorizontalOptions="FillAndExpand" BackgroundColor="{StaticResource Gray27}">
+            
+        <Grid HorizontalOptions="Center" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource Gray27}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="70"></RowDefinition>
+                <RowDefinition Height="70"></RowDefinition>
+                <RowDefinition Height="70"></RowDefinition>
+                <RowDefinition Height="70"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="70"></ColumnDefinition>
+                <ColumnDefinition Width="70"></ColumnDefinition>
+                <ColumnDefinition Width="70"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Button Grid.Row="0" Grid.Column="0" HorizontalOptions="Center" VerticalOptions="Center" Text="1"/>
+            <Button Grid.Row="0" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center" Text="2"/>
+            <Button Grid.Row="0" Grid.Column="2" HorizontalOptions="Center" VerticalOptions="Center"  Text="3"/>
+
+            <Button Grid.Row="1" Grid.Column="0" HorizontalOptions="Center" VerticalOptions="Center" Text="4"/>
+            <Button Grid.Row="1" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center" Text="5"/>
+            <Button Grid.Row="1" Grid.Column="2" HorizontalOptions="Center" VerticalOptions="Center" Text="6"/>
+
+            <Button Grid.Row="2" Grid.Column="0" HorizontalOptions="Center" VerticalOptions="Center" Text="7"/>
+            <Button Grid.Row="2" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center" Text="8"/>
+            <Button Grid.Row="2" Grid.Column="2" HorizontalOptions="Center" VerticalOptions="Center" Text="9"/>
+
+            <Button Grid.Row="3" Grid.Column="0" HorizontalOptions="Center" VerticalOptions="Center" Text="."/>
+            <Button Grid.Row="3" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center" Text="0"/>
+            <Button Grid.Row="3" Grid.Column="2" HorizontalOptions="Center" VerticalOptions="Center" Text="&lt;-"/>
+
+
+
+        </Grid>
+        </Grid>
+    </VerticalStackLayout>
+</ContentView>

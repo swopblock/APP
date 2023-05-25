@@ -15,11 +15,13 @@
             <Grid Margin="0" VerticalOptions="FillAndExpand" x:Name="grid" BackgroundColor="Black" HorizontalOptions="Fill">
 
             </Grid></Border>
-            <Grid>
+            <VerticalStackLayout>
 
                 <controls:TimePeriodLabels HorizontalOptions="CenterAndExpand" ZIndex="0" Margin="0,700,0,0"/>
                 <controls:NumberPad></controls:NumberPad>
-            </Grid>
+                <controls:ValueList></controls:ValueList>
+                <controls:OrderList></controls:OrderList>
+            </VerticalStackLayout>
             
         </VerticalStackLayout>
     </ScrollView>

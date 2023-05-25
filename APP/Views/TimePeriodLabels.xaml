@@ -5,7 +5,7 @@
     <VerticalStackLayout>
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="20"></RowDefinition>
+                <RowDefinition Height="40"></RowDefinition>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="70"></ColumnDefinition>
@@ -16,12 +16,12 @@
                 <ColumnDefinition Width="70"></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
-            <Label Grid.Row="0" Grid.Column="0" TextColor="White">Live</Label>
-            <Label Grid.Row="0" Grid.Column="1" TextColor="White">Today</Label>
-            <Label Grid.Row="0" Grid.Column="2" TextColor="White">1W</Label>
-            <Label Grid.Row="0" Grid.Column="3" TextColor="White">1M</Label>
-            <Label Grid.Row="0" Grid.Column="4" TextColor="White">3M</Label>
-            <Label Grid.Row="0" Grid.Column="5" TextColor="White">1Y</Label>
+            <Button VerticalOptions="Center" HorizontalOptions="Center" Grid.Row="0" Grid.Column="0" BackgroundColor="Transparent" TextColor="{StaticResource GrayA1}" Text="Live"/>
+            <Button VerticalOptions="Center"  HorizontalOptions="Center" Grid.Row="0" Grid.Column="1" BackgroundColor="Transparent" TextColor="{StaticResource GrayA1}" Text="Today"/>
+            <Button VerticalOptions="Center" HorizontalOptions="Center" Grid.Row="0" Grid.Column="2" BackgroundColor="Transparent" TextColor="{StaticResource GrayA1}" Text="1W"/>
+            <Button VerticalOptions="Center" HorizontalOptions="Center" Grid.Row="0" Grid.Column="3" BackgroundColor="Transparent" TextColor="{StaticResource GrayA1}" Text="1M"/>
+            <Button VerticalOptions="Center" HorizontalOptions="Center" Grid.Row="0" Grid.Column="4" BackgroundColor="Transparent" TextColor="{StaticResource GrayA1}" Text="3M"/>
+            <Button VerticalOptions="Center" HorizontalOptions="Center" Grid.Row="0" Grid.Column="5" BackgroundColor="Transparent" TextColor="{StaticResource GrayA1}" Text="1Y"/>
         </Grid>
     </VerticalStackLayout>
 </ContentView>

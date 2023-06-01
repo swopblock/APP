@@ -3,13 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:controls="clr-namespace:APP.Views"
              x:Class="APP.Views.OrderList">
-    <VerticalStackLayout>
+    <VerticalStackLayout Padding="0, 30, 0, 30" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource Gray27}">
         <Label 
             Text="Order History"
             VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+            HorizontalOptions="Center"
+            Padding="0,0,0,20"/>
 
         <controls:ValueList></controls:ValueList>
-        <controls:PoweredBy></controls:PoweredBy>
+        <controls:PoweredBy Padding="0,30,0,0" ></controls:PoweredBy>
     </VerticalStackLayout>
 </ContentView>

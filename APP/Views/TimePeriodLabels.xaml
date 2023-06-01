@@ -8,20 +8,20 @@
                 <RowDefinition Height="40"></RowDefinition>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="60"></ColumnDefinition>
                 <ColumnDefinition Width="70"></ColumnDefinition>
-                <ColumnDefinition Width="70"></ColumnDefinition>
-                <ColumnDefinition Width="70"></ColumnDefinition>
-                <ColumnDefinition Width="70"></ColumnDefinition>
-                <ColumnDefinition Width="70"></ColumnDefinition>
-                <ColumnDefinition Width="70"></ColumnDefinition>
+                <ColumnDefinition Width="50"></ColumnDefinition>
+                <ColumnDefinition Width="50"></ColumnDefinition>
+                <ColumnDefinition Width="50"></ColumnDefinition>
+                <ColumnDefinition Width="50"></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
-            <Button VerticalOptions="Center" HorizontalOptions="Center" Grid.Row="0" Grid.Column="0" BackgroundColor="Transparent" TextColor="{StaticResource GrayA1}" Text="Live"/>
-            <Button VerticalOptions="Center"  HorizontalOptions="Center" Grid.Row="0" Grid.Column="1" BackgroundColor="Transparent" TextColor="{StaticResource GrayA1}" Text="Today"/>
-            <Button VerticalOptions="Center" HorizontalOptions="Center" Grid.Row="0" Grid.Column="2" BackgroundColor="Transparent" TextColor="{StaticResource GrayA1}" Text="1W"/>
-            <Button VerticalOptions="Center" HorizontalOptions="Center" Grid.Row="0" Grid.Column="3" BackgroundColor="Transparent" TextColor="{StaticResource GrayA1}" Text="1M"/>
-            <Button VerticalOptions="Center" HorizontalOptions="Center" Grid.Row="0" Grid.Column="4" BackgroundColor="Transparent" TextColor="{StaticResource GrayA1}" Text="3M"/>
-            <Button VerticalOptions="Center" HorizontalOptions="Center" Grid.Row="0" Grid.Column="5" BackgroundColor="Transparent" TextColor="{StaticResource GrayA1}" Text="1Y"/>
+            <Button VerticalOptions="Center" HorizontalOptions="Center" Grid.Row="0" Grid.Column="0" BackgroundColor="Transparent" FontSize="11" TextColor="{StaticResource GrayA1}" Text="Live"/>
+            <Button VerticalOptions="Center"  HorizontalOptions="Center" Grid.Row="0" Grid.Column="1" BackgroundColor="Transparent" FontSize="11" TextColor="{StaticResource GrayA1}" Text="Today"/>
+            <Button VerticalOptions="Center" HorizontalOptions="Center" Grid.Row="0" Grid.Column="2" BackgroundColor="Transparent" FontSize="11" TextColor="{StaticResource GrayA1}" Text="1W"/>
+            <Button VerticalOptions="Center" HorizontalOptions="Center" Grid.Row="0" Grid.Column="3" BackgroundColor="Transparent" FontSize="11" TextColor="{StaticResource GrayA1}" Text="1M"/>
+            <Button VerticalOptions="Center" HorizontalOptions="Center" Grid.Row="0" Grid.Column="4" BackgroundColor="Transparent" FontSize="11" TextColor="{StaticResource GrayA1}" Text="3M"/>
+            <Button VerticalOptions="Center" HorizontalOptions="Center" Grid.Row="0" Grid.Column="5" BackgroundColor="Transparent" FontSize="11" TextColor="{StaticResource GrayA1}" Text="1Y"/>
         </Grid>
     </VerticalStackLayout>
 </ContentView>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   viewBox="0 0 228 277.40021"
+   version="1.1"
+   id="svg12"
+   sodipodi:docname="Swopblock.svg"
+   width="228"
+   height="277.40021"
+   inkscape:version="1.2.2 (732a01da63, 2022-12-09)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview14"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     showgrid="false"
+     showguides="true"
+     inkscape:zoom="0.74511377"
+     inkscape:cx="396.58373"
+     inkscape:cy="227.48204"
+     inkscape:window-width="1920"
+     inkscape:window-height="1001"
+     inkscape:window-x="2391"
+     inkscape:window-y="-9"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg12" />
+  <defs
+     id="defs4">
+    <style
+       id="style2">
+	.cls-1{
+		fill: #545e68;
+	}
+	</style>
+  </defs>
+  <path
+     class="cls-1"
+     d="m 114,76.2 c -1.4,0 -2.6,-0.6 -3.6,-1.4 L 77.2,41.6 c -2,-2 -2,-5.2 0,-7 L 110.4,1.4 c 0,0 2.2,-1.4 3.6,-1.4 1.4,0 2.6,0.6 3.6,1.4 l 33.2,33.2 c 2,2 2,5.2 0,7 l -33.2,33.2 c 0,0 -2.2,1.4 -3.6,1.4 z"
+     id="path6" />
+  <path
+     class="cls-1"
+     d="m 114,277.4002 c -1.4,0 -2.6,-0.6 -3.6,-1.4 l -33.2,-33.2 c -2,-2 -2,-5.2 0,-7 l 33.2,-33.2 c 0,0 2.2,-1.4 3.6,-1.4 1.4,0 2.6,0.6 3.6,1.4 l 33.2,33.2 c 2,2 2,5.2 0,7 l -33.2,33.2 c 0,0 -2.2,1.4 -3.6,1.4 z"
+     id="path8" />
+  <path
+     class="cls-1"
+     d="m 163.6,217.7986 c -7.6,0 -14.8,-3 -20.2,-8.4 -5.4,-5.4 -8.4,-12.6 -8.4,-20.2 0,-7.6 3,-14.8 8.4,-20.2 l 25.6,-25.6 c 1.2,-1.2 2,-3 2,-4.8 0,-1.8 -0.8,-3.6 -2,-4.8 -1.8,-1.8 -3.8,-2 -4.8,-2 -1,0 -3.2,0.2 -4.8,2 l -50.2,50.2 c -12,12 -28.2,18.8 -45.2,18.8 -17,0 -33.2,-6.6 -45.2,-18.8 -12,-12 -18.8,-28.2 -18.8,-45.2 0,-17 6.6,-33.2 18.8,-45.2 l 24.4,-24.4 c 5.4,-5.4 12.6,-8.4 20.2,-8.4 7.6,0 14.8,3 20.2,8.4 11.2,11.2 11.2,29.2 0,40.4 l -24.4,24.4 c -1.8,1.8 -2,3.8 -2,4.8 0,1 0.2,3.2 2,4.8 1.8,1.8 3.8,2 4.8,2 1,0 3.2,-0.2 4.8,-2 l 50.2,-50.2 c 12,-12 28.2,-18.8 45.2,-18.8 17,0 33.2,6.6 45.2,18.8 12,12 18.6,28.2 18.6,45.2 0,17 -6.6,33.2 -18.6,45.2 l -25.6,25.6 c -5.4,5.4 -12.6,8.4 -20.2,8.4 z"
+     id="path10" />
+</svg>

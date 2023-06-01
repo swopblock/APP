@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="10.74"
+   height="17.190001"
+   viewBox="0 0 10.74 17.190001"
+   version="1.1"
+   id="svg12"
+   sodipodi:docname="Etherium.svg"
+   inkscape:version="1.2.2 (732a01da63, 2022-12-09)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview14"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     showgrid="false"
+     inkscape:zoom="8.43"
+     inkscape:cx="25.682088"
+     inkscape:cy="22.360617"
+     inkscape:window-width="1920"
+     inkscape:window-height="1001"
+     inkscape:window-x="2391"
+     inkscape:window-y="-9"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg12" />
+  <defs
+     id="defs4">
+    <style
+       id="style2">
+	.cls-1{
+		fill: rgba(111,137,255,0.6);
+	}
+	.cls-2{
+		fill: rgba(111,137,255,0.2);
+	}
+	.cls-3{
+		fill: #6f89ff;
+	}
+	</style>
+  </defs>
+  <path
+     class="cls-1"
+     d="m 5.37,0 v 6.35 l 5.37,2.4 z"
+     id="path5177" />
+  <path
+     class="cls-3"
+     d="M 5.37,0 0,8.75 5.37,6.35 Z"
+     id="path5179" />
+  <path
+     class="cls-1"
+     d="m 5.37,12.87 v 4.31 l 5.37,-7.43 -5.37,3.11 z"
+     id="path5181" />
+  <path
+     class="cls-3"
+     d="M 5.37,17.18 V 12.87 L 0,9.76 5.37,17.19 Z"
+     id="path5183" />
+  <path
+     class="cls-2"
+     d="M 5.37,11.87 10.74,8.75 5.37,6.35 v 5.51 z"
+     id="path5185" />
+  <path
+     class="cls-1"
+     d="m 0,8.75 5.37,3.12 V 6.36 L 0,8.76 Z"
+     id="path5187" />
+</svg>

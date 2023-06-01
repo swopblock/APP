@@ -23,6 +23,10 @@ namespace APP.Code
             return " Q " + x + " " + y + " " + cx + " " + cy;
         }
 
+        public static string CurveTo(float x, float y, float cx1, float cy1, float cx2, float cy2)
+        {
+            return " C " + cx1 + " " + cy1 + cx2 + " " + cy2 + " " + x + " " + y;
+        }
         public static string MoveTo(float x, float y)
         {
             return " M " + x + " " + y;

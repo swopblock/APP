@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   viewBox="0 0 15 19.267107"
+   version="1.1"
+   id="svg16"
+   sodipodi:docname="trade.svg"
+   width="15"
+   height="19.267107"
+   inkscape:version="1.2.2 (732a01da63, 2022-12-09)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview18"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     showgrid="false"
+     inkscape:zoom="1.05375"
+     inkscape:cx="196.44128"
+     inkscape:cy="-91.577699"
+     inkscape:window-width="1920"
+     inkscape:window-height="1001"
+     inkscape:window-x="2391"
+     inkscape:window-y="-9"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg16" />
+  <defs
+     id="defs4">
+    <style
+       id="style2">
+		.cls-1{
+		stroke: #fff;
+		fill:#00000000;
+		stroke-width:0.5px;
+		}
+	</style>
+  </defs>
+  <g
+     id="g14"
+     transform="translate(-154.7,-492.96645)">
+    <path
+       class="cls-1"
+       d="M 159.65,511.88 155.77,508 c -0.56,-0.56 -0.56,-1.46 0,-2.02 l 3.88,-3.88"
+       id="path6" />
+    <line
+       class="cls-1"
+       x1="155.31"
+       y1="507"
+       x2="169.7"
+       y2="507"
+       id="line8" />
+    <path
+       class="cls-1"
+       d="m 164.75,493.32 3.88,3.88 c 0.56,0.56 0.56,1.46 0,2.02 l -3.88,3.88"
+       id="path10" />
+    <line
+       class="cls-1"
+       x1="169.10001"
+       y1="498.20999"
+       x2="154.7"
+       y2="498.20999"
+       id="line12" />
+  </g>
+</svg>

@@ -17,11 +17,13 @@
             </Grid></Border>
             <VerticalStackLayout>
 
-                <controls:TimePeriodLabels HorizontalOptions="CenterAndExpand" ZIndex="0" Margin="0,700,0,0"/>
+                <controls:TimePeriodLabels HorizontalOptions="CenterAndExpand" ZIndex="0" Margin="0,100,0,0"/>
                 <controls:NumberPad></controls:NumberPad>
                 <controls:ValueList></controls:ValueList>
                 <controls:OrderList></controls:OrderList>
             </VerticalStackLayout>
+            <controls:CryptoCard></controls:CryptoCard>
+            <controls:BottomThreeButtons></controls:BottomThreeButtons>
             
         </VerticalStackLayout>
     </ScrollView>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   viewBox="0 0 1.3500257 7.0799999"
+   version="1.1"
+   id="svg14"
+   sodipodi:docname="3bar.svg"
+   width="1.3500257"
+   height="7.0799999"
+   inkscape:version="1.2.2 (732a01da63, 2022-12-09)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview16"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     showgrid="false"
+     inkscape:zoom="1.05375"
+     inkscape:cx="210.67616"
+     inkscape:cy="83.036773"
+     inkscape:window-width="1920"
+     inkscape:window-height="1001"
+     inkscape:window-x="2391"
+     inkscape:window-y="-9"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg14" />
+  <defs
+     id="defs4">
+    <style
+       id="style2">
+	.cls-1{
+		fill: url(#linear-gradient-4);
+	}
+	.cls-3{
+		fill: url(#linear-gradient-6);
+	}
+	.cls-4{
+		fill: url(#linear-gradient-7);
+	}
+	.cls-5{
+		fill: url(#linear-gradient-5);
+	}
+	</style>
+  </defs>
+  <g
+     id="g12"
+     transform="translate(-140.15999,-318.06001)">
+    <rect
+       x="140.14999"
+       y="318.04999"
+       width="1.35"
+       height="1.35"
+       rx="0.67000002"
+       ry="0.67000002"
+       transform="rotate(-90,140.835,318.725)"
+       id="rect6" />
+    <rect
+       x="140.14999"
+       y="320.92001"
+       width="1.35"
+       height="1.35"
+       rx="0.67000002"
+       ry="0.67000002"
+       transform="rotate(-90,140.83,321.59)"
+       id="rect8" />
+    <rect
+       x="140.14999"
+       y="323.79001"
+       width="1.35"
+       height="1.35"
+       rx="0.67000002"
+       ry="0.67000002"
+       transform="rotate(-90,140.83,324.46)"
+       id="rect10" />
+  </g>
+</svg>

@@ -23,6 +23,7 @@
                 <controls:OrderList></controls:OrderList>
             </VerticalStackLayout>
             <controls:CryptoCard></controls:CryptoCard>
+            <controls:SliderTrade></controls:SliderTrade>
             <controls:BottomThreeButtons></controls:BottomThreeButtons>
             
         </VerticalStackLayout>

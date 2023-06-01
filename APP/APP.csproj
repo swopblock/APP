@@ -39,13 +39,27 @@
 
 		<!-- Images -->
 		<MauiImage Include="Resources\Images\*" />
-		<MauiImage Update="Resources\Images\dotnet_bot.svg" BaseSize="168,208" />
+		<MauiImage Update="Resources\Images\*" BaseSize="512,512" />
 
 		<!-- Custom Fonts -->
 		<MauiFont Include="Resources\Fonts\*" />
 
 		<!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
 		<MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <AndroidResource Remove="Resources\Images\SVG Files\plan\**" />
+	  <Compile Remove="Resources\Images\SVG Files\plan\**" />
+	  <EmbeddedResource Remove="Resources\Images\SVG Files\plan\**" />
+	  <MauiCss Remove="Resources\Images\SVG Files\plan\**" />
+	  <MauiImage Remove="Resources\Images\SVG Files\plan\**" />
+	  <MauiXaml Remove="Resources\Images\SVG Files\plan\**" />
+	  <None Remove="Resources\Images\SVG Files\plan\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Remove="Resources\Images\threebar.svg" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -95,6 +109,12 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\ViewPart\PoweredBy.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\ViewPart\RoundBox.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\ViewPart\SliderTrade.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>

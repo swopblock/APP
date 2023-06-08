@@ -3,35 +3,51 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="APP.Views.CryptoCard"
              xmlns:controls="clr-namespace:APP.Views">
-    <StackLayout x:Name="ContainerForGrids" HorizontalOptions="Center">
-        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-            <controls:RoundBox ZIndex="10"></controls:RoundBox>
-            <Grid x:Name="gridCrypto">
+    <StackLayout x:Name="ContainerForGrids" HorizontalOptions="CenterAndExpand">
+        <Grid x:Name="gridCrypto" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <controls:RoundBox ZIndex="10">
+                
+            </controls:RoundBox>
+            <Grid Margin="0,60,0,0">
+                <Path x:Name="linePath"></Path>
+                <Path x:Name="fillPath"></Path>
+            </Grid>
+            <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="*"></RowDefinition>
-                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="35"></RowDefinition>
+                    <RowDefinition Height="40"></RowDefinition>
                     <RowDefinition Height="*"></RowDefinition>
                     <RowDefinition Height="*"></RowDefinition>
                     <RowDefinition Height="*"></RowDefinition>
                 </Grid.RowDefinitions>
 
                 <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="30"></ColumnDefinition>
                     <ColumnDefinition Width="*"></ColumnDefinition>
                     <ColumnDefinition Width="*"></ColumnDefinition>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="40"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
 
-                <Label Grid.Column="3" FontSize="15" VerticalTextAlignment="Center" Grid.Row="0" Text="BTC"/>
-                <Label Grid.Column="3" FontSize="20" VerticalTextAlignment="Center" Grid.Row="1" Text="$"/>
-                <Label Grid.Column="3" FontSize="12" VerticalTextAlignment="Center" Grid.Row="2" Text="Change"/>
-                <Image VerticalOptions="Center" WidthRequest="40" Grid.Column="0" Source="bitcoin.png"/>
+                <VerticalStackLayout Grid.Column="2" Grid.Row="1">
+                    <Label FontFamily="GuidaBold" FontSize="15" VerticalTextAlignment="Center" HorizontalTextAlignment="End" Text="BTC"/>
+                    <Label FontFamily="Guida" FontSize="20" VerticalTextAlignment="Center" HorizontalTextAlignment="End" Text="$27000"/>
+                   
+                    <HorizontalStackLayout HeightRequest="30" HorizontalOptions="End">
+                        <Grid HeightRequest="25" Padding="0,0,4,0" VerticalOptions="Center">
+                            <Path VerticalOptions="Center" Data="M0,0l-4.5,-7.5l-4.5,7.5Z" Stroke="{StaticResource Gray54}"  />
+                            <Path VerticalOptions="Center" Data="M0,0l-4.5,7.5l-4.5,-7.5Z" Stroke="{StaticResource Gray54}"  />
+                        </Grid>
+                        <Label VerticalOptions="Start" FontFamily="GuidaBold" FontSize="12" Text="3.10%"/>
+                        
+                    </HorizontalStackLayout>
+                </VerticalStackLayout>
 
-                <Path></Path>
-                <Path></Path>
-                <Path></Path>
-                <controls:TimePeriodLabels ></controls:TimePeriodLabels>
+                <VerticalStackLayout Grid.Row="1" Grid.Column="1">
+                    <Image VerticalOptions="Center" HorizontalOptions="Start"  WidthRequest="20" Source="bitcoin.png"/>
+                    <Label FontSize="12" Margin="0,15,0,0" FontFamily="GuidaBold" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" Text="1.530213"/>
+                </VerticalStackLayout>
             </Grid>
+            <controls:TimePeriodLabels Margin="20" ZIndex="10" VerticalOptions="End" HorizontalOptions="CenterAndExpand"></controls:TimePeriodLabels>
         </Grid>
     </StackLayout>
 </ContentView>

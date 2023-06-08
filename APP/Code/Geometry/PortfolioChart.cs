@@ -74,7 +74,7 @@ namespace APP.Code
             float yf = (float)(box.Y + (box.Height * 1.8));
 
             curve += BuildSVG.LineTo(xf, yf);
-            curve += BuildSVG.LineTo(0, yf);
+            curve += BuildSVG.LineTo((float)box.X, yf);
 
             curve += " Z ";
 

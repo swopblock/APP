@@ -22,7 +22,7 @@
                 <controls:TimePeriodLabels VerticalOptions="End" HorizontalOptions="CenterAndExpand" ZIndex="0" Margin="0,100,0,0"/>
             </Grid>
             <VerticalStackLayout>
-                <controls:CryptoCard></controls:CryptoCard>
+                <controls:CryptoCard Margin="20"></controls:CryptoCard>
                 <!--<controls:NumberPad></controls:NumberPad>-->
                 <!--<controls:ValueList></controls:ValueList>-->
                 <controls:OrderList></controls:OrderList>

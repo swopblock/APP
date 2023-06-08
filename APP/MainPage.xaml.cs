@@ -6,9 +6,9 @@ namespace APP;
 
 public partial class MainPage : ContentPage
 {
-    ChartContainer chartContainer = new ChartContainer();
-
     PortfolioCircle portfolioCircle = null;
+
+    ChartContainer chartContainer = new ChartContainer();
 
     Rect rect = new Rect();
     Point centerPoint = new Point();
@@ -164,7 +164,7 @@ public partial class MainPage : ContentPage
         LinearGradientBrush brush = new LinearGradientBrush(
             GetLineGradient(st, bk), 
             new Point(0, 0), 
-            new Point(0.4f, 0.4f));
+            new Point(0.75f, 0.75f));
 
         pathBack.Fill = brush;
 
@@ -211,8 +211,8 @@ public partial class MainPage : ContentPage
 
                         LinearGradientBrush brush = new LinearGradientBrush(
                         GetLineGradient(st, bk),
-                        new Point(0, 0),
-                        new Point(1, 1));
+                        new Point(0.5, 0.4),
+                        new Point(0.6, 0.9));
 
                         lineFill.Fill = brush;
 

@@ -11,19 +11,19 @@
                             <Grid VerticalOptions="Center" HorizontalOptions="Center">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="30" />
-                                    <ColumnDefinition Width="70" />
-                                    <ColumnDefinition Width="70" />
-                                    <ColumnDefinition Width="70" />
+                                    <ColumnDefinition Width="100" />
+                                    <ColumnDefinition Width="100" />
+                                    <ColumnDefinition Width="30" />
                                     <ColumnDefinition Width="20" />
                                 </Grid.ColumnDefinitions>
 
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="70"/>
                                 </Grid.RowDefinitions>
-                                <Image Grid.Row="0" Grid.Column="0"  HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="15" Source="{Binding Icon}"/>
-                                <Label Grid.Row="0" Grid.Column="1" Padding="20" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" FontSize="7" Text="{Binding LabelText}"></Label>
-                                <Label Grid.Row="0" Grid.Column="2" Padding="10" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" FontSize="7" TextColor="{StaticResource Gray54}" Text="{Binding DateText}"></Label>
-                                <Label Grid.Row="0" Grid.Column="3" VerticalTextAlignment="Center" HorizontalTextAlignment="End" FontSize="7" Text="{Binding ValueText}"></Label>
+                                <Image Grid.Row="0" Grid.Column="0"  HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="20" Source="{Binding Icon}"/>
+                                <Label Grid.Row="0" Grid.Column="1" Padding="20" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" FontSize="11" Text="{Binding LabelText}"></Label>
+                                <Label Grid.Row="0" Grid.Column="2" Padding="10" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" FontSize="11" TextColor="{StaticResource Gray54}" Text="{Binding DateText}"></Label>
+                                <Label Grid.Row="0" Grid.Column="3" VerticalTextAlignment="Center" HorizontalTextAlignment="End" FontSize="11" Text="{Binding ValueText}"></Label>
                                 <HorizontalStackLayout Margin="5,0,0,0" Grid.Row="0" Grid.Column="4">
                                     <Path   Data="M 0 0 l 7 7 l -7 7" Stroke="{StaticResource Gray54}" HorizontalOptions="End" VerticalOptions="Center" />
                                 </HorizontalStackLayout>

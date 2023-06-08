@@ -1,4 +1,6 @@
-﻿namespace APP;
+﻿using APP.Code;
+
+namespace APP;
 
 public static class MauiProgram
 {

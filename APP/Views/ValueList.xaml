@@ -3,11 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="APP.Views.ValueList">
     <VerticalStackLayout HorizontalOptions="FillAndExpand" VerticalOptions="Center"  Padding="0">
-        <ListView SeparatorColor="{StaticResource GrayA1}" x:Name="ListViewContainer" >
+        <ListView RowHeight="70" SeparatorColor="{StaticResource GrayA1}" x:Name="ListViewContainer" >
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <StackLayout HeightRequest="40">
+                        <StackLayout VerticalOptions="FillAndExpand" HeightRequest="70">
                             <Grid VerticalOptions="Center" HorizontalOptions="Center">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="30" />
@@ -18,10 +18,10 @@
                                 </Grid.ColumnDefinitions>
 
                                 <Grid.RowDefinitions>
-                                    <RowDefinition Height="40"/>
+                                    <RowDefinition Height="70"/>
                                 </Grid.RowDefinitions>
                                 <Image Grid.Row="0" Grid.Column="0"  HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="15" Source="{Binding Icon}"/>
-                                <Label Grid.Row="0" Grid.Column="1" Padding="10" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" FontSize="7" Text="{Binding LabelText}"></Label>
+                                <Label Grid.Row="0" Grid.Column="1" Padding="20" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" FontSize="7" Text="{Binding LabelText}"></Label>
                                 <Label Grid.Row="0" Grid.Column="2" Padding="10" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" FontSize="7" TextColor="{StaticResource Gray54}" Text="{Binding DateText}"></Label>
                                 <Label Grid.Row="0" Grid.Column="3" VerticalTextAlignment="Center" HorizontalTextAlignment="End" FontSize="7" Text="{Binding ValueText}"></Label>
                                 <HorizontalStackLayout Margin="5,0,0,0" Grid.Row="0" Grid.Column="4">

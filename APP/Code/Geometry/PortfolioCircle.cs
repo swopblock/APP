@@ -116,7 +116,7 @@ namespace APP.Code
 
                     if (once) // only runs on the begining arc
                     {
-                        string bx = BuildSVG.BoxValue(InnerP1, Center, wLimit, hLimit);
+                        string bx = BuildSVG.BoxValue(InnerP1, Center, wLimit, wLimit);
 
                         CurvePathBlock += bx;
 
@@ -185,7 +185,7 @@ namespace APP.Code
 
                 if(f == 0)
                 {
-                    CurvePathLine += BuildSVG.BoxValue(InnerP1, Center, wLimit, hLimit);
+                    CurvePathLine += BuildSVG.BoxValue(InnerP1, Center, wLimit, wLimit);
                 }
 
                 CurvePathLine += BuildSVG.LineTo(InnerP1);
@@ -222,8 +222,8 @@ namespace APP.Code
 
             CurvePathLine += BuildSVG.LineTo(InnerP1.X, 0);
             CurvePathLine += BuildSVG.LineTo(0, 0);
-            CurvePathLine += BuildSVG.LineTo(0, hLimit);
-            CurvePathLine += BuildSVG.LineTo(wLimit, hLimit);
+            CurvePathLine += BuildSVG.LineTo(0, wLimit);
+            CurvePathLine += BuildSVG.LineTo(wLimit, wLimit);
             CurvePathLine += BuildSVG.LineTo(wLimit, 0);
             CurvePathLine += BuildSVG.LineTo(InnerP1.X, InnerP1.Y);
             CurvePathLine += " Z ";

@@ -23,6 +23,8 @@ public partial class MainPage : ContentPage
 	{
 		InitializeComponent();
 
+        button.Clicked += Button_Clicked;
+
         Application.Current.UserAppTheme = AppTheme.Dark;
 
         new Thread(() =>
@@ -41,6 +43,13 @@ public partial class MainPage : ContentPage
             }
 
         }).Start();
+    }
+
+    private void Button_Clicked(object sender, EventArgs e)
+    {
+        var page = new TradeAmountPage();
+
+        Application.Current.MainPage = page;
     }
 
     public void UpdateSize()
@@ -84,22 +93,22 @@ public partial class MainPage : ContentPage
                     cnt,
                     chartContainer,
                     PortfolioCircle.LoadDemo(),
-                    w * my, w * mx
+                    w * mx, w * mx
                 );
 
                 portfolioShape.InnerRadius = w + (w * 0.8f);
                 portfolioShape.OuterRadius = w + (w * 1.6f);
 
-                double cbrx = cnt.X / (w * mx);
-                double cbry = cnt.Y / (w * my * 2);
+                double cbrx = 0.5f;// cnt.X / (w * mx);
+                double cbry = 0.525f;//cnt.Y / (w * my);
 
                 centerPoint = new Point(cbrx, cbry);
 
                 rect = new Rect(
                     1,
                     cnt.Y - (portfolioShape.InnerRadius * 0.5f),
-                    portfolioShape.InnerRadius * 2.5f,
-                    portfolioShape.InnerRadius * 1.2f);
+                    portfolioShape.InnerRadius,
+                    portfolioShape.InnerRadius);
 
                 portfolioCircle = portfolioShape;
             }
@@ -187,7 +196,7 @@ public partial class MainPage : ContentPage
 
                 if (cnds.Count > 0)
                 {
-                    CurveSet curv = chart.DrawLine(rect, cnds);
+                    CurveSet curv = chart.DrawLine(rect.Location, cnds);
 
                     if (!curv.Failed())
                     {
@@ -202,8 +211,8 @@ public partial class MainPage : ContentPage
 
                         LinearGradientBrush brush = new LinearGradientBrush(
                         GetLineGradient(st, bk),
-                        new Point(0.6, 0.15),
-                        new Point(0.6, 0.6));
+                        new Point(0, 0),
+                        new Point(1, 1));
 
                         lineFill.Fill = brush;
 
@@ -268,10 +277,10 @@ public partial class MainPage : ContentPage
         GradientStopCollection collection = new GradientStopCollection
         {
             new GradientStop(clr, 0f),
-            new GradientStop(clr, 0.12f),
-            new GradientStop(clrh, 0.155f),
-            new GradientStop(clrm, 0.195f),
-            new GradientStop(Colors.Transparent, 0.22f),
+            new GradientStop(clr, 0.1f),
+            new GradientStop(clrh, 0.24f),
+            new GradientStop(clrm, 0.4f),
+            new GradientStop(Colors.Transparent, 0.45f),
         };
 
         return collection;

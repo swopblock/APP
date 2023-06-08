@@ -2,14 +2,15 @@
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:controls="clr-namespace:APP.Views"
-             x:Class="APP.Views.OrderList">
-    <VerticalStackLayout Padding="0, 30, 0, 30" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource Gray27}">
+             x:Class="APP.Views.OrderList"
+             BackgroundColor="{StaticResource Gray27}">
+    <VerticalStackLayout Margin="30" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource Gray27}">
         <Label 
             Text="Order History"
             VerticalOptions="Center" 
             HorizontalOptions="Center"
             Padding="0,0,0,20"/>
-
+        <BoxView ZIndex="100" Margin="0,20,0,0" Color="{StaticResource Gray54}" HeightRequest="1" HorizontalOptions="FillAndExpand" />
         <controls:ValueList></controls:ValueList>
         <controls:PoweredBy Padding="0,30,0,0" ></controls:PoweredBy>
     </VerticalStackLayout>

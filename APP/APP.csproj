@@ -49,20 +49,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <AndroidResource Remove="Resources\Images\SVG Files\plan\**" />
-	  <Compile Remove="Resources\Images\SVG Files\plan\**" />
-	  <EmbeddedResource Remove="Resources\Images\SVG Files\plan\**" />
-	  <MauiCss Remove="Resources\Images\SVG Files\plan\**" />
-	  <MauiImage Remove="Resources\Images\SVG Files\plan\**" />
-	  <MauiXaml Remove="Resources\Images\SVG Files\plan\**" />
-	  <None Remove="Resources\Images\SVG Files\plan\**" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <None Remove="Resources\Images\threebar.svg" />
-	</ItemGroup>
-
-	<ItemGroup>
 	  <MauiXaml Update="CurrencyPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

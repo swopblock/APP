@@ -20,8 +20,9 @@ namespace APP.Code
 
             center = Center;
         }
-        public CurveSet DrawLine(Rect box, List<Candle> candle)
+        public CurveSet DrawLine(Point corner, List<Candle> candle)
         {
+            Rect box = new Rect(corner, new Size(wLimit, hLimit * 0.5));
             string curve = "";
             string line = "";
 
@@ -60,9 +61,10 @@ namespace APP.Code
                 {
                     PointF pf = new PointF(xc, yc);
 
-                    line = BuildSVG.BoxValue(pf, center, wLimit, hLimit);
-                    curve = BuildSVG.BoxValue(pf, center, wLimit, hLimit);
+                    line = BuildSVG.BoxValue(pf, center, wLimit, wLimit);
+                    curve = BuildSVG.BoxValue(pf, center, wLimit, wLimit);
                 }
+
                 prx = xc;
                 pry = yc;
             }

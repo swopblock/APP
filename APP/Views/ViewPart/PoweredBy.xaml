@@ -6,15 +6,15 @@
         <Label 
             BackgroundColor="Transparent"
             TextColor="{StaticResource Gray54}"
-            FontSize="7"
+            FontSize="18"
             Text="Powered by"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
-        <Image WidthRequest="10" Margin="3, 0, 3, 0" Source="swopblockgray.png"/>
+        <Image WidthRequest="20" Margin="6, 0, 6, 0" Source="swopblockgray.png"/>
         <Label 
             BackgroundColor="Transparent"
             TextColor="{StaticResource Gray54}"
-            FontSize="7"
+            FontSize="18"
             Text="swopblock"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />

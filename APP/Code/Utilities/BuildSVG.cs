@@ -36,17 +36,17 @@ namespace APP.Code
         {
             return "M 0 0"
                     + " L 0 0 M "
-                    + (Center.X + WidthLimit) + " 0 "
+                    + (WidthLimit) + " 0 "
                     + " L "
-                    + (Center.X + WidthLimit) + " 0 "
+                    + (WidthLimit) + " 0 "
                     + " M "
-                    + WidthLimit * 2 + " " + HeightLimit * 2
+                    + WidthLimit + " " + HeightLimit
                     + " L "
-                    + WidthLimit * 2 + " " + HeightLimit * 2
+                    + WidthLimit + " " + HeightLimit
                     + " M "
-                    + WidthLimit * 2 + " 0 "
+                    + WidthLimit + " 0 "
                     + " L "
-                    + WidthLimit * 2 + " 0 "
+                    + WidthLimit + " 0 "
                     // code above this is used to make maui 
                     // align the different shapes
                     + " M "

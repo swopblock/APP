@@ -31,7 +31,7 @@ namespace APP.Code.Geometry
             PointF cent = new PointF(ScreenWidth/2, ScreenHeight/2);
             PointF pt1 = new PointF(ScreenWidth/2, inset);
 
-            shape += BuildSVG.BoxValue(pt1, cent, ScreenWidth, ScreenHeight);
+            shape += BuildSVG.BoxValue(pt1, cent, ScreenWidth, ScreenWidth);
             shape += BuildSVG.LineTo(pt1.X + partWidth , pt1.Y);
 
             PointF first = new PointF(pt1.X + partWidth + Round, pt1.Y + Round);

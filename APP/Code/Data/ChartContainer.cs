@@ -11,9 +11,9 @@ namespace APP.Code
     {
         public enum ChartSymbols 
         { 
-            BTC, 
-            ETH, 
-            SWOBL, 
+            BTC,
+            ETH,
+            SWOBL,
             SWOBLR
         }
 

@@ -52,5 +52,14 @@ namespace APP.Code
                     + " M "
                     + InnerP1.X + " " + InnerP1.Y;
         }
+
+        public static string BoxArea(PointF Center, PointF First, float Radius)
+        {
+            return "M " + (Center.X - Radius) + " " + (Center.Y - Radius)
+                    + " L " + (Center.X - Radius) + " " + (Center.Y - Radius)
+                    + " M " + (Center.X + Radius) + " " + (Center.Y + Radius)
+                    + " L " + (Center.X + Radius) + " " + (Center.Y + Radius)
+                    + " M " + First.X + " " + First.Y;
+        }
     }
 }

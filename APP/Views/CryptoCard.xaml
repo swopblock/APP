@@ -4,11 +4,20 @@
              x:Class="APP.Views.CryptoCard"
              xmlns:controls="clr-namespace:APP.Views">
     <StackLayout x:Name="ContainerForGrids" HorizontalOptions="CenterAndExpand">
+       
         <Grid x:Name="gridCrypto" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-            <controls:RoundBox ZIndex="10">
-                
+            <controls:RoundBox x:Name="BackgroundPanel" ZIndex="10">
             </controls:RoundBox>
+            <Rectangle Fill="Black" ZIndex="-1" Margin="10" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" RadiusX="20" RadiusY="20"></Rectangle>
+           
+            <Grid Margin="0,30,0,0">
+
+                <VerticalStackLayout HorizontalOptions="Center">
+                    <controls:PercentCircle x:Name="Circle"></controls:PercentCircle>
+                </VerticalStackLayout>
+            </Grid>
             <Grid Margin="0,60,0,0">
+                
                 <Path x:Name="linePath"></Path>
                 <Path x:Name="fillPath"></Path>
             </Grid>
@@ -25,26 +34,27 @@
                     <ColumnDefinition Width="30"></ColumnDefinition>
                     <ColumnDefinition Width="*"></ColumnDefinition>
                     <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
                     <ColumnDefinition Width="40"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
 
-                <VerticalStackLayout Grid.Column="2" Grid.Row="1">
-                    <Label FontFamily="GuidaBold" FontSize="15" VerticalTextAlignment="Center" HorizontalTextAlignment="End" Text="BTC"/>
-                    <Label FontFamily="Guida" FontSize="20" VerticalTextAlignment="Center" HorizontalTextAlignment="End" Text="$27000"/>
-                   
+                <VerticalStackLayout Grid.Column="3" Grid.Row="1">
+                    <Label FontFamily="GuidaBold" FontSize="12" VerticalTextAlignment="Center" HorizontalTextAlignment="End" Text="{Binding Symbol}"/>
+                    <Label x:Name="valuePrice" FontFamily="Guida" FontSize="15" VerticalTextAlignment="Center" HorizontalTextAlignment="End" Text="{Binding Price, StringFormat='{0:c}'}"/>
+
                     <HorizontalStackLayout HeightRequest="30" HorizontalOptions="End">
                         <Grid HeightRequest="25" Padding="0,0,4,0" VerticalOptions="Center">
-                            <Path VerticalOptions="Center" Data="M0,0l-4.5,-7.5l-4.5,7.5Z" Stroke="{StaticResource Gray54}"  />
-                            <Path VerticalOptions="Center" Data="M0,0l-4.5,7.5l-4.5,-7.5Z" Stroke="{StaticResource Gray54}"  />
+                            <Path x:Name="ValueUp" VerticalOptions="Center" Data="M0,0l-4.5,-7.5l-4.5,7.5Z" Stroke="{Binding HtmlColor}"  />
+                            <Path x:Name="ValueDown" VerticalOptions="Center" Data="M0,0l-4.5,7.5l-4.5,-7.5Z" Stroke="{Binding HtmlColor}"  />
                         </Grid>
-                        <Label VerticalOptions="Start" FontFamily="GuidaBold" FontSize="12" Text="3.10%"/>
-                        
+                        <Label x:Name="percentGain" TextColor="{Binding HtmlColor}" VerticalOptions="Start" FontFamily="GuidaBold" FontSize="12" Text="0.00%"/>
+
                     </HorizontalStackLayout>
                 </VerticalStackLayout>
 
                 <VerticalStackLayout Grid.Row="1" Grid.Column="1">
-                    <Image VerticalOptions="Center" HorizontalOptions="Start"  WidthRequest="20" Source="bitcoin.png"/>
-                    <Label FontSize="12" Margin="0,15,0,0" FontFamily="GuidaBold" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" Text="1.530213"/>
+                    <Image VerticalOptions="Center" HorizontalOptions="Start"  WidthRequest="20" Source="{Binding Image}"/>
+                    <Label FontSize="12" Margin="0,10,0,0" FontFamily="GuidaBold" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" TextColor="{Binding HtmlColor}" Text="{Binding Amount}"/>
                 </VerticalStackLayout>
             </Grid>
             <controls:TimePeriodLabels Margin="20" ZIndex="10" VerticalOptions="End" HorizontalOptions="CenterAndExpand"></controls:TimePeriodLabels>

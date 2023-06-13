@@ -43,6 +43,8 @@ namespace APP.Code
             else
             {
                 Assets = assets;
+
+                UpdateValues();
             }
         }
 
@@ -53,12 +55,28 @@ namespace APP.Code
         {
             decimal total = 0;
 
-            foreach(PortfolioAsset a in Assets)
+            for (int i = 0; i < Assets.Count; i++)
             {
-                total += (a.Amount * (decimal)charts.GetPrice(a.Symbol));
+                decimal price = (decimal)charts.GetPrice(Assets[i].Symbol);
+
+                Assets[i].Price = price;
+
+                total += (Assets[i].Amount * price);
             }
 
             return total;
+        }
+
+        private void UpdateValues()
+        {
+            decimal ttl = GetTotal();
+
+            for (int i = 0; i < Assets.Count; i++)
+            {
+                Assets[i].Percentage = (decimal)((Assets[i].Amount *
+                    (decimal)charts.GetPrice(Assets[i].Symbol))
+                    / ttl);
+            }
         }
 
         public CurveSet GetNextCurve(int curveIndex)
@@ -67,21 +85,14 @@ namespace APP.Code
             string CurvePathLine = "";
             string CurevPathOuter = "";
 
-            float[] percent = new float[Assets.Count];
-
             decimal ttl = GetTotal();
+
+            UpdateValues();
 
             if (ttl > 0)
             {
-                for (int i = 0; i < Assets.Count; i++)
-                {
-                    percent[i] = (float)((Assets[i].Amount * 
-                        (decimal)charts.GetPrice(Assets[i].Symbol)) 
-                        / ttl);
-                }
-
                 float per = 360 / totalSegments;
-                float perAmount = percent[curveIndex] * 360;
+                float perAmount = (float)Assets[curveIndex].Percentage * 360;
 
                 float totalAngle = 0;
 
@@ -270,29 +281,37 @@ namespace APP.Code
                 {
                     Name = "Bitcoin",
                     Symbol = "BTC",
-                    Amount = 1,
-                    HtmlColor = "#f2a900"
+                    Amount = 1.56784m,
+                    PurchasePrice = 10000,
+                    HtmlColor = Color.FromArgb("#f2a900"),
+                    Image = "bitcoin.png"
                 },
                 new PortfolioAsset
                 {
-                    Name = "Etherium",
+                    Name = "Ethereum",
                     Symbol = "ETH",
-                    Amount = 5,
-                    HtmlColor = "#6f89ff"
+                    Amount = 30.98765m,
+                    PurchasePrice = 1000,
+                    HtmlColor = Color.FromArgb("#6f89ff"),
+                    Image = "ethereum.png"
                 },
                 new PortfolioAsset
                 {
                     Name = "Swobble",
                     Symbol = "SWOBL",
                     Amount = 10000,
-                    HtmlColor = "#00dd00"
+                    PurchasePrice = 0.5m,
+                    HtmlColor = Color.FromArgb("#00dd00"),
+                    Image = "swopblock.png"
                 },
                 new PortfolioAsset
                 {
                     Name = "Swobble Rewards",
                     Symbol = "SWOBLR",
                     Amount = 2000,
-                    HtmlColor = "#ff00bc"
+                     PurchasePrice = 0.1m,
+                    HtmlColor = Color.FromArgb("#ff00bc"),
+                    Image = "swopblockreward.png"
                 }
             };
         }

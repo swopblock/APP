@@ -10,6 +10,8 @@ public partial class CryptoCard : ContentView
 
     PortfolioCircle portfolioCircle = null;
 
+    PortfolioAsset assetDisplayed = null;
+
     Rect rect = new Rect();
     Point centerPoint = new Point();
 
@@ -18,24 +20,30 @@ public partial class CryptoCard : ContentView
 
     float width = 0;
     float height = 0;
-    public CryptoCard()
+    public CryptoCard(PortfolioAsset asset)
 	{
 		InitializeComponent();
 
-        new Thread(() =>
-        {
-            Thread.CurrentThread.IsBackground = false;
-            while (true)
-            {
-                Dispatcher.Dispatch(() =>
-                {
-                    UpdateSize();
-                    MakeChart(portfolioCircle);
-                });
+        assetDisplayed = asset; 
 
-                Thread.Sleep(5500);
-            }
-        }).Start();
+        BindingContext = asset;
+
+
+        //new Thread(() =>
+        //{
+        //    Thread.CurrentThread.IsBackground = true;
+
+        //    while (true)
+        //    {
+        //        Dispatcher.Dispatch(() =>
+        //        {
+        //            UpdateSize();
+        //            MakeChart(portfolioCircle);
+        //        });
+
+        //        Thread.Sleep(5500);
+        //    }
+        //});//.Start();
 
       
     }
@@ -51,6 +59,17 @@ public partial class CryptoCard : ContentView
         float w = 0;
         float h = 0;
         float dense = 1;
+
+
+        Circle.UpdateValue(assetDisplayed);
+
+        SetValueDirection(assetDisplayed.Price - assetDisplayed.PurchasePrice);
+
+        decimal diff = (assetDisplayed.Price - assetDisplayed.PurchasePrice) / assetDisplayed.PurchasePrice;
+
+        percentGain.Text = diff.ToString("0.00") + "%";
+
+        BackgroundPanel.SetColor(assetDisplayed.HtmlColor);
 
         if (width == 0 || height == 0)
         {
@@ -128,48 +147,67 @@ public partial class CryptoCard : ContentView
             {
                 if (packCandles.Count > 0)
                 {
-                    List<Candle> cnds = chartContainer.SumTotal(portfolioShape.Assets, packCandles);
+                    Pack Selectedpack = packCandles.Where(x => x.Symbol == assetDisplayed.Symbol).FirstOrDefault();
 
-                    if (cnds.Count > 0)
+                    if (Selectedpack != null)
                     {
-                        CurveSet curv = chart.DrawLine(rect.Location, cnds);
+                        List<Candle> cnds = Selectedpack.candles; //chartContainer.SumTotal(portfolioShape.Assets, packCandles);
 
-                        if (!curv.Failed())
+                        if (cnds.Count > 0)
                         {
-                            Color bk = Color.FromArgb("#000000");
-                            Color st = Color.FromArgb("#FFFFFF");
+                            CurveSet curv = chart.DrawLine(rect.Location, cnds);
 
-                            Geometry pathFill =
-                             (Geometry)new PathGeometryConverter()
-                             .ConvertFromString(curv.GetCurve());//
+                            if (!curv.Failed())
+                            {
+                                Color bk = Color.FromArgb("#000000");
+                                Color st = Color.FromArgb("#FFFFFF");
 
-                           // Microsoft.Maui.Controls.Shapes.Path lineFill = new(pathFill);
+                                Geometry pathFill =
+                                 (Geometry)new PathGeometryConverter()
+                                 .ConvertFromString(curv.GetCurve());//
 
-                            LinearGradientBrush brush = new LinearGradientBrush(
-                            GetLineGradient(st, bk),
-                            new Point(0.1, 0.1),
-                            new Point(0.6, 0.9));
+                                // Microsoft.Maui.Controls.Shapes.Path lineFill = new(pathFill);
 
-                            fillPath.Data = pathFill;
-                            fillPath.Fill = brush;
-                           // gridCrypto.Children.Add(lineFill);
+                                LinearGradientBrush brush = new LinearGradientBrush(
+                                GetLineGradient(st, bk),
+                                new Point(0.1, 0.1),
+                                new Point(0.6, 0.9));
 
-                            Geometry pathData =
-                               (Geometry)new PathGeometryConverter()
-                               .ConvertFromString(curv.GetSpace());//
+                                fillPath.Data = pathFill;
+                                fillPath.Fill = brush;
+                                // gridCrypto.Children.Add(lineFill);
 
-                           // Microsoft.Maui.Controls.Shapes.Path linepath = new(pathData);
+                                Geometry pathData =
+                                   (Geometry)new PathGeometryConverter()
+                                   .ConvertFromString(curv.GetSpace());//
 
-                            linePath.Data = pathData;
-                            linePath.Stroke = st;
+                                // Microsoft.Maui.Controls.Shapes.Path linepath = new(pathData);
 
-                            //test2.Data = pathData;
+                                linePath.Data = pathData;
+                                linePath.Stroke = st;
 
-                            //gridCrypto.Children.Add(linepath);
+                                //test2.Data = pathData;
+
+                                //gridCrypto.Children.Add(linepath);
+                            }
                         }
                     }
                 }
             }
+        }
+    }
+
+    public void SetValueDirection(decimal value)
+    {
+        if (value >= 0) 
+        { 
+            ValueUp.Opacity = 1;
+            ValueDown.Opacity = 0;
+        }
+        else 
+        { 
+            ValueUp.Opacity = 0;
+            ValueDown.Opacity = 1;
         }
     }
     public GradientStopCollection GetLineGradient(Color clr1, Color clr2)

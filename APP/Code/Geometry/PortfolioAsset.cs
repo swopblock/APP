@@ -10,8 +10,12 @@ namespace APP.Code
     {
         public string Name { get; set; }
         public string Symbol { get; set; }
-        public string HtmlColor { get; set; }
+        public Color HtmlColor { get; set; }
+        public string Image { get; set; }
         public decimal Amount { get; set; }
+        public decimal Percentage { get; set; }
+        public string StringPercentage { get; set; }
         public decimal PurchasePrice { get; set; }
+        public decimal Price { get; set; }
     }
 }

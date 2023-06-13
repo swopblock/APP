@@ -1,10 +1,11 @@
 using APP.Code;
+using APP.Code.Data.Orders;
+using APP.Code.Data.User;
 
 namespace APP.Views;
 
 public partial class ValueList : ContentView
 {
-
 	public List<ValueItem> ItemsList = new List<ValueItem>()
 	{
 		new ValueItem("Market Buy","1000", "Jun 22, 2023", "bitcoin.png"),
@@ -16,5 +17,29 @@ public partial class ValueList : ContentView
 		InitializeComponent();
 
         ListViewContainer.ItemsSource = ItemsList;
+        ListViewContainer.ItemTapped += ListViewContainer_ItemTapped;
+    }
+
+    private void ListViewContainer_ItemTapped(object sender, ItemTappedEventArgs e)
+    {
+        //var page = new OrderDetailsPage();
+        //Navigation.PushAsync(page);
+        //Application.Current.MainPage = page;
+        int inx = e.ItemIndex;
+
+        List<OrderDetail> orders = UserProfileData.GetDemoOrders();
+
+        if (inx >= 0 && inx < orders.Count)
+        {
+            GoToDetails(orders[inx]);
+        }
+       
+    }
+
+    private async void GoToDetails(OrderDetail orDetail)
+    {
+        var page = new OrderDetailsPage(orDetail);
+
+        Application.Current.MainPage = page;
     }
 }

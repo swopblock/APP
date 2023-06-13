@@ -13,16 +13,28 @@ namespace APP.Code.Data.Orders
         public OrderType Type;
         public OrderStatus Status;
 
-        public string Symbol;
-        public string SwapToSymbol;
-        public decimal Amount;
+        public string ShowStatus { get { return Status.ToString(); } private set { } }
+        public string ShowType { get { return Type.ToString(); } private set { } }
+        public string Symbol { get; set; }
+        public string SwapToSymbol { get; set; }
+        public string SymbolName { get; set; }
+        public string SwapToName { get; set; }
+        public string SymbolExchangeRate { get; set; }
+        public string SwapToExchangeRate { get; set; }
+        public string RewardsEarnedText { get; set; }
 
-        public DateTime SubmittedTime;
-        public DateTime FilledTime;
+        public string Value { get; set; }
 
-        public decimal SymbolPrice;
-        public decimal SwopPrice;
-        public decimal RewardsEarned;
+        public decimal Amount { get; set; }
+        public decimal SwapAmount { get; set; }
+
+        public DateTime SubmittedTime { get; set; }
+        public DateTime FilledTime { get; set; }
+
+        public decimal SymbolPrice { get; set; }
+        public decimal SwapToPrice { get; set; }
+        public decimal SwapPrice { get; set; }
+        public decimal RewardsEarned { get; set; }
 
         public string GetName()
         {

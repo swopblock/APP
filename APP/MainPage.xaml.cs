@@ -1,6 +1,8 @@
 ﻿using APP.Code;
 using APP.Code.Geometry;
+using APP.Views;
 using Microsoft.Maui.Controls.Shapes;
+using System.ComponentModel;
 
 namespace APP;
 
@@ -13,11 +15,15 @@ public partial class MainPage : ContentPage
     Rect rect = new Rect();
     Point centerPoint = new Point();
 
+    public string TimeValue = "";
+
     int time = 300;
     int candleCount = 60;
 
     float width = 0;
     float height = 0;
+
+    bool added = false;
 
     public MainPage()
 	{
@@ -25,31 +31,96 @@ public partial class MainPage : ContentPage
 
         button.Clicked += Button_Clicked;
 
+        //NavigationPage.SetHasNavigationBar(this, false);
+        //Shell.SetTabBarIsVisible(this, false);
+
         Application.Current.UserAppTheme = AppTheme.Dark;
+
+        StartTimer();
 
         new Thread(() =>
         {
             Thread.CurrentThread.IsBackground = true;
 
             while (true)
-            { 
+            {
                 Dispatcher.Dispatch(() =>
                 {
                     UpdateSize();
                     UpdateCircle(portfolioCircle, rect, centerPoint);
+
+                    if (!added)
+                    {
+                        AddWalletAssets();
+                    }
                 });
 
                 Thread.Sleep(2000);
             }
 
-        }).Start();
+        });//.Start();
+    }
+    private void StartTimer()
+    {
+        Dispatcher.StartTimer(TimeSpan.FromSeconds(3), () =>
+        {
+            TimeValue = DateTime.Now.ToString("HH:mm:ss");
+            OnPropertyChanged(nameof(TimeValue));
+            return true; // Return true to keep the timer running
+        });
+    }
+
+    public event PropertyChangedEventHandler PropertyChanged;
+
+    protected virtual void OnPropertyChanged(string propertyName)
+    {
+        PortfolioAmount.Text = TimeValue;
+        UpdateSize();
+        UpdateCircle(portfolioCircle, rect, centerPoint);
+
+        if (!added)
+        {
+            AddWalletAssets();
+        }
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+    }
+
+    public void AddWalletAssets()
+    {
+        if (portfolioCircle != null)
+        {
+            int row = 0;
+
+            WalletCards.Children.Clear();
+
+            added = true;
+
+            WalletCards.HeightRequest = portfolioCircle.Assets.Count * 100;
+
+            foreach (PortfolioAsset set in portfolioCircle.Assets)
+            {
+                CryptoCard card = new CryptoCard(set);
+
+                card.Padding = new Thickness(0, 180 * row, 0, 0);
+                card.ZIndex = row++;
+
+                card.UpdateSize();
+                //card.MakeChart(portfolioCircle);
+
+                WalletCards.Children.Add(card);
+
+                if(set.Price == 0) added = false;
+            }
+
+           //  
+        }
     }
 
     private void Button_Clicked(object sender, EventArgs e)
     {
-        var page = new TradeAmountPage();
+        //var page = new OrderDetailsPage();
 
-        Application.Current.MainPage = page;
+        //Application.Current.MainPage = page;
     }
 
     public void UpdateSize()
@@ -196,6 +267,13 @@ public partial class MainPage : ContentPage
 
                 if (cnds.Count > 0)
                 {
+                    Candle last = cnds.LastOrDefault();
+                    if (last != null)
+                    {
+                        double total = last.close;
+
+                        PortfolioAmount.Text = total.ToString("c");
+                    }
                     CurveSet curv = chart.DrawLine(rect.Location, cnds);
 
                     if (!curv.Failed())
@@ -247,7 +325,7 @@ public partial class MainPage : ContentPage
 
         Microsoft.Maui.Controls.Shapes.Path pathTest = new(pathData);
 
-        Color clr = Color.FromArgb(asset.HtmlColor);
+        Color clr = asset.HtmlColor;
 
         RadialGradientBrush Gbrush =
             new RadialGradientBrush(GetGradient(clr), Center, 1);

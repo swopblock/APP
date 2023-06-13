@@ -1,33 +1,37 @@
+using Microsoft.Maui.Controls;
+
 namespace APP.Views;
 
 public partial class RoundBox : ContentView
-{
-	public RoundBox()
+{ 
+
+    public Color BackColor = Colors.White;
+    public RoundBox()
 	{
 		InitializeComponent();
 
-        SetColor("#f2a900");
+        SetColor(BackColor);
     }
 
-    public void SetColor(string htmlColor)
+    public void SetColor(Color htmlColor)
     {
         LinearGradientBrush brush = new LinearGradientBrush(
-            GetLineGradient(Color.FromArgb(htmlColor)),
+            GetLineGradient(htmlColor),
             new Point(0.1, 0),
             new Point(0.8, 1.1));
 
         LinearGradientBrush brushl1 = new LinearGradientBrush(
-            GetLineGradientLayer1(Color.FromArgb(htmlColor)),
+            GetLineGradientLayer1(htmlColor),
             new Point(0, 0.5),
             new Point(1, 0.5));
 
         LinearGradientBrush brushl2 = new LinearGradientBrush(
-            GetLineGradientLayer2(Color.FromArgb(htmlColor)),
+            GetLineGradientLayer2(htmlColor),
             new Point(0.5, 0),
             new Point(0.5, 1));
 
         LinearGradientBrush brushl3 = new LinearGradientBrush(
-            GetLineGradientLayer3(Color.FromArgb(htmlColor)),
+            GetLineGradientLayer3(htmlColor),
             new Point(0, 0.5),
             new Point(1, 0.5));
 

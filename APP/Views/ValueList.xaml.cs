@@ -22,9 +22,6 @@ public partial class ValueList : ContentView
 
     private void ListViewContainer_ItemTapped(object sender, ItemTappedEventArgs e)
     {
-        //var page = new OrderDetailsPage();
-        //Navigation.PushAsync(page);
-        //Application.Current.MainPage = page;
         int inx = e.ItemIndex;
 
         List<OrderDetail> orders = UserProfileData.GetDemoOrders();

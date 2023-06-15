@@ -1,6 +1,7 @@
 using Microsoft.Maui.Controls.Shapes;
 using APP.Code;
 using APP.Code.Geometry;
+using APP.Code.Data.User;
 
 namespace APP.Views;
 
@@ -28,6 +29,18 @@ public partial class CryptoCard : ContentView
 
         BindingContext = asset;
 
+        DragGestureRecognizer drag = new DragGestureRecognizer();
+        DropGestureRecognizer drop = new DropGestureRecognizer();   
+        TapGestureRecognizer tap = new TapGestureRecognizer();
+        tap.Tapped += Tap_Tapped;
+
+        drag.DragStarting += Drag_DragStarting;
+        drop.Drop += Drop_Drop;
+
+        ContainerForGrids.GestureRecognizers.Add(drag);
+        ContainerForGrids.GestureRecognizers.Add(drop);
+        ContainerForGrids.GestureRecognizers.Add(tap);
+
 
         //new Thread(() =>
         //{
@@ -45,7 +58,33 @@ public partial class CryptoCard : ContentView
         //    }
         //});//.Start();
 
-      
+
+    }
+
+    private void Tap_Tapped(object sender, EventArgs e)
+    {
+        var page = new CurrencyPage(assetDisplayed);
+
+        Application.Current.MainPage = page;
+    }
+
+    private void Drop_Drop(object sender, DropEventArgs e)
+    {
+        //var page = new CurrencyPage();
+
+        //Application.Current.MainPage = page;
+    }
+
+    private void Drag_DropCompleted(object sender, DropCompletedEventArgs e)
+    {
+        //var page = new CurrencyPage();
+
+        //Application.Current.MainPage = page;
+    }
+
+    private void Drag_DragStarting(object sender, DragStartingEventArgs e)
+    {
+        //throw new NotImplementedException();
     }
 
     public void UpdateSize()
@@ -103,7 +142,7 @@ public partial class CryptoCard : ContentView
                 (
                     cnt,
                     chartContainer,
-                    PortfolioCircle.LoadDemo(),
+                    UserProfileData.LoadDemo(),
                     w * mx, w * mx
                 );
 

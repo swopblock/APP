@@ -1,4 +1,5 @@
 ﻿using APP.Code;
+using APP.Code.Data.User;
 using APP.Code.Geometry;
 using APP.Views;
 using Microsoft.Maui.Controls.Shapes;
@@ -104,6 +105,8 @@ public partial class MainPage : ContentPage
                 card.Padding = new Thickness(0, 180 * row, 0, 0);
                 card.ZIndex = row++;
 
+                ///card.GestureRecognizers.Add(gesture)
+
                 card.UpdateSize();
                 //card.MakeChart(portfolioCircle);
 
@@ -163,7 +166,7 @@ public partial class MainPage : ContentPage
                 (
                     cnt,
                     chartContainer,
-                    PortfolioCircle.LoadDemo(),
+                    UserProfileData.LoadDemo(),
                     w * mx, w * mx
                 );
 

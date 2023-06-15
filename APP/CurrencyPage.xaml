@@ -2,11 +2,68 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="APP.CurrencyPage"
-             Title="CurrencyPage">
+             Title="CurrencyPage"
+             xmlns:controls="clr-namespace:APP.Views">
     <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+        <ScrollView HeightRequest="540">
+            <VerticalStackLayout>
+            <Label HorizontalOptions="Center" FontSize="24" VerticalOptions="Center" Margin="0,40,0,40" x:Name="CurrencyLabel" Text="Currency"></Label>
+                <VerticalStackLayout x:Name="CurrencyContainer">
+                </VerticalStackLayout>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="80"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="80"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="80"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+            
+                <Grid WidthRequest="30" HeightRequest="30" HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="1">
+                  <!--<Border>-->
+                    <Path TranslationX="27" TranslationY="28" VerticalOptions="Center" HorizontalOptions="Center" Scale="2.5" Fill="{StaticResource Gray2F}" Data="M8.27 3.39L 8.73 5.69L 11.02 6.15L 8.73 6.6L 8.27 8.9L 7.81 6.6L 5.51 6.15L 7.81 5.69L 8.27 3.39z"></Path>
+                <!--</Border>-->
+                    </Grid>
+            
+                <Rectangle  VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="2" WidthRequest="10" HeightRequest="10" RadiusX="3" StrokeThickness="1.7" Stroke="{StaticResource Gray2F}"></Rectangle>
+                <Rectangle  VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="3" WidthRequest="10" HeightRequest="10" RadiusX="3" StrokeThickness="1.7" Stroke="{StaticResource Gray2F}"></Rectangle>
+                <Rectangle  VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="4" WidthRequest="10" HeightRequest="10" RadiusX="3" StrokeThickness="1.7" Stroke="{StaticResource Gray2F}"></Rectangle>
+                <!--<Label Text="+" Grid.Column="1" Grid.Row="0" VerticalOptions="Center" HorizontalOptions="Center"></Label>
+                <Label Text="o" Grid.Column="2" Grid.Row="0" VerticalOptions="Center" HorizontalOptions="Center"></Label>
+                <Label Text="o" Grid.Column="3" Grid.Row="0" VerticalOptions="Center" HorizontalOptions="Center"></Label>
+                <Label Text="o" Grid.Column="4" Grid.Row="0" VerticalOptions="Center" HorizontalOptions="Center"></Label>-->
+            </Grid>
+                <Grid>
+                    <HorizontalStackLayout HorizontalOptions="Center">
+                        <Label Margin="3">Your</Label>
+                        <Label x:Name="CurencyNameBelow" Text="Currency" Margin="3"></Label>
+                    </HorizontalStackLayout>
+                </Grid>
+                <Grid Margin="5,40,5,10" HeightRequest="370">
+                    <VerticalStackLayout>
+                    <Grid HorizontalOptions="Center" VerticalOptions="Start">
+                        <Rectangle Fill="{StaticResource Gray27}" HeightRequest="165" WidthRequest="340" RadiusX="40"></Rectangle>
+                    </Grid>
+                    <Grid >
+                        <Grid Margin="5" HorizontalOptions="StartAndExpand" VerticalOptions="EndAndExpand">
+                                <Rectangle Fill="{StaticResource Gray27}" VerticalOptions="FillAndExpand" HeightRequest="160" WidthRequest="167.5" HorizontalOptions="FillAndExpand" RadiusX="40"></Rectangle>
+                        </Grid>
+                        <Grid  Margin="5" HorizontalOptions="EndAndExpand" VerticalOptions="EndAndExpand">
+                                <Rectangle Fill="{StaticResource Gray27}"  HorizontalOptions="FillAndExpand" HeightRequest="160" WidthRequest="167.5" VerticalOptions="Fill" RadiusX="40"></Rectangle>
+                        </Grid>
+                    </Grid>
+                    </VerticalStackLayout>
+                </Grid>
+            </VerticalStackLayout>
+        </ScrollView>
+        <BoxView Margin="0,0,0,0" Color="{StaticResource Gray2F}" HeightRequest="0.5" HorizontalOptions="FillAndExpand" />
+
+        <Grid Margin="0,20,0,10">
+            <controls:BottomThreeButtons></controls:BottomThreeButtons>
+        </Grid>
     </VerticalStackLayout>
 </ContentPage>

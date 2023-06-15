@@ -8,7 +8,7 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <StackLayout BackgroundColor="{StaticResource Gray27}" VerticalOptions="FillAndExpand" HeightRequest="70">
+                        <StackLayout VerticalOptions="FillAndExpand" HeightRequest="70">
                             <Grid VerticalOptions="Center" HorizontalOptions="Center">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="30" />

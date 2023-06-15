@@ -14,6 +14,49 @@ namespace APP.Code.Data.User
 
         }
 
+        public static List<PortfolioAsset> LoadDemo()
+        {
+            return new List<PortfolioAsset>
+                    {
+                new PortfolioAsset
+                {
+                    Name = "Bitcoin",
+                    Symbol = "BTC",
+                    Amount = 1.56784m,
+                    PurchasePrice = 10000,
+                    HtmlColor = Color.FromArgb("#f2a900"),
+                    Image = "bitcoin.png"
+                },
+                new PortfolioAsset
+                {
+                    Name = "Ethereum",
+                    Symbol = "ETH",
+                    Amount = 30.98765m,
+                    PurchasePrice = 1000,
+                    HtmlColor = Color.FromArgb("#6f89ff"),
+                    Image = "ethereum.png"
+                },
+                new PortfolioAsset
+                {
+                    Name = "Swobble",
+                    Symbol = "SWOBL",
+                    Amount = 10000,
+                    PurchasePrice = 0.5m,
+                    HtmlColor = Color.FromArgb("#00dd00"),
+                    Image = "swopblock.png"
+                },
+                new PortfolioAsset
+                {
+                    Name = "Swobble Rewards",
+                    Symbol = "SWOBLR",
+                    Amount = 2000,
+                     PurchasePrice = 0.1m,
+                    HtmlColor = Color.FromArgb("#ff00bc"),
+                    Image = "swopblockreward.png"
+                }
+            };
+        }
+
         public static List<OrderDetail> GetDemoOrders()
         {
             return new List<OrderDetail>

@@ -48,7 +48,6 @@ public partial class SliderTrade : ContentView
   
     private void GraphicsView_DragInteraction(object sender, TouchEventArgs e)
     {
-
         GetWidth();
 
         if (e != null)
@@ -77,29 +76,44 @@ public partial class SliderTrade : ContentView
         float wth = val;
 
         if (wth < 0) wth = -wth;
-        if(wth < 20) { wth = 20; }
 
-        if(wth > half - 30) { wth = half - 30; }
+        if(wth > half - 40) { wth = half - 40; }
+
+        double amount = 0;
 
         if(posX < half)
         {
-            FingerButton.Margin = new Thickness(0, 0, wth - 20, 0);
+            FingerButton.Margin = new Thickness(0, 0, wth, 0);
             
             FingerButton.WidthRequest = wth + 40;
 
-            ImgFinger.Margin = new Thickness(0, 0, (wth- 10)*2, 0);
+            ImgFinger.Margin = new Thickness(0, 0, (wth)*2, 0);
+
+            amount = 100 - (GetPercent(posX, (half / 5), half - (half / 20)) * 100);
         }
         else
         {
-            FingerButton.Margin = new Thickness(wth - 20, 0, 0, 0);
+            FingerButton.Margin = new Thickness(wth, 0, 0, 0);
 
             FingerButton.WidthRequest = wth + 40;
 
+            ImgFinger.Margin = new Thickness((wth) * 2, 0, 0, 0);
 
-            ImgFinger.Margin = new Thickness((wth - 10) * 2, 0, 0, 0);
+            amount = GetPercent(posX, half + (half / 20), dWidth - (half / 4)) * 100;
         }
-       
 
-        Debug.WriteLine(half);
+        var Trade = (TradeAmountPage)Parent.Parent.Parent;
+        Trade.UpdateAmount(amount);
+    }
+
+    private double GetPercent(double xpos, double low, double high)
+    {
+        double total = (high - low);
+        double relPos = xpos - low;
+
+        if (relPos < 0) { relPos = 0; }
+        if (relPos > total) {  relPos = total; }
+
+        return relPos / total;
     }
 }

@@ -21,6 +21,8 @@ public partial class CurrencyPage : ContentPage
         CurencyNameBelow.Text = asset.Name;
         CurencyNameBelow.TextColor = asset.HtmlColor;
 
+        Diversity.UpdateValue(asset, 30);
+
         card.UpdateSize();
        // card.MakeChart(portfolioCircle);
 

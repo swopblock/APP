@@ -40,25 +40,6 @@ public partial class CryptoCard : ContentView
         ContainerForGrids.GestureRecognizers.Add(drag);
         ContainerForGrids.GestureRecognizers.Add(drop);
         ContainerForGrids.GestureRecognizers.Add(tap);
-
-
-        //new Thread(() =>
-        //{
-        //    Thread.CurrentThread.IsBackground = true;
-
-        //    while (true)
-        //    {
-        //        Dispatcher.Dispatch(() =>
-        //        {
-        //            UpdateSize();
-        //            MakeChart(portfolioCircle);
-        //        });
-
-        //        Thread.Sleep(5500);
-        //    }
-        //});//.Start();
-
-
     }
 
     private void Tap_Tapped(object sender, EventArgs e)
@@ -100,7 +81,7 @@ public partial class CryptoCard : ContentView
         float dense = 1;
 
 
-        Circle.UpdateValue(assetDisplayed);
+        Circle.UpdateValue(assetDisplayed, 20);
 
         SetValueDirection(assetDisplayed.Price - assetDisplayed.PurchasePrice);
 

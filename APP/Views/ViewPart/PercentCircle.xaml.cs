@@ -11,7 +11,7 @@ public partial class PercentCircle : ContentView
 		InitializeComponent();
     }
 
-    public void UpdateValue(PortfolioAsset asset)
+    public void UpdateValue(PortfolioAsset asset, float size)
     {
         float per = (float)(asset.Percentage * 360);
 
@@ -19,7 +19,7 @@ public partial class PercentCircle : ContentView
 
         float start = 0;
 
-        BasicCircle circle = new BasicCircle(new Point(0, 0), 20);
+        BasicCircle circle = new BasicCircle(new Point(0, 0), size);
 
         string cir = circle.GetCircle(start, per);
 

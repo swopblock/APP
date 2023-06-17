@@ -27,6 +27,27 @@ namespace APP.Code
             new ChartData("SWOBLR", (int) ExchangeData.CoinTimeScale.FifteenMinute, 200, false)
         };
 
+        public void StartData()
+        {
+            new Thread(() =>
+            {
+                Thread.CurrentThread.IsBackground = true;
+
+                while (true)
+                {
+                    CheckData();
+                    Thread.Sleep(3000);
+                }
+
+            }).Start();
+        }
+        public void CheckData()
+        {
+            foreach(ChartData chart in Charts) 
+            {
+                chart.GetData();            
+            }
+        }
         public List<Pack> CombinePacks(List<string> Symbols, int Time = 0, int Length = 0)
         {
             List<ChartData> data = new List<ChartData>();

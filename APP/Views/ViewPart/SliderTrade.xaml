@@ -23,7 +23,7 @@
 
             </Rectangle>
                
-                <Label FontSize="11" Text="Sell" VerticalOptions="Center" HorizontalOptions="Center" Grid.Row="0" Grid.Column="0"/>
+            <Label FontSize="11" Text="Sell" VerticalOptions="Center" HorizontalOptions="Center" Grid.Row="0" Grid.Column="0"/>
             <Label FontSize="11" Text="Buy" VerticalOptions="Center" HorizontalOptions="Center" Grid.Row="0" Grid.Column="2"/>
         </Grid>
     </Grid>

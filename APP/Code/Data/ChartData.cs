@@ -47,45 +47,34 @@ namespace APP.Code
             return price;
         }
         public void GetData()
-        {
-            new Thread(() =>
+        {        
+            if (Symbol != "")
             {
-                Thread.CurrentThread.IsBackground = true;
-               
-                while (true)
-                {          
-                    if (Symbol != "")
-                    {
-                        Pack pack = new Pack();
+                Pack pack = new Pack();
 
-                        if (sourceExchange)
-                        {
-                            pack.candles = ExchangeData.GetCandleData(Symbol, Time, Len);
-                            pack.Symbol = Symbol;
-                        }
-                        else
-                        {
-                            pack.candles = ExchangeData.GetLocalValues(Symbol, Time, Len);
-                            pack.Symbol = Symbol;
-                        }
-
-                        if (pack.candles != null)
-                        {
-                            if (pack.candles.Count > 0)
-                            {
-                                max = pack.candles.Max(x => x.hi);
-                                min = pack.candles.Min(x => x.low);
-                                price = pack.candles.OrderBy(x => x.TimeStamp).Last().close;
-
-                                packs.Enqueue(pack);
-                            }
-                        }
-                    }
-
-                    Thread.Sleep(900);
+                if (sourceExchange)
+                {
+                    pack.candles = ExchangeData.GetCandleData(Symbol, Time, Len);
+                    pack.Symbol = Symbol;
+                }
+                else
+                {
+                    pack.candles = ExchangeData.GetLocalValues(Symbol, Time, Len);
+                    pack.Symbol = Symbol;
                 }
 
-            }).Start();
+                if (pack.candles != null)
+                {
+                    if (pack.candles.Count > 0)
+                    {
+                        max = pack.candles.Max(x => x.hi);
+                        min = pack.candles.Min(x => x.low);
+                        price = pack.candles.OrderBy(x => x.TimeStamp).Last().close;
+
+                        packs.Enqueue(pack);
+                    }
+                }
+            }
         }
     }
 }

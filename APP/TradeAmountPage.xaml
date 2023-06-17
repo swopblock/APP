@@ -6,22 +6,50 @@
              Title="TradeAmountPage">
     <VerticalStackLayout HorizontalOptions="FillAndExpand">
         <Label ZIndex="10" FontSize="18" FontFamily="GuidaBold" Margin="0,20,0,10" Text="Your Trade" VerticalOptions="Center" HorizontalOptions="Center"></Label>
-        <Grid HeightRequest="540">
+        <Grid x:Name="slideTrade" HeightRequest="540">
             <Grid.RowDefinitions>
                 <RowDefinition Height="100"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
                 <RowDefinition Height="80"></RowDefinition>
                 <RowDefinition Height="60"></RowDefinition>
             </Grid.RowDefinitions>
-            <ImageButton WidthRequest="20" ZIndex="20" HorizontalOptions="End" Margin="0,20,50,0" Source="ninegrid.png" Grid.Row="0"></ImageButton>
+            <ImageButton Clicked="ImageButton_Clicked" WidthRequest="20" ZIndex="20" HorizontalOptions="End" Margin="0,20,50,0" Source="ninegrid.png" Grid.Row="0"></ImageButton>
             <Label Text="Ethereum" ZIndex="20" Margin="48,52,0,0"></Label>
-            <Label Text="0.00" FontSize="40" Padding="0,0,0,120" Grid.Row="1" FontFamily="GuidaNormal" VerticalOptions="Center" HorizontalOptions="Center" ZIndex="20"></Label>
+            <Label x:Name="amountSlide" Text="0.00" FontSize="40" Padding="0,0,0,120" Grid.Row="1" FontFamily="GuidaNormal" VerticalOptions="Center" HorizontalOptions="Center" ZIndex="20"></Label>
             <Label x:Name="SymbolName" Text="ETH" FontSize="20" Padding="0,0,0,40" Grid.Row="1" FontFamily="GuidaNormal" VerticalOptions="Center" HorizontalOptions="Center" ZIndex="20"></Label>
             <Rectangle VerticalOptions="Start" Fill="{StaticResource Gray2F}" Margin="10" HeightRequest="540" RadiusX="40"></Rectangle>
             <controls:SliderTrade Grid.Row="2"></controls:SliderTrade>
             <controls:PoweredBy Grid.Row="3" VerticalOptions="Center"></controls:PoweredBy>
            
         </Grid>
-        <controls:BottomThreeButtons VerticalOptions="Center"></controls:BottomThreeButtons>
+
+        <Grid x:Name="numPad" IsVisible="false" HeightRequest="540">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="80"></RowDefinition>
+                <RowDefinition Height="60"></RowDefinition>
+            </Grid.RowDefinitions>
+            <ImageButton Clicked="ImageButton_Clicked_1" WidthRequest="60" ZIndex="20" HorizontalOptions="End" Margin="0,20,50,0" Source="slider.png" Grid.Row="0"></ImageButton>
+            <Label Text="Ethereum" ZIndex="20" Margin="48,52,0,0"></Label>
+            <Label x:Name="amountType" Text="0.00" FontSize="40" Padding="0,0,0,10" Grid.Row="1" FontFamily="GuidaNormal" VerticalOptions="Start" HorizontalOptions="Center" ZIndex="20"></Label>
+            <Label x:Name="SymbolNameNum" Text="ETH" FontSize="20" Margin="0,50,0,0" Grid.Row="1" FontFamily="GuidaNormal" VerticalOptions="Start" HorizontalOptions="Center" ZIndex="20"></Label>
+            <Rectangle VerticalOptions="Start" Fill="{StaticResource Gray2F}" Margin="10" HeightRequest="540" RadiusX="40"></Rectangle>
+
+            <controls:NumberPad Grid.Row="1" Margin="0,90,0,0"></controls:NumberPad>
+            <controls:PoweredBy Grid.Row="3" VerticalOptions="Center"></controls:PoweredBy>
+
+        </Grid>
+        <controls:BottomThreeButtons  x:Name="ThreeButtons" VerticalOptions="Center"></controls:BottomThreeButtons>
+        <Grid x:Name="SubmitOrder" HeightRequest="70" Margin="30,20,30,0">
+            <GraphicsView DragInteraction="GraphicsView_DragInteraction"></GraphicsView>
+            <Rectangle VerticalOptions="Start" Stroke="{StaticResource Gray27}" Fill="{StaticResource Black}" HeightRequest="70" RadiusX="40"></Rectangle>
+            <Rectangle x:Name="" HorizontalOptions="Start" VerticalOptions="Start" Stroke="{StaticResource Primary}" Fill="{StaticResource Gray2F}" HeightRequest="70" WidthRequest="70" RadiusX="40"></Rectangle>
+            <Image Source="swopblock.png" WidthRequest="20" VerticalOptions="Center" HorizontalOptions="Start" Margin="25,0,0,0"></Image>
+            <Label FontFamily="Guida" VerticalOptions="Center" Margin="50,0,0,0" HorizontalOptions="Center" FontSize="16">Submit order</Label>
+            <HorizontalStackLayout HorizontalOptions="End" Margin="0,0,30,0">
+            <Path Data="M 0 0 l 7 7 l -7 7" Stroke="{StaticResource Gray54}" HorizontalOptions="End" VerticalOptions="Center" />
+            </HorizontalStackLayout>
+        </Grid>
     </VerticalStackLayout>
 </ContentPage>

@@ -2,6 +2,7 @@
 using APP.Code.Data.User;
 using APP.Code.Geometry;
 using APP.Views;
+using Microsoft.Extensions.Logging.Abstractions;
 using Microsoft.Maui.Controls.Shapes;
 using System.ComponentModel;
 
@@ -26,11 +27,11 @@ public partial class MainPage : ContentPage
 
     bool added = false;
 
+    int timerState = 0;
+
     public MainPage()
 	{
 		InitializeComponent();
-
-        button.Clicked += Button_Clicked;
 
         //NavigationPage.SetHasNavigationBar(this, false);
         //Shell.SetTabBarIsVisible(this, false);
@@ -38,32 +39,18 @@ public partial class MainPage : ContentPage
         Application.Current.UserAppTheme = AppTheme.Dark;
 
         StartTimer();
-
-        new Thread(() =>
-        {
-            Thread.CurrentThread.IsBackground = true;
-
-            while (true)
-            {
-                Dispatcher.Dispatch(() =>
-                {
-                    UpdateSize();
-                    UpdateCircle(portfolioCircle, rect, centerPoint);
-
-                    if (!added)
-                    {
-                        AddWalletAssets();
-                    }
-                });
-
-                Thread.Sleep(2000);
-            }
-
-        });//.Start();
     }
     private void StartTimer()
     {
-        Dispatcher.StartTimer(TimeSpan.FromSeconds(3), () =>
+        UpdateSize();
+
+        chartContainer.StartData();
+
+        UpdateValues();
+
+        AddWalletAssets();
+
+        Dispatcher.StartTimer(TimeSpan.FromSeconds(10), () =>
         {
             TimeValue = DateTime.Now.ToString("HH:mm:ss");
             OnPropertyChanged(nameof(TimeValue));
@@ -75,15 +62,24 @@ public partial class MainPage : ContentPage
 
     protected virtual void OnPropertyChanged(string propertyName)
     {
+        Dispatcher.Dispatch(() => 
+        { 
+            UpdateValues();
+        });
+
+        //PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+    }
+
+    public void UpdateValues()
+    {
         PortfolioAmount.Text = TimeValue;
-        UpdateSize();
+
         UpdateCircle(portfolioCircle, rect, centerPoint);
 
-        if (!added)
+        //if (timerState == 0)
         {
             AddWalletAssets();
         }
-        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 
     public void AddWalletAssets()
@@ -92,11 +88,18 @@ public partial class MainPage : ContentPage
         {
             int row = 0;
 
+            Grid tempgrid = new Grid();
+
             WalletCards.Children.Clear();
 
             added = true;
 
-            WalletCards.HeightRequest = portfolioCircle.Assets.Count * 100;
+            double val = portfolioCircle.Assets.Count * 100;
+
+            if (WalletCards.HeightRequest != val)
+            {
+                WalletCards.HeightRequest = val;
+            }
 
             foreach (PortfolioAsset set in portfolioCircle.Assets)
             {
@@ -110,10 +113,12 @@ public partial class MainPage : ContentPage
                 card.UpdateSize();
                 //card.MakeChart(portfolioCircle);
 
-                WalletCards.Children.Add(card);
+                tempgrid.Children.Add(card);
 
                 if(set.Price == 0) added = false;
             }
+
+            WalletCards.Children.Add(tempgrid);
 
            //  
         }
@@ -191,127 +196,139 @@ public partial class MainPage : ContentPage
 
     public void UpdateCircle(PortfolioCircle portfolioShape, Rect rect, Point Center)
     {
-        if(grid.Children != null)
-            grid.Children.Clear();
-
-        MakeBackCircle();
-
-        MakeChart(portfolioShape);
-
-        MakeBackground();
-
-        for (int i = 0; i < portfolioShape.Assets.Count; i++)
+        if (portfolioShape != null)
         {
-            CurveSet curv = portfolioShape.GetNextCurve(i);
+            if (grid.Children != null)
+                grid.Children.Clear();
 
-            MakeCircle(curv, Center, portfolioShape.Assets[i]);
+            MakeBackCircle();
+
+            MakeChart(portfolioShape);
+
+            MakeBackground();
+
+            for (int i = 0; i < portfolioShape.Assets.Count; i++)
+            {
+                CurveSet curv = portfolioShape.GetNextCurve(i);
+
+                MakeCircle(curv, Center, portfolioShape.Assets[i]);
+            }
         }
     }
 
     public void MakeBackground()
     {
-        Geometry pathBackground =
-       (Geometry)new PathGeometryConverter()
-       .ConvertFromString(portfolioCircle.GetSubtractedCircle());
+        if (portfolioCircle != null)
+        {
+            Geometry pathBackground =
+           (Geometry)new PathGeometryConverter()
+           .ConvertFromString(portfolioCircle.GetSubtractedCircle());
 
-        Microsoft.Maui.Controls.Shapes.Path pathBack = new(pathBackground);
+            Microsoft.Maui.Controls.Shapes.Path pathBack = new(pathBackground);
 
-        Color bk = Color.FromArgb("#000000");
+            Color bk = Color.FromArgb("#000000");
 
-        pathBack.Fill = bk;
+            pathBack.Fill = bk;
 
-        pathBack.ZIndex = 0;
+            pathBack.ZIndex = 0;
 
-        grid.Children.Add(pathBack);
+            grid.Children.Add(pathBack);
+        }
     }
     public void MakeBackCircle()
     {
-        Geometry pathBackground =
-       (Geometry)new PathGeometryConverter()
-       .ConvertFromString(portfolioCircle.GetCircle());
+        if (portfolioCircle != null)
+        {
+            Geometry pathBackground =
+           (Geometry)new PathGeometryConverter()
+           .ConvertFromString(portfolioCircle.GetCircle());
 
-        Microsoft.Maui.Controls.Shapes.Path pathBack = new(pathBackground);
+            Microsoft.Maui.Controls.Shapes.Path pathBack = new(pathBackground);
 
-        Color bk = Color.FromArgb("#000000");
-        Color st = Color.FromArgb("#FFFFFF");
+            Color bk = Color.FromArgb("#000000");
+            Color st = Color.FromArgb("#FFFFFF");
 
-        LinearGradientBrush brush = new LinearGradientBrush(
-            GetLineGradient(st, bk), 
-            new Point(0, 0), 
-            new Point(0.75f, 0.75f));
+            LinearGradientBrush brush = new LinearGradientBrush(
+                GetLineGradient(st, bk),
+                new Point(0, 0),
+                new Point(0.75f, 0.75f));
 
-        pathBack.Fill = brush;
+            pathBack.Fill = brush;
 
-        pathBack.ZIndex = 0;
+            pathBack.ZIndex = 0;
 
-        grid.Children.Add(pathBack);
+            grid.Children.Add(pathBack);
+        }
     }
 
     public void MakeChart(PortfolioCircle portfolioShape)
     {
-        PortfolioChart chart =
-           new PortfolioChart(portfolioShape.Center,
-               portfolioShape.GetWidthLimit(),
-               portfolioShape.GetHeightLimit()
-               );
-
-        Pack pk = null;
-
-        List<Pack> packCandles = chartContainer.CombinePacks(
-            portfolioShape.Assets.Select(x => x.Symbol).ToList(),
-            time, 
-            candleCount);
-
-        if (packCandles != null)
+        if (portfolioShape != null)
         {
-            if (packCandles.Count > 0)
+            PortfolioChart chart =
+               new PortfolioChart(portfolioShape.Center,
+                   portfolioShape.GetWidthLimit(),
+                   portfolioShape.GetHeightLimit()
+                   );
+
+            Pack pk = null;
+
+            List<Pack> packCandles = chartContainer.CombinePacks(
+                portfolioShape.Assets.Select(x => x.Symbol).ToList(),
+                time,
+                candleCount);
+
+            if (packCandles != null)
             {
-                List<Candle> cnds = chartContainer.SumTotal(portfolioShape.Assets, packCandles);
-
-                if (cnds.Count > 0)
+                if (packCandles.Count > 0)
                 {
-                    Candle last = cnds.LastOrDefault();
-                    if (last != null)
+                    List<Candle> cnds = chartContainer.SumTotal(portfolioShape.Assets, packCandles);
+
+                    if (cnds.Count > 0)
                     {
-                        double total = last.close;
+                        Candle last = cnds.LastOrDefault();
+                        if (last != null)
+                        {
+                            double total = last.close;
 
-                        PortfolioAmount.Text = total.ToString("c");
-                    }
-                    CurveSet curv = chart.DrawLine(rect.Location, cnds);
+                            PortfolioAmount.Text = total.ToString("c");
+                        }
+                        CurveSet curv = chart.DrawLine(rect.Location, cnds);
 
-                    if (!curv.Failed())
-                    {
-                        Color bk = Color.FromArgb("#000000");
-                        Color st = Color.FromArgb("#FFFFFF");
+                        if (!curv.Failed())
+                        {
+                            Color bk = Color.FromArgb("#000000");
+                            Color st = Color.FromArgb("#FFFFFF");
 
-                        Geometry pathFill =
-                         (Geometry)new PathGeometryConverter()
-                         .ConvertFromString(curv.GetCurve());
+                            Geometry pathFill =
+                             (Geometry)new PathGeometryConverter()
+                             .ConvertFromString(curv.GetCurve());
 
-                        Microsoft.Maui.Controls.Shapes.Path lineFill = new(pathFill);
+                            Microsoft.Maui.Controls.Shapes.Path lineFill = new(pathFill);
 
-                        LinearGradientBrush brush = new LinearGradientBrush(
-                        GetLineGradient(st, bk),
-                        new Point(0.5, 0.4),
-                        new Point(0.6, 0.9));
+                            LinearGradientBrush brush = new LinearGradientBrush(
+                            GetLineGradient(st, bk),
+                            new Point(0.5, 0.4),
+                            new Point(0.6, 0.9));
 
-                        lineFill.Fill = brush;
+                            lineFill.Fill = brush;
 
-                        lineFill.ZIndex = 0;
+                            lineFill.ZIndex = 0;
 
-                        grid.Children.Add(lineFill);
+                            grid.Children.Add(lineFill);
 
-                        Geometry pathData =
-                           (Geometry)new PathGeometryConverter()
-                           .ConvertFromString(curv.GetSpace());
+                            Geometry pathData =
+                               (Geometry)new PathGeometryConverter()
+                               .ConvertFromString(curv.GetSpace());
 
-                        Microsoft.Maui.Controls.Shapes.Path linepath = new(pathData);
+                            Microsoft.Maui.Controls.Shapes.Path linepath = new(pathData);
 
-                        linepath.Stroke = st;
-                        linepath.StrokeThickness = 2;
-                        linepath.ZIndex = 0;
+                            linepath.Stroke = st;
+                            linepath.StrokeThickness = 2;
+                            linepath.ZIndex = 0;
 
-                        grid.Children.Add(linepath);
+                            grid.Children.Add(linepath);
+                        }
                     }
                 }
             }

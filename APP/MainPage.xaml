@@ -7,7 +7,6 @@
 
     <ScrollView HorizontalOptions="Fill">
         <VerticalStackLayout HorizontalOptions="Fill">
-            <Button x:Name="button" Text="Test"></Button>
             <Label Margin="0,10,0,10" HorizontalOptions="Center" Text="Your Wallet">
             </Label>
             <BoxView Color="{StaticResource White}" HeightRequest="1" HorizontalOptions="FillAndExpand" />

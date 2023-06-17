@@ -3,9 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="APP.Views.NumberPad">
     <VerticalStackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-        <Grid Padding="100" HorizontalOptions="FillAndExpand" BackgroundColor="{StaticResource Gray27}">
+        <Grid HorizontalOptions="FillAndExpand">
             
-        <Grid HorizontalOptions="Center" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource Gray27}">
+        <Grid HorizontalOptions="Center" VerticalOptions="FillAndExpand">
             <Grid.RowDefinitions>
                 <RowDefinition Height="70"></RowDefinition>
                 <RowDefinition Height="70"></RowDefinition>

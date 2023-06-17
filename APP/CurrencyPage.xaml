@@ -46,15 +46,55 @@
                 <Grid Margin="5,40,5,10" HeightRequest="370">
                     <VerticalStackLayout>
                     <Grid HorizontalOptions="Center" VerticalOptions="Start">
-                        <Rectangle Fill="{StaticResource Gray27}" HeightRequest="165" WidthRequest="340" RadiusX="40"></Rectangle>
-                    </Grid>
-                    <Grid >
+                        <Rectangle Fill="{StaticResource Gray27}" HeightRequest="175" WidthRequest="340" RadiusX="40"></Rectangle>
+                            <StackLayout>
+                                <Grid Margin="25" HeightRequest="25">
+                                    <Label>Quantity</Label>
+                                    <Label HorizontalOptions="End">0.37323943 BTC</Label>
+                                    <BoxView Margin="0,50,0,0" Color="{StaticResource Gray2F}" HeightRequest="1" HorizontalOptions="FillAndExpand" />
+                                </Grid>
+                                <Grid Margin="25,0,25,0" HeightRequest="25">
+                                    <Label>Value</Label>
+                                    <Label HorizontalOptions="End">$8,450.34</Label>
+                                    <BoxView Margin="0,50,0,0" Color="{StaticResource Gray2F}" HeightRequest="1" HorizontalOptions="FillAndExpand" />
+                                </Grid>
+                                <Grid Margin="25" HeightRequest="25">
+                                    <Label>Avg Cost</Label>
+                                    <Label HorizontalOptions="End">$26,490.44</Label>
+                                </Grid>
+                            </StackLayout>
+                        </Grid>
+                    <Grid>
                         <Grid Margin="5" HorizontalOptions="StartAndExpand" VerticalOptions="EndAndExpand">
-                                <Rectangle Fill="{StaticResource Gray27}" VerticalOptions="FillAndExpand" HeightRequest="160" WidthRequest="167.5" HorizontalOptions="FillAndExpand" RadiusX="40"></Rectangle>
+                                <Rectangle Fill="{StaticResource Gray27}" VerticalOptions="FillAndExpand" HeightRequest="170" WidthRequest="167.5" HorizontalOptions="FillAndExpand" RadiusX="40"></Rectangle>
+                                <controls:PercentCircle x:Name="Diversity" Margin="0,0,0,30"></controls:PercentCircle>
+                                <Label FontSize="14" VerticalOptions="End" HorizontalOptions="Center" Margin="0,0,0,40">Wallet Diversity</Label>
                         </Grid>
                         <Grid  Margin="5" HorizontalOptions="EndAndExpand" VerticalOptions="EndAndExpand">
-                                <Rectangle Fill="{StaticResource Gray27}"  HorizontalOptions="FillAndExpand" HeightRequest="160" WidthRequest="167.5" VerticalOptions="Fill" RadiusX="40"></Rectangle>
-                        </Grid>
+                                <Rectangle Fill="{StaticResource Gray27}"  HorizontalOptions="FillAndExpand" HeightRequest="170" WidthRequest="167.5" VerticalOptions="Fill" RadiusX="40"></Rectangle>
+                                <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center">
+                                    <VerticalStackLayout Margin="0,0,0,10" WidthRequest="130">
+                                        <Label FontSize="14">Today's Return</Label>
+                                        <Grid VerticalOptions="Center">
+                                            <HorizontalStackLayout>
+                                                <Path x:Name="ValueUp" Margin="3" WidthRequest="10" Data="M0,0l-4.5,-7.5l-4.5,7.5Z" Stroke="{StaticResource White}"  />
+                                                <Label FontSize="14" TextColor="White" Margin="10,0,10,0" HorizontalOptions="Center">$200 / </Label>
+                                                <Label FontSize="14" TextColor="White" HorizontalOptions="End">3.25%</Label>
+                                            </HorizontalStackLayout>
+                                        </Grid>
+                                    </VerticalStackLayout>
+                                    <VerticalStackLayout>
+                                        <Label FontSize="14">Total Return</Label>
+                                        <Grid>
+                                            <HorizontalStackLayout>
+                                                <Path x:Name="ValueUpTotal" Margin="3" WidthRequest="10" Data="M0,0l-4.5,-7.5l-4.5,7.5Z" Stroke="{StaticResource White}"  />
+                                                <Label FontSize="14" TextColor="White" Margin="10,0,10,0" HorizontalOptions="Center">$200 /</Label>
+                                                <Label FontSize="14" TextColor="White" HorizontalOptions="End">3.25%</Label>
+                                            </HorizontalStackLayout>
+                                        </Grid>
+                                    </VerticalStackLayout>
+                                </VerticalStackLayout>
+                            </Grid>
                     </Grid>
                     </VerticalStackLayout>
                 </Grid>

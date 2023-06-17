@@ -16,9 +16,9 @@
             </Style>
             <Style TargetType="Button">
                 <Setter Property="FontFamily" Value="GuidaLight"></Setter>
-                <Setter Property="FontSize" Value="20"></Setter>
-                <Setter Property="TextColor" Value="{StaticResource GrayA1}"></Setter>
-                <Setter Property="BackgroundColor" Value="{StaticResource Gray27}"></Setter>
+                <Setter Property="FontSize" Value="24"></Setter>
+                <Setter Property="TextColor" Value="White"></Setter>
+                <Setter Property="BackgroundColor" Value="Transparent"></Setter>
             </Style>
         </ResourceDictionary>
     </Application.Resources>

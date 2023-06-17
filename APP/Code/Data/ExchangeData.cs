@@ -149,7 +149,7 @@ namespace APP.Code
             }
             catch (WebException ex)
             {
-                System.Threading.Thread.Sleep(1000);
+                System.Threading.Thread.Sleep(100);
                 HttpWebResponse xyz = ex.Response as HttpWebResponse;
                 if (xyz == null) return info;
                 var encoding = ASCIIEncoding.ASCII;

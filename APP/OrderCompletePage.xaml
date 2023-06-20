@@ -2,11 +2,60 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="APP.OrderCompletePage"
-             Title="OrderCompletePage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+             Title="OrderCompletePage"
+             xmlns:controls="clr-namespace:APP.Views">
+    <VerticalStackLayout HorizontalOptions="FillAndExpand">
+        <Label ZIndex="10" FontSize="16" FontFamily="Guida" Margin="0,50,0,0" Text="Your order" VerticalOptions="Center" HorizontalOptions="Center"></Label>
+        <Label TextColor="{StaticResource Secondary}" Text="completed" HorizontalOptions="Center" Margin="0,0,0,30" VerticalOptions="Center" FontSize="24"></Label>
+        <Grid HeightRequest="380">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100"></RowDefinition>
+                <RowDefinition Height="160"></RowDefinition>
+                <RowDefinition Height="80"></RowDefinition>
+                <RowDefinition Height="60"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid ZIndex="110" HeightRequest="300" Margin="10,30,10,10">
+                <Grid ZIndex="100">
+                    <Grid HorizontalOptions="Fill" Margin="40,0,40,0" HeightRequest="20">
+                        <Label VerticalOptions="Center" HorizontalOptions="Start" FontSize="12" Text="Purchased" ZIndex="20" Margin="0,0,0,0"></Label>
+
+                        <Label FontSize="12" VerticalOptions="Center" HorizontalOptions="End" Text="4.823894 ETH" ZIndex="20" Margin="0,0,15,0"></Label>
+                        <Image ZIndex="11"  VerticalOptions="Center" HorizontalOptions="End" Source="ethereum.png" WidthRequest="8"></Image>
+                    </Grid>
+                    <BoxView Margin="40,90,40,40" Color="{StaticResource Gray2F}" HeightRequest="1" HorizontalOptions="FillAndExpand" />
+                </Grid>
+
+                <Grid Margin="0,100,0,0">
+                    <Grid HorizontalOptions="Fill" Margin="40,0,40,0" HeightRequest="20">
+                        <Label VerticalOptions="Center" HorizontalOptions="Start" FontSize="12" Text="Sold" ZIndex="20" Margin="0,0,0,0"></Label>
+
+                        <Label FontSize="12" VerticalOptions="Center" HorizontalOptions="End" Text="0.823894 ETH" ZIndex="20" Margin="0,0,15,0"></Label>
+                        <Image ZIndex="11"  VerticalOptions="Center" HorizontalOptions="End" Source="bitcoin.png" WidthRequest="8"></Image>
+                    </Grid>
+                </Grid>
+            </Grid>
+            <Image ZIndex="11" Source="gems.png" Grid.Row="1" WidthRequest="170"></Image>
+            <Label x:Name="SymbolName" TextColor="{StaticResource Secondary}" Text="Rewards Earned:" FontSize="12" Padding="0,0,0,20" Grid.Row="1" FontFamily="GuidaNormal" VerticalOptions="End" HorizontalOptions="Center" ZIndex="20"></Label>
+            <Label Text="0.00093842 SWOBL" FontSize="16" Margin="0,20,0,0" Padding="0,0,0,0" Grid.Row="1" FontFamily="GuidaNormal" VerticalOptions="End" HorizontalOptions="Center" ZIndex="20"></Label>
+            <controls:PoweredBy ZIndex="10" Grid.Row="2"></controls:PoweredBy>
+            <Rectangle VerticalOptions="Start" Fill="{StaticResource Gray27}" Margin="10" HeightRequest="330" RadiusX="40"></Rectangle>
+        </Grid>
+        <VerticalStackLayout HorizontalOptions="Fill">
+            
+            <Grid HeightRequest="70" Margin="10">
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1">
+                        
+                    </TapGestureRecognizer>
+                </Grid.GestureRecognizers>
+                <Rectangle VerticalOptions="Start" Stroke="{StaticResource Secondary}" Fill="{StaticResource Gray27}" WidthRequest="190" HeightRequest="70" RadiusX="40"></Rectangle>
+                <Label FontFamily="Guida" VerticalOptions="Center" Margin="0,0,0,0" HorizontalOptions="Center" FontSize="18">Done</Label>
+            </Grid>
+            <Label Text="View details" HorizontalOptions="Center" VerticalOptions="Center" Padding="20">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"></TapGestureRecognizer>
+                </Label.GestureRecognizers>
+            </Label>
+        </VerticalStackLayout>
     </VerticalStackLayout>
 </ContentPage>

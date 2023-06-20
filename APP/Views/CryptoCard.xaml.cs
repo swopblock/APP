@@ -1,4 +1,5 @@
 using Microsoft.Maui.Controls.Shapes;
+using Microsoft.Maui.Controls;
 using APP.Code;
 using APP.Code.Geometry;
 using APP.Code.Data.User;
@@ -28,44 +29,32 @@ public partial class CryptoCard : ContentView
         assetDisplayed = asset; 
 
         BindingContext = asset;
-
-        DragGestureRecognizer drag = new DragGestureRecognizer();
-        DropGestureRecognizer drop = new DropGestureRecognizer();   
+  
         TapGestureRecognizer tap = new TapGestureRecognizer();
         tap.Tapped += Tap_Tapped;
 
-        drag.DragStarting += Drag_DragStarting;
-        drop.Drop += Drop_Drop;
-
-        ContainerForGrids.GestureRecognizers.Add(drag);
-        ContainerForGrids.GestureRecognizers.Add(drop);
         ContainerForGrids.GestureRecognizers.Add(tap);
+    }
+
+    private async void ShowTransientPage()
+    {
+        await Shell.Current.GoToAsync($"{nameof(CurrencyPage)}?asset={assetDisplayed.Symbol}");
     }
 
     private void Tap_Tapped(object sender, EventArgs e)
     {
-        var page = new CurrencyPage(assetDisplayed);
-
-        Application.Current.MainPage = page;
-    }
-
-    private void Drop_Drop(object sender, DropEventArgs e)
-    {
-        //var page = new CurrencyPage();
+        //var page = new CurrencyPage(assetDisplayed);
 
         //Application.Current.MainPage = page;
-    }
 
-    private void Drag_DropCompleted(object sender, DropCompletedEventArgs e)
-    {
-        //var page = new CurrencyPage();
+        // CurrencyPage page = new CurrencyPage(assetDisplayed);// new NavigationPage(new CurrencyPage(assetDisplayed));
 
-        //Application.Current.MainPage = page;
-    }
+        //// NavigationPage.SetHasNavigationBar(page, false);
 
-    private void Drag_DragStarting(object sender, DragStartingEventArgs e)
-    {
-        //throw new NotImplementedException();
+
+        // Navigation.PushAsync(page);
+
+        ShowTransientPage();
     }
 
     public void UpdateSize()
@@ -81,7 +70,7 @@ public partial class CryptoCard : ContentView
         float dense = 1;
 
 
-        Circle.UpdateValue(assetDisplayed, 20);
+        Circle.UpdateValue(assetDisplayed, 25);
 
         SetValueDirection(assetDisplayed.Price - assetDisplayed.PurchasePrice);
 
@@ -159,7 +148,7 @@ public partial class CryptoCard : ContentView
             Pack pk = null;
 
             List<Pack> packCandles = chartContainer.CombinePacks(
-                portfolioShape.Assets.Select(x => x.Symbol).ToList(),
+                UserProfileData.PortfolioAssets.Select(x => x.Symbol).ToList(),
                 time,
                 candleCount);
 

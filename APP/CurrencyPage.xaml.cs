@@ -1,31 +1,49 @@
 using APP.Code;
+using APP.Code.Data.User;
 using APP.Views;
+using System.ComponentModel;
 
 namespace APP;
 
+[QueryProperty(nameof(asset), nameof(asset))]
 public partial class CurrencyPage : ContentPage
 {
-	public CurrencyPage(PortfolioAsset asset)
+    [Bindable(true)]
+    public string asset { get; set; }
+	public CurrencyPage()
 	{
 		InitializeComponent();
-
-        LoadCurrency(asset);
 	}
 
-	public void LoadCurrency(PortfolioAsset asset)
+    protected override void OnNavigatedTo(NavigatedToEventArgs args)
+    {
+        base.OnNavigatedTo(args);
+
+        LoadCurrency(asset);
+    }
+
+    public void LoadCurrency(string asset)
 	{
-        CryptoCard card = new CryptoCard(asset);
 
-        CurrencyLabel.Text = asset.Name;
-        CurrencyLabel.TextColor = asset.HtmlColor;
-        CurencyNameBelow.Text = asset.Name;
-        CurencyNameBelow.TextColor = asset.HtmlColor;
+        PortfolioAsset assetAsset = UserProfileData.PortfolioAssets
+            .Where(x=>x.Symbol == asset).FirstOrDefault();
 
-        Diversity.UpdateValue(asset, 30);
+        if (assetAsset != null)
+        {
+            
+            CryptoCard card = new CryptoCard(assetAsset);
 
-        card.UpdateSize();
-       // card.MakeChart(portfolioCircle);
+            CurrencyLabel.Text = assetAsset.Name;
+            CurrencyLabel.TextColor = assetAsset.HtmlColor;
+            CurencyNameBelow.Text = assetAsset.Name;
+            CurencyNameBelow.TextColor = assetAsset.HtmlColor;
 
-        CurrencyContainer.Children.Add(card);
+            Diversity.UpdateValue(assetAsset, 30);
+
+            card.UpdateSize();
+            // card.MakeChart(portfolioCircle);
+
+            CurrencyContainer.Children.Add(card);
+        }
     }
 }

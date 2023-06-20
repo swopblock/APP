@@ -20,18 +20,25 @@ public partial class BottomThreeButtons : ContentView
         yourTrade.GestureRecognizers.Add(tradeTap); 
     }
 
+    private async void NavGoTo(string page)
+    {
+        await Shell.Current.GoToAsync(page);
+    }
     private void TradeTap_Tapped(object sender, EventArgs e)
     {
-        Application.Current.MainPage = new TradeSelectPage();
+        NavGoTo(nameof(TradeSelectPage));
+        //Application.Current.MainPage = new TradeSelectPage();
     }
 
     private void CryptoTap_Tapped(object sender, EventArgs e)
     {
-        Application.Current.MainPage = new CurrencyPage(new Code.PortfolioAsset());
+       // Application.Current.MainPage = new CurrencyPage();
+        NavGoTo(nameof(CurrencyPage));
     }
 
     private void Tap_Tapped(object sender, EventArgs e)
     {
-        Application.Current.MainPage = new MainPage();
+        //Application.Current.MainPage = new MainPage();
+        NavGoTo(nameof(PortfolioPage));
     }
 }

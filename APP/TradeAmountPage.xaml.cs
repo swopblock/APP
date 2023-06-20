@@ -5,6 +5,8 @@ namespace APP;
 public partial class TradeAmountPage : ContentPage
 {
     OrderDetail detail = new OrderDetail();
+
+    double posX = 0;
 	public TradeAmountPage()
 	{
 		InitializeComponent();
@@ -45,6 +47,39 @@ public partial class TradeAmountPage : ContentPage
 
     private void GraphicsView_DragInteraction(object sender, TouchEventArgs e)
     {
+        if (e != null)
+        {
+            if (e.Touches != null)
+            {
+                if (e.Touches.Length > 0)
+                {
+                    PointF touch = e.Touches.First();
 
+                    posX = touch.X;
+
+                    UpdateSlider();
+                }
+            }
+        }
+    }
+
+    private void UpdateSlider()
+    {
+        double margin = posX - 35;
+
+        if(margin < 0)  margin = 0;
+
+        CompleteSlider.Margin = new Thickness(margin, 0, 0, 0);
+
+        if (margin > (SubmitOrder.Width - 70))
+        {
+            //Application.Current.MainPage = new SendingOrderPage();
+            NavGoTo(nameof(SendingOrderPage));
+        }
+    }
+
+    private async void NavGoTo(string page)
+    {
+        await Shell.Current.GoToAsync(page);
     }
 }

@@ -15,21 +15,21 @@ namespace APP.Code
 
         public static string LineTo(float x, float y)
         {
-            return " L " + x + " " + y;
+            return " L " + Math.Round(x,4) + " " + Math.Round(y, 4);
         }
 
         public static string QuadTo(float x, float y, float cx, float cy)
         {
-            return " Q " + x + " " + y + " " + cx + " " + cy;
+            return " Q " + Math.Round(x, 4) + " " + Math.Round(y, 4) + " " + Math.Round(cx, 4) + " " + Math.Round(cy, 4);
         }
 
         public static string CurveTo(float x, float y, float cx1, float cy1, float cx2, float cy2)
         {
-            return " C " + cx1 + " " + cy1 + cx2 + " " + cy2 + " " + x + " " + y;
+            return " C " + Math.Round(cx1,4) + " " + Math.Round(cy1,4) + Math.Round(cx2,4) + " " + Math.Round(cy2,4) + " " + Math.Round(x, 4) + " " + Math.Round(y, 4);
         }
         public static string MoveTo(float x, float y)
         {
-            return " M " + x + " " + y;
+            return " M " + Math.Round(x, 4) + " " + Math.Round(y, 4);
         }
 
         public static string BoxValue(PointF InnerP1, PointF Center, float WidthLimit, float HeightLimit)

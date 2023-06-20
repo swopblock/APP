@@ -14,6 +14,8 @@ namespace APP.Code.Data.User
 
         }
 
+        public static List<PortfolioAsset> PortfolioAssets = null;
+
         public static List<PortfolioAsset> LoadDemo()
         {
             return new List<PortfolioAsset>

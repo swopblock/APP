@@ -4,12 +4,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using APP.Code.Data.User;
 
 namespace APP.Code
 {
     public class PortfolioCircle
-    {
-        public List<PortfolioAsset> Assets { get; set; }
+    { 
 
         public float totalSegments = 360;
         public float OuterRadius = 100;
@@ -36,15 +36,21 @@ namespace APP.Code
             if (this.hLimit < 0) this.hLimit = OuterRadius;
             if (this.wLimit < 0) this.wLimit = OuterRadius;
 
-            if (assets == null)
+            if (UserProfileData.PortfolioAssets == null)
             {
-                Assets = new List<PortfolioAsset>();
-            }
-            else
-            {
-                Assets = assets;
+                if (assets != null)
+                {
 
-                UpdateValues();
+                    UserProfileData.PortfolioAssets = assets;
+
+                    UpdateValues();
+                }
+                else
+                {
+                    UserProfileData.PortfolioAssets = UserProfileData.LoadDemo();
+
+                    UpdateValues();
+                }
             }
         }
 
@@ -55,13 +61,13 @@ namespace APP.Code
         {
             decimal total = 0;
 
-            for (int i = 0; i < Assets.Count; i++)
+            for (int i = 0; i < UserProfileData.PortfolioAssets.Count; i++)
             {
-                decimal price = (decimal)charts.GetPrice(Assets[i].Symbol);
+                decimal price = (decimal)charts.GetPrice(UserProfileData.PortfolioAssets[i].Symbol);
 
-                Assets[i].Price = price;
+                UserProfileData.PortfolioAssets[i].Price = price;
 
-                total += (Assets[i].Amount * price);
+                total += (UserProfileData.PortfolioAssets[i].Amount * price);
             }
 
             return total;
@@ -71,10 +77,11 @@ namespace APP.Code
         {
             decimal ttl = GetTotal();
 
-            for (int i = 0; i < Assets.Count; i++)
+            for (int i = 0; i < UserProfileData.PortfolioAssets.Count; i++)
             {
-                Assets[i].Percentage = (decimal)((Assets[i].Amount *
-                    (decimal)charts.GetPrice(Assets[i].Symbol))
+                UserProfileData.PortfolioAssets[i].Percentage = 
+                    (decimal)((UserProfileData.PortfolioAssets[i].Amount *
+                    (decimal)charts.GetPrice(UserProfileData.PortfolioAssets[i].Symbol))
                     / ttl);
             }
         }
@@ -92,7 +99,7 @@ namespace APP.Code
             if (ttl > 0)
             {
                 float per = 360 / totalSegments;
-                float perAmount = (float)Assets[curveIndex].Percentage * 360;
+                float perAmount = (float)UserProfileData.PortfolioAssets[curveIndex].Percentage * 360;
 
                 float totalAngle = 0;
 
@@ -113,7 +120,7 @@ namespace APP.Code
 
                 float cut = 1;
 
-                if (curveIndex == Assets.Count - 1) cut = (spacing * (curveIndex + 1));
+                if (curveIndex == UserProfileData.PortfolioAssets.Count - 1) cut = (spacing * (curveIndex + 1));
 
                 while (totalAngle <= (int)(perAmount - (per * cut)))
                 {
@@ -151,7 +158,7 @@ namespace APP.Code
                 // update circle points
                 if (!once)
                 {
-                    if (curveIndex == Assets.Count - 1)
+                    if (curveIndex == UserProfileData.PortfolioAssets.Count - 1)
                     {
                         InnerP2 = GetCirclePoint(InnerRadius, 270f - (per/2));
 
@@ -183,7 +190,9 @@ namespace APP.Code
 
             return new CurveSet(CurvePathBlock, CurvePathLine);
         }
-        
+
+       
+
         public string GetCircle()
         {
             string CurvePathLine = "";
@@ -271,6 +280,6 @@ namespace APP.Code
             }
 
             return Intersect;
-        }       
+        }
     }
 }

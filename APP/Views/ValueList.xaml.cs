@@ -22,21 +22,30 @@ public partial class ValueList : ContentView
 
     private void ListViewContainer_ItemTapped(object sender, ItemTappedEventArgs e)
     {
-        int inx = e.ItemIndex;
+        //int inx = e.ItemIndex;
 
-        List<OrderDetail> orders = UserProfileData.GetDemoOrders();
+        //List<OrderDetail> orders = UserProfileData.GetDemoOrders();
 
-        if (inx >= 0 && inx < orders.Count)
-        {
-            GoToDetails(orders[inx]);
-        }
+        //if (inx >= 0 && inx < orders.Count)
+        //{
+            GoToDetails();
+        //}
        
     }
 
-    private async void GoToDetails(OrderDetail orDetail)
+    private void GoToDetails()
     {
-        var page = new OrderDetailsPage(orDetail);
+        //var page = new OrderDetailsPage();
 
-        Application.Current.MainPage = page;
+        //Application.Current.MainPage = page;
+
+        NavGoTo(nameof(OrderDetailsPage));
+
+        //await Navigation.PushAsync(page); 
+    }
+
+    private async void NavGoTo(string page)
+    {
+        await Shell.Current.GoToAsync(page);
     }
 }

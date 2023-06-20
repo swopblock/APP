@@ -18,34 +18,40 @@ public partial class ValueList : ContentView
 
         ListViewContainer.ItemsSource = ItemsList;
         ListViewContainer.ItemTapped += ListViewContainer_ItemTapped;
+        ListViewContainer.ItemSelected += ListViewContainer_ItemSelected;
+    }
+
+    private void ListViewContainer_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+    {
+        
     }
 
     private void ListViewContainer_ItemTapped(object sender, ItemTappedEventArgs e)
     {
-        //int inx = e.ItemIndex;
-
-        //List<OrderDetail> orders = UserProfileData.GetDemoOrders();
-
-        //if (inx >= 0 && inx < orders.Count)
-        //{
-            GoToDetails();
-        //}
-       
+        //GoToDetails();       
     }
 
     private void GoToDetails()
     {
-        //var page = new OrderDetailsPage();
-
-        //Application.Current.MainPage = page;
-
         NavGoTo(nameof(OrderDetailsPage));
-
-        //await Navigation.PushAsync(page); 
     }
 
     private async void NavGoTo(string page)
     {
         await Shell.Current.GoToAsync(page);
+    }
+
+    private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+    {
+        StackLayout layout = ((StackLayout)sender);
+
+        layout.BackgroundColor = Color.FromArgb("#2F323A");
+
+        GoToDetails();
+
+        Dispatcher.DispatchDelayed(TimeSpan.FromMilliseconds(500),() => 
+        {
+            layout.BackgroundColor = Colors.Transparent;
+        });
     }
 }

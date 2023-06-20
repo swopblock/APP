@@ -38,22 +38,14 @@ public partial class CryptoCard : ContentView
 
     private async void ShowTransientPage()
     {
-        await Shell.Current.GoToAsync($"{nameof(CurrencyPage)}?asset={assetDisplayed.Symbol}");
+        CurrencyPage page = new CurrencyPage();
+        page.asset = assetDisplayed.Symbol;
+
+        await Shell.Current.Navigation.PushAsync(page);
     }
 
     private void Tap_Tapped(object sender, EventArgs e)
     {
-        //var page = new CurrencyPage(assetDisplayed);
-
-        //Application.Current.MainPage = page;
-
-        // CurrencyPage page = new CurrencyPage(assetDisplayed);// new NavigationPage(new CurrencyPage(assetDisplayed));
-
-        //// NavigationPage.SetHasNavigationBar(page, false);
-
-
-        // Navigation.PushAsync(page);
-
         ShowTransientPage();
     }
 

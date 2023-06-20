@@ -14,13 +14,12 @@
                 <RowDefinition Height="60"></RowDefinition>
             </Grid.RowDefinitions>
             <ImageButton Clicked="ImageButton_Clicked" WidthRequest="20" ZIndex="20" HorizontalOptions="End" Margin="0,20,50,0" Source="ninegrid.png" Grid.Row="0"></ImageButton>
-            <Label Text="Ethereum" ZIndex="20" Margin="48,52,0,0"></Label>
-            <Label x:Name="amountSlide" Text="0.00" FontSize="40" Padding="0,0,0,120" Grid.Row="1" FontFamily="GuidaNormal" VerticalOptions="Center" HorizontalOptions="Center" ZIndex="20"></Label>
-            <Label x:Name="SymbolName" Text="ETH" FontSize="20" Padding="0,0,0,40" Grid.Row="1" FontFamily="GuidaNormal" VerticalOptions="Center" HorizontalOptions="Center" ZIndex="20"></Label>
+            <Label Text="{Binding Name}" ZIndex="20" Margin="48,52,0,0"></Label>
+            <Label x:Name="amountSlide" TextColor="{Binding HtmlColor}" Text="0.00" FontSize="40" Padding="0,0,0,120" Grid.Row="1" FontFamily="GuidaNormal" VerticalOptions="Center" HorizontalOptions="Center" ZIndex="20"></Label>
+            <Label x:Name="SymbolName" TextColor="{Binding HtmlColor}"  Text="{Binding Symbol}" FontSize="20" Padding="0,0,0,40" Grid.Row="1" FontFamily="GuidaNormal" VerticalOptions="Center" HorizontalOptions="Center" ZIndex="20"></Label>
             <Rectangle VerticalOptions="Start" Fill="{StaticResource Gray2F}" Margin="10" HeightRequest="540" RadiusX="40"></Rectangle>
-            <controls:SliderTrade Grid.Row="2"></controls:SliderTrade>
+            <controls:SliderTrade x:Name="slider" Grid.Row="2"></controls:SliderTrade>
             <controls:PoweredBy Grid.Row="3" VerticalOptions="Center"></controls:PoweredBy>
-           
         </Grid>
 
         <Grid x:Name="numPad" IsVisible="false" HeightRequest="540">
@@ -32,15 +31,15 @@
             </Grid.RowDefinitions>
             <ImageButton Clicked="ImageButton_Clicked_1" WidthRequest="60" ZIndex="20" HorizontalOptions="End" Margin="0,20,50,0" Source="slider.png" Grid.Row="0"></ImageButton>
             <Label Text="Ethereum" ZIndex="20" Margin="48,52,0,0"></Label>
-            <Label x:Name="amountType" Text="0.00" FontSize="40" Padding="0,0,0,10" Grid.Row="1" FontFamily="GuidaNormal" VerticalOptions="Start" HorizontalOptions="Center" ZIndex="20"></Label>
-            <Label x:Name="SymbolNameNum" Text="ETH" FontSize="20" Margin="0,50,0,0" Grid.Row="1" FontFamily="GuidaNormal" VerticalOptions="Start" HorizontalOptions="Center" ZIndex="20"></Label>
+            <Label x:Name="amountType" TextColor="{Binding HtmlColor}" Text="0.00" FontSize="40" Padding="0,0,0,10" Grid.Row="1" FontFamily="GuidaNormal" VerticalOptions="Start" HorizontalOptions="Center" ZIndex="20"></Label>
+            <Label x:Name="SymbolNameNum"  TextColor="{Binding HtmlColor}" Text="ETH" FontSize="20" Margin="0,50,0,0" Grid.Row="1" FontFamily="GuidaNormal" VerticalOptions="Start" HorizontalOptions="Center" ZIndex="20"></Label>
             <Rectangle VerticalOptions="Start" Fill="{StaticResource Gray2F}" Margin="10" HeightRequest="540" RadiusX="40"></Rectangle>
 
             <controls:NumberPad Grid.Row="1" Margin="0,90,0,0"></controls:NumberPad>
             <controls:PoweredBy Grid.Row="3" VerticalOptions="Center"></controls:PoweredBy>
 
         </Grid>
-        <controls:BottomThreeButtons  x:Name="ThreeButtons" VerticalOptions="Center"></controls:BottomThreeButtons>
+        <controls:BottomThreeButtons BindingContext="trade" x:Name="ThreeButtons" VerticalOptions="Center"></controls:BottomThreeButtons>
         <Grid x:Name="SubmitOrder" HeightRequest="70" Margin="30,20,30,0">
             <GraphicsView ZIndex="10" VerticalOptions="Fill" HorizontalOptions="Fill" DragInteraction="GraphicsView_DragInteraction"></GraphicsView>
             <Rectangle VerticalOptions="Start" Stroke="{StaticResource Gray27}" Fill="{StaticResource Black}" HeightRequest="70" RadiusX="40"></Rectangle>

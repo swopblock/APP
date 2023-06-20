@@ -62,13 +62,13 @@ public partial class PortfolioPage : ContentPage
 
         AddWalletAssets();
 
-        Dispatcher.StartTimer(TimeSpan.FromSeconds(5), () =>
-        {
-            TimeValue = DateTime.Now.ToString("HH:mm:ss");
-            OnPropertyChanged(nameof(TimeValue));
+        //Dispatcher.StartTimer(TimeSpan.FromSeconds(5), () =>
+        //{
+        //    TimeValue = DateTime.Now.ToString("HH:mm:ss");
+        //    OnPropertyChanged(nameof(TimeValue));
 
-            return false;// currentPage; // Return true to keep the timer running
-        });
+        //    return false;// currentPage; // Return true to keep the timer running
+        //});
     }
 
     public event PropertyChangedEventHandler PropertyChanged;

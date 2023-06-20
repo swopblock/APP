@@ -11,14 +11,15 @@ public partial class SliderTrade : ContentView
 	double dWidth = 0;
     double dense = 0;
 
-    string HtmlColor = "#ffffff";
+    public Color HtmlColor = Color.FromArgb("#ffffff");
+    public Color AltColor = Color.FromArgb("#aaaaaa");
 	public SliderTrade()
 	{
 		InitializeComponent();
 
         GetWidth();
 
-        FingerButton.Fill = Color.FromArgb(HtmlColor);
+        FingerButton.Fill = HtmlColor;
 	}
 
     private void GetWidth()
@@ -60,7 +61,7 @@ public partial class SliderTrade : ContentView
 
                     posX = touch.X;
 
-                    FingerButton.Fill = Color.FromArgb(HtmlColor);
+                    FingerButton.Fill = HtmlColor;
 
                     SetBar();
                 }
@@ -87,6 +88,8 @@ public partial class SliderTrade : ContentView
             
             FingerButton.WidthRequest = wth + 40;
 
+            FingerButton.Fill = HtmlColor;
+
             ImgFinger.Margin = new Thickness(0, 0, (wth)*2, 0);
 
             amount = 100 - (GetPercent(posX, (half / 5), half - (half / 20)) * 100);
@@ -96,6 +99,8 @@ public partial class SliderTrade : ContentView
             FingerButton.Margin = new Thickness(wth, 0, 0, 0);
 
             FingerButton.WidthRequest = wth + 40;
+
+            FingerButton.Fill = AltColor;
 
             ImgFinger.Margin = new Thickness((wth) * 2, 0, 0, 0);
 

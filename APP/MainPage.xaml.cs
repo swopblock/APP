@@ -14,18 +14,14 @@ public partial class MainPage : ContentPage
     public MainPage()
     {
         InitializeComponent();
-        //new Thread(() =>
-        //{
-        //    Thread.CurrentThread.IsBackground = true;
 
-        //    if (StaticTest.LoadingCircle == null)
-        //    {
-        //        StaticTest.LoadingCircle = StaticTest.GetCurves(270, 0);
-        //    }
-        //}).Start();
+        this.NavigatedTo += MainPage_NavigatedTo;
 
+        GoToPage();
+    }
 
-
+    private void MainPage_NavigatedTo(object sender, NavigatedToEventArgs e)
+    {
         GoToPage();
     }
 
@@ -33,5 +29,11 @@ public partial class MainPage : ContentPage
     {
         await Shell.Current.GoToAsync(nameof(PortfolioPage));
     }
+
+    //public async void GoToPage()
+    //{
+    //    NavigationPage page = new NavigationPage(new PortfolioPage());
+    //    await Navigation.PushAsync(page);
+    //}
 }
 

@@ -9,6 +9,9 @@
                 <DataTemplate>
                     <ViewCell>
                         <StackLayout VerticalOptions="FillAndExpand" HeightRequest="70">
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"></TapGestureRecognizer>
+                            </StackLayout.GestureRecognizers>
                             <Grid VerticalOptions="Center" HorizontalOptions="Center">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="30" />

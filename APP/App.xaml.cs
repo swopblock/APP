@@ -8,10 +8,10 @@ public partial class App : Application
 	{
 		InitializeComponent();
 
-            if (StaticTest.LoadingCircle == null)
-            {
-                StaticTest.LoadingCircle = StaticTest.GetCurves(270, 0);
-            }
+        if (StaticTest.LoadingCircle == null)
+        {
+            StaticTest.LoadingCircle = StaticTest.GetCurves(270, 0);
+        }
 
         MainPage = new AppShell();
 	}

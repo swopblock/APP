@@ -11,9 +11,13 @@ public partial class SendingOrderPage : ContentPage
     int index = 0;
     float total = 0;
     float count = 0;
+
+    bool went = false;
     public SendingOrderPage()
 	{
 		InitializeComponent();
+
+        went = false;
 
         this.Loaded += SendingOrderPage_Loaded;
     }
@@ -50,8 +54,11 @@ public partial class SendingOrderPage : ContentPage
         }
         else
         {
-            //Application.Current.MainPage = new OrderCompletePage();
-            NavGoTo(nameof(OrderCompletePage));
+            if (!went)
+            {
+                NavGoTo(nameof(OrderCompletePage));
+                went = true;    
+            }
         }
     }
 

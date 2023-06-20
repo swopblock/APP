@@ -1,3 +1,4 @@
+using APP.Code;
 using APP.Code.Data.Orders;
 
 namespace APP;
@@ -5,13 +6,23 @@ namespace APP;
 public partial class TradeAmountPage : ContentPage
 {
     OrderDetail detail = new OrderDetail();
+    PortfolioAsset SelectedAsset { get; set; }
 
     double posX = 0;
-	public TradeAmountPage()
+
+    bool went = false;
+	public TradeAmountPage(PortfolioAsset asset)
 	{
 		InitializeComponent();
 
-        BindingContext = detail;
+        SelectedAsset = asset;
+
+        BindingContext = asset;
+
+        slider.HtmlColor = asset.HtmlColor;
+
+
+        went = false;
 	}
 
     public void UpdateAmount(double amount)
@@ -71,10 +82,10 @@ public partial class TradeAmountPage : ContentPage
 
         CompleteSlider.Margin = new Thickness(margin, 0, 0, 0);
 
-        if (margin > (SubmitOrder.Width - 70))
+        if (margin > (SubmitOrder.Width - 70) && !went)
         {
-            //Application.Current.MainPage = new SendingOrderPage();
             NavGoTo(nameof(SendingOrderPage));
+            went = true;
         }
     }
 

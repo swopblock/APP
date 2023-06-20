@@ -32,13 +32,19 @@ public partial class BottomThreeButtons : ContentView
 
     private void CryptoTap_Tapped(object sender, EventArgs e)
     {
-       // Application.Current.MainPage = new CurrencyPage();
-        NavGoTo(nameof(CurrencyPage));
+        string page = (string)BindingContext;
+
+        if (page != "currency")
+        {
+            NavGoTo(nameof(CurrencyPage));
+        }
+        
     }
 
     private void Tap_Tapped(object sender, EventArgs e)
     {
         //Application.Current.MainPage = new MainPage();
-        NavGoTo(nameof(PortfolioPage));
+        // NavGoTo(nameof(PortfolioPage));
+        Shell.Current.Navigation.PopToRootAsync();
     }
 }

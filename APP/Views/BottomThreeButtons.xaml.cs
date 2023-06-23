@@ -1,10 +1,17 @@
+using APP.Code;
+using APP.Code.Data.User;
+using Microsoft.Maui.Graphics.Text;
+
 namespace APP.Views;
 
 public partial class BottomThreeButtons : ContentView
 {
+    public string currency = "";
 	public BottomThreeButtons()
 	{
 		InitializeComponent();
+
+        this.Loaded += BottomThreeButtons_Loaded;
 
 		TapGestureRecognizer tap = new TapGestureRecognizer();
         tap.Tapped += Tap_Tapped;
@@ -20,14 +27,39 @@ public partial class BottomThreeButtons : ContentView
         yourTrade.GestureRecognizers.Add(tradeTap); 
     }
 
+    private void BottomThreeButtons_Loaded(object sender, EventArgs e)
+    {
+        string value = (string)BindingContext;
+
+        if(value == "currency")
+        {
+            cryptoImage.Source = "circle_graph.png";
+            cryptoLabel.TextColor = Color.FromArgb("#ffffff");
+        }
+        else if (value == "trade")
+        {
+            tradeImage.Source = "trade.png";
+            tradeLabel.TextColor = Color.FromArgb("#ffffff");
+        }
+        else
+        {
+            keysImage.Source = "key.png";
+            keyLabel.TextColor = Color.FromArgb("#ffffff");
+        }
+    }
+
     private async void NavGoTo(string page)
     {
         await Shell.Current.GoToAsync(page);
     }
     private void TradeTap_Tapped(object sender, EventArgs e)
     {
-        NavGoTo(nameof(TradeSelectPage));
-        //Application.Current.MainPage = new TradeSelectPage();
+        PortfolioAsset asset = UserProfileData.LoadDemo().Where(x=>x.Symbol == currency).FirstOrDefault();
+
+        TradeSelectPage page = new TradeSelectPage();
+        page.BindingContext = asset;
+
+        Navigation.PushAsync(page);
     }
 
     private void CryptoTap_Tapped(object sender, EventArgs e)

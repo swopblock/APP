@@ -13,6 +13,9 @@ public partial class SliderTrade : ContentView
 
     public Color HtmlColor = Color.FromArgb("#ffffff");
     public Color AltColor = Color.FromArgb("#aaaaaa");
+
+    public string symbol = "";
+    public string altSymbol = "";
 	public SliderTrade()
 	{
 		InitializeComponent();
@@ -81,6 +84,7 @@ public partial class SliderTrade : ContentView
         if(wth > half - 40) { wth = half - 40; }
 
         double amount = 0;
+        string sym = symbol;
 
         if(posX < half)
         {
@@ -105,10 +109,12 @@ public partial class SliderTrade : ContentView
             ImgFinger.Margin = new Thickness((wth) * 2, 0, 0, 0);
 
             amount = GetPercent(posX, half + (half / 20), dWidth - (half / 4)) * 100;
+
+            sym = altSymbol;
         }
 
         var Trade = (TradeAmountPage)Parent.Parent.Parent;
-        Trade.UpdateAmount(amount);
+        Trade.UpdateAmount(amount, sym);
     }
 
     private double GetPercent(double xpos, double low, double high)

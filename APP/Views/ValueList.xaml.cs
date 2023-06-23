@@ -33,7 +33,8 @@ public partial class ValueList : ContentView
 
     private void GoToDetails()
     {
-        NavGoTo(nameof(OrderDetailsPage));
+        Navigation.PushAsync(new OrderDetailsPage());
+        //NavGoTo(nameof(OrderDetailsPage));
     }
 
     private async void NavGoTo(string page)

@@ -10,6 +10,8 @@ public partial class CurrencyPage : ContentPage
 {
     [Bindable(true)]
     public string asset { get; set; }
+
+    public Color UnselectColor = Color.FromArgb("#2F323A");
 	public CurrencyPage()
 	{
 		InitializeComponent();
@@ -22,6 +24,23 @@ public partial class CurrencyPage : ContentPage
         LoadCurrency(asset);
     }
 
+    private void RectFirstTap(object sender, EventArgs e)
+    {
+       
+    }
+    private void RectOneTap(object sender, EventArgs e)
+    {
+
+    }
+    private void RectTwoTap(object sender, EventArgs e)
+    {
+
+    }
+    private void RectThreeTap(object sender, EventArgs e)
+    {
+
+    }
+
     public void LoadCurrency(string asset)
 	{
 
@@ -30,7 +49,29 @@ public partial class CurrencyPage : ContentPage
 
         if (assetAsset != null)
         {
+            if(assetAsset.Symbol != "SWOBLR")
+            {
+                RectFirst.Source = "stargray.png";
+               // RectFirst.Fill = UnselectColor;
+            }
             
+            if (assetAsset.Symbol != "SWOBL")
+            {
+                RectOne.Stroke = UnselectColor;
+            }
+            
+            if (assetAsset.Symbol != "BTC")
+            {
+                RectTwo.Stroke = UnselectColor;
+            }
+
+            if (assetAsset.Symbol != "ETH")
+            {
+                RectThree.Stroke = UnselectColor;
+            }
+
+                btbuttons.currency = asset;
+
             CryptoCard card = new CryptoCard(assetAsset);
 
             CurrencyLabel.Text = assetAsset.Name;
@@ -41,9 +82,11 @@ public partial class CurrencyPage : ContentPage
             Diversity.UpdateValue(assetAsset, 30);
 
             card.UpdateSize();
-            // card.MakeChart(portfolioCircle);
+            card.MakeChart();
 
             CurrencyContainer.Children.Add(card);
+
+
         }
     }
 }

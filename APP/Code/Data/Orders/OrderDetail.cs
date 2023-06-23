@@ -36,6 +36,10 @@ namespace APP.Code.Data.Orders
         public decimal SwapPrice { get; set; }
         public decimal RewardsEarned { get; set; }
 
+        public string Icon { get; set; }
+        public string SwapIcon { get; set; }
+        public string RewardIcon { get; set; }  
+
         public string GetName()
         {
             return "";

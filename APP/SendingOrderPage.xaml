@@ -6,8 +6,10 @@
     <VerticalStackLayout HeightRequest="400">
         <Grid VerticalOptions="Center" HorizontalOptions="Center">
             <Grid>
-                <Path x:Name="LineCurve" Fill="white"></Path>
-                <Path x:Name="LightCurve"></Path>
+                <Path x:Name="LineCurve">
+                </Path>
+                <Path x:Name="LightCurve">
+                </Path>
             </Grid>
         <Label 
             Text="Sending order..."

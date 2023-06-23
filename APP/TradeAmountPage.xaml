@@ -30,9 +30,9 @@
                 <RowDefinition Height="60"></RowDefinition>
             </Grid.RowDefinitions>
             <ImageButton Clicked="ImageButton_Clicked_1" WidthRequest="60" ZIndex="20" HorizontalOptions="End" Margin="0,20,50,0" Source="slider.png" Grid.Row="0"></ImageButton>
-            <Label Text="Ethereum" ZIndex="20" Margin="48,52,0,0"></Label>
+            <Label Text="{Binding Name}" ZIndex="20" Margin="48,52,0,0"></Label>
             <Label x:Name="amountType" TextColor="{Binding HtmlColor}" Text="0.00" FontSize="40" Padding="0,0,0,10" Grid.Row="1" FontFamily="GuidaNormal" VerticalOptions="Start" HorizontalOptions="Center" ZIndex="20"></Label>
-            <Label x:Name="SymbolNameNum"  TextColor="{Binding HtmlColor}" Text="ETH" FontSize="20" Margin="0,50,0,0" Grid.Row="1" FontFamily="GuidaNormal" VerticalOptions="Start" HorizontalOptions="Center" ZIndex="20"></Label>
+            <Label x:Name="SymbolNameNum"  TextColor="{Binding HtmlColor}" Text="{Binding Symbol}" FontSize="20" Margin="0,50,0,0" Grid.Row="1" FontFamily="GuidaNormal" VerticalOptions="Start" HorizontalOptions="Center" ZIndex="20"></Label>
             <Rectangle VerticalOptions="Start" Fill="{StaticResource Gray2F}" Margin="10" HeightRequest="540" RadiusX="40"></Rectangle>
 
             <controls:NumberPad Grid.Row="1" Margin="0,90,0,0"></controls:NumberPad>
@@ -44,8 +44,8 @@
             <GraphicsView ZIndex="10" VerticalOptions="Fill" HorizontalOptions="Fill" DragInteraction="GraphicsView_DragInteraction"></GraphicsView>
             <Rectangle VerticalOptions="Start" Stroke="{StaticResource Gray27}" Fill="{StaticResource Black}" HeightRequest="70" RadiusX="40"></Rectangle>
             <Grid ZIndex="9" x:Name="CompleteSlider">
-                <Rectangle HorizontalOptions="Start" VerticalOptions="Start" Stroke="{StaticResource Primary}" Fill="{StaticResource Gray2F}" HeightRequest="70" WidthRequest="70" RadiusX="40"></Rectangle>
-                <Image Source="swopblock.png" WidthRequest="20" VerticalOptions="Center" HorizontalOptions="Start" Margin="25,0,0,0"></Image>
+                <Rectangle x:Name="submitColor" HorizontalOptions="Start" VerticalOptions="Start" Stroke="{StaticResource Primary}" Fill="{StaticResource Gray2F}" HeightRequest="70" WidthRequest="70" RadiusX="40"></Rectangle>
+                <Image x:Name="submitImage" Source="swopblock.png" WidthRequest="20" VerticalOptions="Center" HorizontalOptions="Start" Margin="25,0,0,0"></Image>
             </Grid>
             <Label FontFamily="Guida" VerticalOptions="Center" Margin="50,0,0,0" HorizontalOptions="Center" FontSize="16">Submit order</Label>
             <HorizontalStackLayout HorizontalOptions="End" Margin="0,0,30,0">

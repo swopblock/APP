@@ -120,12 +120,12 @@ public partial class PortfolioPage : ContentPage
                 CryptoCard card = new CryptoCard(set);
 
                 card.Padding = new Thickness(0, 180 * row, 0, 0);
+
                 card.ZIndex = row++;
 
-                ///card.GestureRecognizers.Add(gesture)
+                card.EnableClickable();
 
                 card.UpdateSize();
-                //card.MakeChart(portfolioCircle);
 
                 tempgrid.Children.Add(card);
 

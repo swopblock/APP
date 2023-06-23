@@ -16,12 +16,12 @@
                 <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
-            <Button VerticalOptions="Center" HorizontalOptions="Center" Grid.Row="0" Grid.Column="0" BackgroundColor="Transparent" FontSize="11" TextColor="{StaticResource GrayA1}" Text="Live"/>
-            <Button VerticalOptions="Center"  HorizontalOptions="Center" Grid.Row="0" Grid.Column="1" BackgroundColor="Transparent" FontSize="11" TextColor="{StaticResource GrayA1}" Text="Today"/>
-            <Button VerticalOptions="Center" HorizontalOptions="Center" Grid.Row="0" Grid.Column="2" BackgroundColor="Transparent" FontSize="11" TextColor="{StaticResource GrayA1}" Text="1W"/>
-            <Button VerticalOptions="Center" HorizontalOptions="Center" Grid.Row="0" Grid.Column="3" BackgroundColor="Transparent" FontSize="11" TextColor="{StaticResource GrayA1}" Text="1M"/>
-            <Button VerticalOptions="Center" HorizontalOptions="Center" Grid.Row="0" Grid.Column="4" BackgroundColor="Transparent" FontSize="11" TextColor="{StaticResource GrayA1}" Text="3M"/>
-            <Button VerticalOptions="Center" HorizontalOptions="Center" Grid.Row="0" Grid.Column="5" BackgroundColor="Transparent" FontSize="11" TextColor="{StaticResource GrayA1}" Text="1Y"/>
+            <Button x:Name="bLive" Pressed="Button_Pressed"  Margin="0" Padding="0" VerticalOptions="Center" HorizontalOptions="Fill" Grid.Row="0" Grid.Column="0" BackgroundColor="Transparent" FontSize="14" TextColor="{StaticResource Gray71}" Text="Live"/>
+            <Button x:Name="bToday" Pressed="Button_Today" Margin="0" Padding="0"  VerticalOptions="Center"  HorizontalOptions="Fill" Grid.Row="0" Grid.Column="1" BackgroundColor="Transparent" FontSize="14" TextColor="{StaticResource White}" Text="Today"/>
+            <Button x:Name="bW" Pressed="Button_W" Margin="0" Padding="0" VerticalOptions="Center" HorizontalOptions="Fill" Grid.Row="0" Grid.Column="2" BackgroundColor="Transparent" FontSize="14" TextColor="{StaticResource Gray71}" Text="1W"/>
+            <Button x:Name="bM" Pressed="Button_M" Margin="0" Padding="0" VerticalOptions="Center" HorizontalOptions="Fill" Grid.Row="0" Grid.Column="3" BackgroundColor="Transparent" FontSize="14" TextColor="{StaticResource Gray71}" Text="1M"/>
+            <Button x:Name="bM3" Pressed="Button_M3" Margin="0" Padding="0" VerticalOptions="Center" HorizontalOptions="Fill" Grid.Row="0" Grid.Column="4" BackgroundColor="Transparent" FontSize="14" TextColor="{StaticResource Gray71}" Text="3M"/>
+            <Button x:Name="bY" Pressed="Button_Y" Margin="0" Padding="0" VerticalOptions="Center" HorizontalOptions="Fill" Grid.Row="0" Grid.Column="5" BackgroundColor="Transparent" FontSize="14" TextColor="{StaticResource Gray71}" Text="1Y"/>
         </Grid>
     </VerticalStackLayout>
 </ContentView>

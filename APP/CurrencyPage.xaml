@@ -7,7 +7,11 @@
     <VerticalStackLayout>
         <ScrollView HeightRequest="540">
             <VerticalStackLayout>
-            <Label HorizontalOptions="Center" FontSize="24" VerticalOptions="Center" Margin="0,40,0,40" x:Name="CurrencyLabel" Text="Currency"></Label>
+                <Grid>
+                    <ImageButton HorizontalOptions="Start" Margin="30,0,0,0" WidthRequest="20" HeightRequest="20" Source="wallet.png"></ImageButton>
+                    <BoxView Margin="0,50,0,0" Color="{StaticResource Gray2F}" HeightRequest="1" HorizontalOptions="FillAndExpand" />
+                </Grid>
+                <Label HorizontalOptions="Center" FontSize="24" VerticalOptions="Center" Margin="0,40,0,40" x:Name="CurrencyLabel" Text="Currency"></Label>
                 <VerticalStackLayout x:Name="CurrencyContainer">
                 </VerticalStackLayout>
             <Grid>
@@ -25,13 +29,31 @@
             
                 <Grid WidthRequest="30" HeightRequest="30" HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="1">
                   <!--<Border>-->
-                    <Path TranslationX="27" TranslationY="28" VerticalOptions="Center" HorizontalOptions="Center" Scale="2.5" Fill="{StaticResource Gray2F}" Data="M8.27 3.39L 8.73 5.69L 11.02 6.15L 8.73 6.6L 8.27 8.9L 7.81 6.6L 5.51 6.15L 7.81 5.69L 8.27 3.39z"></Path>
+                    <!--<Path x:Name="RectFirst" TranslationX="27" TranslationY="28" VerticalOptions="Center" HorizontalOptions="Center" Scale="1.5" Fill="{StaticResource Secondary}" Data="M8.27 3.39L 8.73 5.69L 11.02 6.15L 8.73 6.6L 8.27 8.9L 7.81 6.6L 5.51 6.15L 7.81 5.69L 8.27 3.39z">
+                            <Path.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="RectFirstTap"></TapGestureRecognizer>
+                            </Path.GestureRecognizers>
+                    </Path>-->
                 <!--</Border>-->
+
+                        <ImageButton x:Name="RectFirst" Source="star.png" WidthRequest="12" HeightRequest="9"></ImageButton>
                     </Grid>
-            
-                <Rectangle  VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="2" WidthRequest="10" HeightRequest="10" RadiusX="3" StrokeThickness="1.7" Stroke="{StaticResource Gray2F}"></Rectangle>
-                <Rectangle  VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="3" WidthRequest="10" HeightRequest="10" RadiusX="3" StrokeThickness="1.7" Stroke="{StaticResource Gray2F}"></Rectangle>
-                <Rectangle  VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="4" WidthRequest="10" HeightRequest="10" RadiusX="3" StrokeThickness="1.7" Stroke="{StaticResource Gray2F}"></Rectangle>
+
+                    <Rectangle x:Name="RectOne" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="2" WidthRequest="10" HeightRequest="10" RadiusX="3" StrokeThickness="1.7" Stroke="{StaticResource Tertiary}">
+                        <Rectangle.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="RectOneTap"></TapGestureRecognizer>
+                        </Rectangle.GestureRecognizers>
+                    </Rectangle>
+                    <Rectangle x:Name="RectTwo" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="3" WidthRequest="10" HeightRequest="10" RadiusX="3" StrokeThickness="1.7" Stroke="{StaticResource Bitcoin}">
+                        <Rectangle.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="RectTwoTap"></TapGestureRecognizer>
+                        </Rectangle.GestureRecognizers>
+                    </Rectangle>
+                    <Rectangle x:Name="RectThree" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="4" WidthRequest="10" HeightRequest="10" RadiusX="3" StrokeThickness="1.7" Stroke="{StaticResource Blue}">
+                        <Rectangle.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="RectThreeTap"></TapGestureRecognizer>
+                        </Rectangle.GestureRecognizers>
+                    </Rectangle>
                 <!--<Label Text="+" Grid.Column="1" Grid.Row="0" VerticalOptions="Center" HorizontalOptions="Center"></Label>
                 <Label Text="o" Grid.Column="2" Grid.Row="0" VerticalOptions="Center" HorizontalOptions="Center"></Label>
                 <Label Text="o" Grid.Column="3" Grid.Row="0" VerticalOptions="Center" HorizontalOptions="Center"></Label>
@@ -103,7 +125,7 @@
         <BoxView Margin="0,0,0,0" Color="{StaticResource Gray2F}" HeightRequest="0.5" HorizontalOptions="FillAndExpand" />
 
         <Grid Margin="0,20,0,10">
-            <controls:BottomThreeButtons BindingContext="currency"></controls:BottomThreeButtons>
+            <controls:BottomThreeButtons x:Name="btbuttons" BindingContext="currency"></controls:BottomThreeButtons>
         </Grid>
     </VerticalStackLayout>
 </ContentPage>

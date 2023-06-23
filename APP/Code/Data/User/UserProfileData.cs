@@ -81,7 +81,10 @@ namespace APP.Code.Data.User
                     RewardsEarnedText = 0.0000032452m + " SWOBL",
                     SymbolExchangeRate = "1 " + "BTC" + " = $" + 24453.02m,
                     SwapToExchangeRate = "1 " + "ETH" + " = $" + 5733.55m,
-                    Value =  (5733.55m *  0.043245m).ToString("$#.##")
+                    Value =  (5733.55m *  0.043245m).ToString("$#.##"),
+                    Icon = "bitcoin.png",
+                    RewardIcon = "swopblockreward.png",
+                    SwapIcon = "ethereum.png"
                 },
                  new OrderDetail
                 {
@@ -101,7 +104,10 @@ namespace APP.Code.Data.User
                     RewardsEarnedText = 0.0000032452m + " SWOBL",
                     SymbolExchangeRate = "1 " + "BTC" + " = $" + 24453.02m,
                     SwapToExchangeRate = "1 " + "ETH" + " = $" + 5733.55m,
-                    Value =  (5733.55m *  0.043245m).ToString("$#.##")
+                    Value =  (5733.55m *  0.043245m).ToString("$#.##"),
+                    Icon = "bitcoin.png",
+                    RewardIcon = "swopblockreward.png",
+                    SwapIcon = "ethereum.png"
                 },
                   new OrderDetail
                 {
@@ -121,7 +127,10 @@ namespace APP.Code.Data.User
                     RewardsEarnedText = 0.0000032452m + " SWOBL",
                     SymbolExchangeRate = "1 " + "BTC" + " = $" + 24453.02m,
                     SwapToExchangeRate = "1 " + "ETH" + " = $" + 5733.55m,
-                    Value =  (5733.55m *  0.043245m).ToString("$#.##")
+                    Value =  (5733.55m *  0.043245m).ToString("$#.##"),
+                    Icon = "bitcoin.png",
+                    RewardIcon = "swopblockreward.png",
+                    SwapIcon = "ethereum.png"
                 }
 
             };

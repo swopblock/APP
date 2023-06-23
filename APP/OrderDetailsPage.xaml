@@ -38,13 +38,21 @@
                     </Grid>
                     <BoxView Grid.Row="0" Color="{StaticResource Gray2F}" HeightRequest="1" HorizontalOptions="FillAndExpand" />
                     <Grid Padding="0,10,0,10">
-                        <Label TextColor="{StaticResource GrayA1}" FontSize="14" FontFamily="Guida" Text="{Binding SwapToName, StringFormat='Buy {0}'}" VerticalOptions="Center" HorizontalOptions="Start" ></Label>
-                        <Label TextColor="{StaticResource White}" FontSize="14" FontFamily="Guida" Text="{Binding SwapAmount}"  VerticalOptions="Center" HorizontalOptions="End"></Label>
+                        <Label TextColor="{StaticResource GrayA1}" FontSize="14" FontFamily="Guida" Text="{Binding SwapToName, StringFormat='Purchased {0}'}" VerticalOptions="Center" HorizontalOptions="Start" ></Label>
+                        
+                        <HorizontalStackLayout HorizontalOptions="End">
+                            <Label TextColor="{StaticResource White}" FontSize="14" FontFamily="Guida" Text="{Binding SwapAmount}"  VerticalOptions="Center" HorizontalOptions="End"></Label>
+                            <Image Margin="4,0,0,0" WidthRequest="10" Source="{Binding SwapIcon}"></Image>
+                        </HorizontalStackLayout>
                     </Grid>
                     <BoxView Grid.Row="0" Color="{StaticResource Gray2F}" HeightRequest="1" HorizontalOptions="FillAndExpand" />
                     <Grid Padding="0,10,0,10">
-                        <Label TextColor="{StaticResource GrayA1}" FontSize="14" FontFamily="Guida" Text="{Binding SymbolName, StringFormat='Sell {0}'}" VerticalOptions="Center" HorizontalOptions="Start"></Label>
-                        <Label TextColor="{StaticResource White}" FontSize="14" FontFamily="Guida" Text="{Binding Amount}" VerticalOptions="Center" HorizontalOptions="End"></Label>
+                        <Label TextColor="{StaticResource GrayA1}" FontSize="14" FontFamily="Guida" Text="{Binding SymbolName, StringFormat='Sold {0}'}" VerticalOptions="Center" HorizontalOptions="Start"></Label>
+                        
+                        <HorizontalStackLayout HorizontalOptions="End">
+                            <Label TextColor="{StaticResource White}" FontSize="14" FontFamily="Guida" Text="{Binding Amount}" VerticalOptions="Center" HorizontalOptions="End"></Label>
+                            <Image Margin="4,0,0,0" WidthRequest="10" Source="{Binding Icon}"></Image>
+                        </HorizontalStackLayout>
                     </Grid>
                     <BoxView Grid.Row="0" Color="{StaticResource Gray2F}" HeightRequest="1" HorizontalOptions="FillAndExpand" />
                     <Grid Padding="0,10,0,10">
@@ -74,7 +82,10 @@
                     <BoxView Grid.Row="0" Color="{StaticResource Gray2F}" HeightRequest="1" HorizontalOptions="FillAndExpand" />
                     <Grid Padding="0,10,0,10">
                         <Label TextColor="{StaticResource GrayA1}" FontSize="14" FontFamily="Guida" Text="Rewards earned" VerticalOptions="Center" HorizontalOptions="Start" ></Label>
-                        <Label TextColor="{StaticResource White}" FontSize="14" FontFamily="Guida" Text="{Binding RewardsEarnedText}"  VerticalOptions="Center" HorizontalOptions="End"></Label>
+                        <HorizontalStackLayout HorizontalOptions="End">
+                            <Label TextColor="{StaticResource White}" FontSize="14" FontFamily="Guida" Text="{Binding RewardsEarnedText}"  VerticalOptions="Center" HorizontalOptions="End"></Label>
+                            <Image WidthRequest="15" Source="{Binding RewardIcon}"></Image>
+                        </HorizontalStackLayout>
                     </Grid>
                     <BoxView Grid.Row="0" Color="{StaticResource Gray2F}" HeightRequest="1" HorizontalOptions="FillAndExpand" />
                 </VerticalStackLayout>

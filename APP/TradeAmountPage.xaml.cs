@@ -8,6 +8,8 @@ public partial class TradeAmountPage : ContentPage
     OrderDetail detail = new OrderDetail();
     PortfolioAsset SelectedAsset { get; set; }
 
+    PortfolioAsset Asset { get; set; }
+
     double posX = 0;
 
     bool went = false;
@@ -17,17 +19,52 @@ public partial class TradeAmountPage : ContentPage
 
         SelectedAsset = asset;
 
-        BindingContext = asset;
+        this.Loaded += TradeAmountPage_Loaded;
 
-        slider.HtmlColor = asset.HtmlColor;
 
 
         went = false;
 	}
 
-    public void UpdateAmount(double amount)
+    private void TradeAmountPage_Loaded(object sender, EventArgs e)
+    {
+        slider.HtmlColor = SelectedAsset.HtmlColor;
+
+        Asset = (PortfolioAsset)BindingContext;
+
+        slider.AltColor = Asset.HtmlColor;
+
+        slider.symbol = SelectedAsset.Symbol;
+        slider.altSymbol = Asset.Symbol;
+    }
+
+    public void UpdateAmount(double amount, string symbol)
     {
         detail.Amount = (decimal)amount;
+
+        SymbolName.Text = symbol;
+        SymbolNameNum.Text = symbol;
+
+        if (SelectedAsset.Symbol == symbol)
+        {
+            SymbolName.TextColor = SelectedAsset.HtmlColor;
+            SymbolNameNum.TextColor = SelectedAsset.HtmlColor;
+            amountSlide.TextColor = SelectedAsset.HtmlColor;
+            amountType.TextColor = SelectedAsset.HtmlColor;
+
+            submitColor.Stroke = Asset.HtmlColor;
+            submitImage.Source = Asset.Image;
+        }
+        else
+        {
+            SymbolName.TextColor = Asset.HtmlColor;
+            SymbolNameNum.TextColor = Asset.HtmlColor;
+            amountType.TextColor= Asset.HtmlColor;
+            amountSlide.TextColor= Asset.HtmlColor;
+
+            submitImage.Source= SelectedAsset.Image;
+            submitColor.Stroke= SelectedAsset.HtmlColor;
+        }
 
         amountSlide.Text = Math.Round(detail.Amount, 6).ToString();
         amountType.Text = Math.Round(detail.Amount, 6).ToString();
@@ -84,7 +121,9 @@ public partial class TradeAmountPage : ContentPage
 
         if (margin > (SubmitOrder.Width - 70) && !went)
         {
-            NavGoTo(nameof(SendingOrderPage));
+            SendingOrderPage page = new SendingOrderPage();
+            page.BindingContext = SelectedAsset;
+            Navigation.PushAsync(page);
             went = true;
         }
     }

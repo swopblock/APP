@@ -15,16 +15,16 @@
         </Grid.RowDefinitions>
 
         <Grid x:Name="yourKeys" Grid.Column="0">
-            <Image VerticalOptions="Start" HorizontalOptions="Center" WidthRequest="40"  Source="key.png"/>
-            <Label TextColor="{StaticResource Gray54}" VerticalOptions="End" HorizontalOptions="Center" Text="Your keys"></Label>
+            <Image x:Name="keysImage" VerticalOptions="Start" HorizontalOptions="Center" WidthRequest="40"  Source="keygray.png"/>
+            <Label x:Name="keyLabel" TextColor="{StaticResource Gray54}" VerticalOptions="End" HorizontalOptions="Center" Text="Your keys"></Label>
         </Grid>
         <Grid x:Name="yourCrypto" Grid.Column="1">
-            <Image VerticalOptions="Start" HorizontalOptions="Center" WidthRequest="40" Source="circle_graph.png"/>
-            <Label TextColor="{StaticResource Gray54}" VerticalOptions="End" HorizontalOptions="Center" Text="Your crypto"></Label>
+            <Image x:Name="cryptoImage" VerticalOptions="Start" HorizontalOptions="Center" WidthRequest="40" Source="circle_graphgray.png"/>
+            <Label x:Name="cryptoLabel" TextColor="{StaticResource Gray54}" VerticalOptions="End" HorizontalOptions="Center" Text="Your crypto"></Label>
         </Grid>
         <Grid x:Name="yourTrade" Grid.Column="2">
-            <Image VerticalOptions="Start" HorizontalOptions="Center" WidthRequest="40" Source="trade.png"/>
-            <Label TextColor="{StaticResource Gray54}" VerticalOptions="End" HorizontalOptions="Center" Text="Your trade"></Label>
+            <Image  x:Name="tradeImage" VerticalOptions="Start" HorizontalOptions="Center" WidthRequest="40" Source="tradegray.png"/>
+            <Label  x:Name="tradeLabel" TextColor="{StaticResource Gray54}" VerticalOptions="End" HorizontalOptions="Center" Text="Your trade"></Label>
         </Grid>
     </Grid>
 </ContentView>

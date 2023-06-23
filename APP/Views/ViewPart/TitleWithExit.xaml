@@ -1,24 +1,25 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="APP.Views.TitleWithExit">
-    <VerticalStackLayout HorizontalOptions="FillAndExpand" Margin="0,-50,0,0">
-        <Grid HorizontalOptions="FillAndExpand">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="24"></RowDefinition>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"></ColumnDefinition>
-                <ColumnDefinition Width="*"></ColumnDefinition>
-                <ColumnDefinition Width="*"></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-            <Label Grid.Column="1"
-                TextColor="{StaticResource Gray100}"
-                Text="Order details"
-                VerticalOptions="Center" 
-                HorizontalOptions="Center" />
+             x:Class="APP.Views.TitleWithExit"
+             Shell.FlyoutHeight="0">
+    <VerticalStackLayout ZIndex="100000" VerticalOptions="Start" HeightRequest="40" HorizontalOptions="FillAndExpand" Margin="0,-25,10,10">
 
-            <Path Grid.Column="2" HorizontalOptions="EndAndExpand" VerticalOptions="Center" Data="M 0,0l10,10M10,0l-10,10" Stroke="{StaticResource Gray71}"></Path>
+        <Grid VerticalOptions="Center" HorizontalOptions="FillAndExpand">
+            <Button
+                Pressed="Button_Pressed_1"
+                TextColor="{StaticResource White}"
+                Text="Order details"
+                VerticalOptions="Start" 
+                HorizontalOptions="Center" />
+            <Grid ZIndex="100" Padding="0,12,0,0" VerticalOptions="Center" HorizontalOptions="End"  HeightRequest="30">
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"></TapGestureRecognizer>
+                    <PanGestureRecognizer PanUpdated="PanGestureRecognizer_PanUpdated"></PanGestureRecognizer>
+                    <ClickGestureRecognizer Clicked="ClickGestureRecognizer_Clicked"></ClickGestureRecognizer>
+                </Grid.GestureRecognizers>
+                <Path Scale="1.4" Data="M 0,0l10,10M10,0l-10,10" Stroke="{StaticResource GrayA1}"></Path>
+            </Grid>
         </Grid>
     </VerticalStackLayout>
 </ContentView>

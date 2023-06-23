@@ -14,6 +14,8 @@ public partial class CryptoCard : ContentView
 
     PortfolioAsset assetDisplayed = null;
 
+    bool isClickable = false;
+
     Rect rect = new Rect();
     Point centerPoint = new Point();
 
@@ -36,12 +38,20 @@ public partial class CryptoCard : ContentView
         ContainerForGrids.GestureRecognizers.Add(tap);
     }
 
+    public void EnableClickable()
+    {
+        isClickable = true;
+    }
+
     private async void ShowTransientPage()
     {
-        CurrencyPage page = new CurrencyPage();
-        page.asset = assetDisplayed.Symbol;
+        if (isClickable)
+        {
+            CurrencyPage page = new CurrencyPage();
+            page.asset = assetDisplayed.Symbol;
 
-        await Shell.Current.Navigation.PushAsync(page);
+            await Shell.Current.Navigation.PushAsync(page);
+        }
     }
 
     private void Tap_Tapped(object sender, EventArgs e)
@@ -127,70 +137,67 @@ public partial class CryptoCard : ContentView
         }
     }
 
-    public void MakeChart(PortfolioCircle portfolioShape)
+    public void MakeChart()
     {
-        if (portfolioShape != null)
+        PortfolioChart chart =
+           new PortfolioChart(rect.Location,
+               width,
+               height * 0.6f
+               );
+
+        Pack pk = null;
+
+        List<Pack> packCandles = chartContainer.CombinePacks(
+            UserProfileData.PortfolioAssets.Select(x => x.Symbol).ToList(),
+            time,
+            candleCount);
+
+        if (packCandles != null)
         {
-            PortfolioChart chart =
-               new PortfolioChart(rect.Location,
-                   portfolioShape.GetWidthLimit(),
-                   portfolioShape.GetWidthLimit()
-                   );
-
-            Pack pk = null;
-
-            List<Pack> packCandles = chartContainer.CombinePacks(
-                UserProfileData.PortfolioAssets.Select(x => x.Symbol).ToList(),
-                time,
-                candleCount);
-
-            if (packCandles != null)
+            if (packCandles.Count > 0)
             {
-                if (packCandles.Count > 0)
+                Pack Selectedpack = packCandles.Where(x => x.Symbol == assetDisplayed.Symbol).FirstOrDefault();
+
+                if (Selectedpack != null)
                 {
-                    Pack Selectedpack = packCandles.Where(x => x.Symbol == assetDisplayed.Symbol).FirstOrDefault();
+                    List<Candle> cnds = Selectedpack.candles; //chartContainer.SumTotal(portfolioShape.Assets, packCandles);
 
-                    if (Selectedpack != null)
+                    if (cnds.Count > 0)
                     {
-                        List<Candle> cnds = Selectedpack.candles; //chartContainer.SumTotal(portfolioShape.Assets, packCandles);
+                        CurveSet curv = chart.DrawLine(rect.Location, cnds);
 
-                        if (cnds.Count > 0)
+                        if (!curv.Failed())
                         {
-                            CurveSet curv = chart.DrawLine(rect.Location, cnds);
+                            Color bk = Color.FromArgb("#000000");
+                            Color st = assetDisplayed.HtmlColor;
 
-                            if (!curv.Failed())
-                            {
-                                Color bk = Color.FromArgb("#000000");
-                                Color st = Color.FromArgb("#FFFFFF");
+                            Geometry pathFill =
+                             (Geometry)new PathGeometryConverter()
+                             .ConvertFromString(curv.GetCurve());//
 
-                                Geometry pathFill =
-                                 (Geometry)new PathGeometryConverter()
-                                 .ConvertFromString(curv.GetCurve());//
+                            // Microsoft.Maui.Controls.Shapes.Path lineFill = new(pathFill);
 
-                                // Microsoft.Maui.Controls.Shapes.Path lineFill = new(pathFill);
+                            LinearGradientBrush brush = new LinearGradientBrush(
+                            GetLineGradient(st, bk),
+                            new Point(0.1, 0.1),
+                            new Point(0.6, 0.9));
 
-                                LinearGradientBrush brush = new LinearGradientBrush(
-                                GetLineGradient(st, bk),
-                                new Point(0.1, 0.1),
-                                new Point(0.6, 0.9));
+                            fillPath.Data = pathFill;
+                            fillPath.Fill = brush;
+                            // gridCrypto.Children.Add(lineFill);
 
-                                fillPath.Data = pathFill;
-                                fillPath.Fill = brush;
-                                // gridCrypto.Children.Add(lineFill);
+                            Geometry pathData =
+                               (Geometry)new PathGeometryConverter()
+                               .ConvertFromString(curv.GetSpace());//
 
-                                Geometry pathData =
-                                   (Geometry)new PathGeometryConverter()
-                                   .ConvertFromString(curv.GetSpace());//
+                            // Microsoft.Maui.Controls.Shapes.Path linepath = new(pathData);
 
-                                // Microsoft.Maui.Controls.Shapes.Path linepath = new(pathData);
+                            linePath.Data = pathData;
+                            linePath.Stroke = st;
 
-                                linePath.Data = pathData;
-                                linePath.Stroke = st;
+                            //test2.Data = pathData;
 
-                                //test2.Data = pathData;
-
-                                //gridCrypto.Children.Add(linepath);
-                            }
+                            //gridCrypto.Children.Add(linepath);
                         }
                     }
                 }

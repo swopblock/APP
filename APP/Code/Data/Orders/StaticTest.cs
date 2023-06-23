@@ -13,6 +13,7 @@ namespace APP.Code.Data.Orders
         public static PortfolioPage Portfolio = new PortfolioPage();
 
         public static List<Microsoft.Maui.Controls.Shapes.Geometry> LoadingCircle = null;
+        public static List<Microsoft.Maui.Controls.Shapes.Geometry> LoadingLine = null;
 
         public static List<Microsoft.Maui.Controls.Shapes.Geometry> GetCurves(float angle, float total)
         {

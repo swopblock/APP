@@ -1,10 +1,11 @@
 ﻿using Microsoft.Maui.Controls;
+using System.Runtime.CompilerServices;
 
 namespace APP;
 
 public partial class AppShell : Shell
 {
-	public AppShell()
+    public AppShell()
 	{
 		InitializeComponent();
 
@@ -19,5 +20,8 @@ public partial class AppShell : Shell
         Routing.RegisterRoute(nameof(RewardsPage), typeof(RewardsPage));
 
         SetNavBarIsVisible(this, false);
+        SetNavBarHasShadow(this, false);
+        
+       // this.InputTransparent = true;
 	}
 }

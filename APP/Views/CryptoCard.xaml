@@ -57,7 +57,7 @@
                     <Label FontSize="12" Margin="0,10,0,0" FontFamily="GuidaBold" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" TextColor="{Binding HtmlColor}" Text="{Binding Amount}"/>
                 </VerticalStackLayout>
             </Grid>
-            <controls:TimePeriodLabels Margin="20" ZIndex="10" VerticalOptions="End" HorizontalOptions="CenterAndExpand"></controls:TimePeriodLabels>
+            <controls:TimePeriodLabels BindingContext="{Binding HtmlColor}"  Margin="20" ZIndex="10" VerticalOptions="End" HorizontalOptions="CenterAndExpand"></controls:TimePeriodLabels>
         </Grid>
     </StackLayout>
 </ContentView>

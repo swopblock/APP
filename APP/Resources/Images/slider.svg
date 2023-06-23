@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   viewBox="0 0 20.09 3.3299999"
+   version="1.1"
+   id="svg10"
+   sodipodi:docname="slider.svg"
+   width="20.09"
+   height="3.3299999"
+   inkscape:version="1.2.2 (732a01da63, 2022-12-09)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview12"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     showgrid="false"
+     inkscape:zoom="11.92182"
+     inkscape:cx="22.899188"
+     inkscape:cy="15.643584"
+     inkscape:window-width="1920"
+     inkscape:window-height="1001"
+     inkscape:window-x="2391"
+     inkscape:window-y="-9"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg10" />
+  <defs
+     id="defs4">
+    <style
+       id="style2">
+	.cls-1{
+		stroke: #ffffff;
+		stroke-miterlimit: 10;
+		stroke-width: 0.25px;
+		fill:none;
+	}
+	.cls-2{
+		fill: #ffffff;
+	}
+	</style>
+  </defs>
+  <rect
+     class="cls-1"
+     x="0.125"
+     y="0.125"
+     width="19.84"
+     height="3.0799999"
+     rx="1.54"
+     ry="1.54"
+     id="rect6" />
+  <rect
+     class="cls-2"
+     x="-3.2050025"
+     y="8.5150023"
+     width="3.0899999"
+     height="3.0599999"
+     rx="1.53"
+     ry="1.53"
+     transform="rotate(-90)"
+     id="rect8" />
+</svg>

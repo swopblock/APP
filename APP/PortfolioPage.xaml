@@ -6,28 +6,42 @@
              xmlns:controls="clr-namespace:APP.Views">
     <ScrollView HorizontalOptions="Fill">
         <VerticalStackLayout HorizontalOptions="Fill">
-            <Label Margin="0,10,0,10" HorizontalOptions="Center" Text="Your Wallet">
+            <Label TextColor="White" Margin="0,10,0,10" HorizontalOptions="Center" Text="Your Wallet">
             </Label>
             <BoxView Color="{StaticResource Gray2F}" HeightRequest="1" HorizontalOptions="FillAndExpand" />
             <Grid ZIndex="100" Margin="0,40,0,0">
                 <Label x:Name="PortfolioAmount" FontSize="36" TextColor="White"  HorizontalOptions="Center" Text="Testing Text"></Label>
                 <HorizontalStackLayout HorizontalOptions="Center">
-                    <Grid HeightRequest="25" Scale="1.2" Padding="0,12,4,0" VerticalOptions="End">
-                        <Path x:Name="ValueUp" VerticalOptions="Center" Data="M0,0l-4.5,-7.5l-4.5,7.5Z" Stroke="{StaticResource Gray71}"  />
-                        <!--<Path x:Name="ValueDown" VerticalOptions="Center" Data="M0,0l-4.5,7.5l-4.5,-7.5Z" Stroke="{StaticResource Gray71}"  />-->
+                    <Grid WidthRequest="14" HeightRequest="14" VerticalOptions="End">
+                        <!--<Path 
+                            VerticalOptions="End" HorizontalOptions="Center" 
+                            x:Name="ValueDown" 
+                            Data="M0,0L10,0L5,8.5z" Stroke="{StaticResource Gray71}"  />-->
+
+                        <Path 
+                            VerticalOptions="End" HorizontalOptions="Center" 
+                            x:Name="ValueUp" 
+                            Data="M0,8L5,0L10,8z" Stroke="{StaticResource Gray71}"  />
+                        <!--M0,0l-4.5,-7.5l-4.5,7.5Z -->
                     </Grid>
                     <Label x:Name="PortfolioChangeDollar" FontSize="14" Margin="0,40,0,0" HorizontalOptions="Center" Text="$450.34"></Label>
                     <Label x:Name="PortfolioChange" FontSize="14" Margin="0,40,0,0" HorizontalOptions="Center" Text="  /  3.42%"></Label>
                 </HorizontalStackLayout>
             </Grid>
             
-            <Grid Margin="0,0,0,10">
-                <Grid Margin="0,-60,0,0" x:Name="grid" BackgroundColor="Black" HorizontalOptions="Fill">
+            <Grid Margin="0,0,0,0">
+
+                <Grid ZIndex="1" Margin="0,-60,0,0" x:Name="grid" BackgroundColor="Black" HorizontalOptions="Fill">
 
                 </Grid>
-                <controls:TimePeriodLabels VerticalOptions="End" HorizontalOptions="CenterAndExpand" ZIndex="0" Margin="0,100,0,0"/>
+                <Grid HorizontalOptions="Center" VerticalOptions="Center" ZIndex="1" Margin="0,110,0,0">
+                    <Path Margin="0,9,0,0" HorizontalOptions="Center" VerticalOptions="Center" Stroke="White" Data="M0,0l0,0m0,5l0,-100"></Path>
+                    <Rectangle HorizontalOptions="Center" VerticalOptions="Start" Margin="0,0,0,0" Stroke="White" WidthRequest="10" HeightRequest="10" RadiusX="5" ></Rectangle>
+                </Grid>
+                <controls:TimePeriodLabels ZIndex="100" VerticalOptions="End" HorizontalOptions="CenterAndExpand" Margin="0,0,0,90"/>
+
             </Grid>
-            <VerticalStackLayout>
+            <VerticalStackLayout Margin="0,-80,0,0">
                 <Grid x:Name="WalletCards">
 
                 </Grid>

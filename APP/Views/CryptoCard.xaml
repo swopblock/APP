@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="APP.Views.CryptoCard"
              xmlns:controls="clr-namespace:APP.Views">
-    <StackLayout x:Name="ContainerForGrids" HeightRequest="330" HorizontalOptions="CenterAndExpand">
+    <StackLayout x:Name="ContainerForGrids" HeightRequest="350" HorizontalOptions="CenterAndExpand">
        
         <Grid x:Name="gridCrypto" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
             <controls:RoundBox x:Name="BackgroundPanel" ZIndex="10">
@@ -42,10 +42,10 @@
                     <Label FontFamily="GuidaBold" FontSize="12" VerticalTextAlignment="Center" HorizontalTextAlignment="End" Text="{Binding Symbol}"/>
                     <Label x:Name="valuePrice" FontFamily="Guida" FontSize="15" VerticalTextAlignment="Center" HorizontalTextAlignment="End" Text="{Binding Price, StringFormat='{0:c}'}"/>
 
-                    <HorizontalStackLayout HeightRequest="30" HorizontalOptions="End">
-                        <Grid HeightRequest="25" Padding="0,0,4,0" VerticalOptions="Center">
-                            <Path x:Name="ValueUp" VerticalOptions="Center" Data="M0,0l-4.5,-7.5l-4.5,7.5Z" Stroke="{Binding HtmlColor}"  />
-                            <Path x:Name="ValueDown" VerticalOptions="Center" Data="M0,0l-4.5,7.5l-4.5,-7.5Z" Stroke="{Binding HtmlColor}"  />
+                    <HorizontalStackLayout x:Name="gainStack" HeightRequest="30" HorizontalOptions="End">
+                        <Grid Padding="0,3,4,0" VerticalOptions="Start">
+                            <Path x:Name="ValueUp" VerticalOptions="End" Data="M0,8L5,0L10,8z" Stroke="{Binding HtmlColor}"  />
+                            <Path x:Name="ValueDown" VerticalOptions="End" Data="M0,0L10,0L5,8.5z" Stroke="{Binding HtmlColor}"  />
                         </Grid>
                         <Label x:Name="percentGain" TextColor="{Binding HtmlColor}" VerticalOptions="Start" FontFamily="GuidaBold" FontSize="12" Text="0.00%"/>
 
@@ -53,8 +53,11 @@
                 </VerticalStackLayout>
 
                 <VerticalStackLayout Grid.Row="1" Grid.Column="1">
-                    <Image VerticalOptions="Center" HorizontalOptions="Start"  WidthRequest="20" Source="{Binding Image}"/>
-                    <Label FontSize="12" Margin="0,10,0,0" FontFamily="GuidaBold" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" TextColor="{Binding HtmlColor}" Text="{Binding Amount}"/>
+                    <Grid HorizontalOptions="Start">
+                        <Image VerticalOptions="Center" HorizontalOptions="Center"  WidthRequest="20" Source="{Binding Image}"/>
+                        <Image VerticalOptions="Center" HorizontalOptions="Center"  WidthRequest="30" Source="{Binding Stars}"/>
+                    </Grid>
+                    <Label FontSize="12" Margin="5,10,0,0" FontFamily="GuidaBold" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" TextColor="{Binding HtmlColor}" Text="{Binding Amount}"/>
                 </VerticalStackLayout>
             </Grid>
             <controls:TimePeriodLabels BindingContext="{Binding HtmlColor}"  Margin="20" ZIndex="10" VerticalOptions="End" HorizontalOptions="CenterAndExpand"></controls:TimePeriodLabels>

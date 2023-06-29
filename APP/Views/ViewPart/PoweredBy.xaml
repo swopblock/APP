@@ -6,7 +6,7 @@
         <Label 
             BackgroundColor="Transparent"
             TextColor="{StaticResource Gray54}"
-            FontSize="18"
+            FontSize="16"
             Text="Powered by"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
@@ -14,7 +14,8 @@
         <Label 
             BackgroundColor="Transparent"
             TextColor="{StaticResource Gray54}"
-            FontSize="18"
+            FontFamily="GuidaBold"
+            FontSize="16"
             Text="swopblock"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />

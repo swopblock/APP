@@ -2,8 +2,9 @@
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="APP.Views.PercentCircle">
-    <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center">
-        <Grid VerticalOptions="Center" HorizontalOptions="Center">
+    <VerticalStackLayout VerticalOptions="Fill" HorizontalOptions="Fill">
+
+        <Grid VerticalOptions="Fill" HorizontalOptions="Fill">
             <Path ZIndex="1" StrokeThickness="1.2" VerticalOptions="Center" HorizontalOptions="Center" Stroke="{StaticResource Gray2F}" x:Name="CircleFull"></Path>
             <Path ZIndex="1" StrokeThickness="1.2" VerticalOptions="Center" HorizontalOptions="Center"  x:Name="CirclePart"></Path>
             <Label x:Name="percentValue" VerticalOptions="Center" FontSize="14" FontFamily="GuidaBold" HorizontalOptions="Center" Text=""></Label>

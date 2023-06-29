@@ -99,7 +99,7 @@ namespace APP.Code
                     volume = 1
                 });
             }
-            else if (symbol.ToUpper() == "SWOBLR")
+            else if (symbol.ToUpper() == "YOUR REWARDS")
             {
                 candls.Add(new Candle
                 {

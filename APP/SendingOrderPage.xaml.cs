@@ -36,7 +36,7 @@ public partial class SendingOrderPage : ContentPage
                 GetGradient(asset.HtmlColor),
                 new Point(0.5,0.5), 1);
 
-        LineCurve.Fill = Gbrush;
+        LineCurve.Stroke = asset.HtmlColor;
         LightCurve.Fill = Gbrush;
     }
 
@@ -61,23 +61,22 @@ public partial class SendingOrderPage : ContentPage
 
     protected virtual void OnPropertyChanged(string propertyName)
     {
-        if(index < StaticTest.LoadingCircle.Count)
+        if (index < StaticTest.GeometryContainer.LoadingCircle.Count 
+            && index < StaticTest.GeometryContainer.LoadingLine.Count)
         {
-            LineCurve.Data = StaticTest.LoadingCircle[index++];
+            LightCurve.Data = StaticTest.GeometryContainer.LoadingCircle[index];
+            LineCurve.Data = StaticTest.GeometryContainer.LoadingLine[index];
+
+            index++;
         }
         else
         {
             if (!went)
             {
                 Navigation.PushAsync(new OrderCompletePage());
-                went = true;    
+                went = true;
             }
         }
-    }
-
-    private async void NavGoTo(string page)
-    {
-        await Shell.Current.GoToAsync(page);
     }
     public GradientStopCollection GetGradient(Color clr)
     {

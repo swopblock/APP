@@ -10,38 +10,48 @@ namespace APP.Code.Data.Orders
 {
     public class StaticTest
     {
-        public static PortfolioPage Portfolio = new PortfolioPage();
+        //public static PortfolioPage Portfolio = new PortfolioPage();
 
-        public static List<Microsoft.Maui.Controls.Shapes.Geometry> LoadingCircle = null;
-        public static List<Microsoft.Maui.Controls.Shapes.Geometry> LoadingLine = null;
+        public static GeometryContainer GeometryContainer = null;
 
-        public static List<Microsoft.Maui.Controls.Shapes.Geometry> GetCurves(float angle, float total)
+        public static GeometryContainer GetCurves(float angle, float total)
         {
+            GeometryContainer geometryContainer = new GeometryContainer();    
+
             float mv = 30;
             float degrees = 30;
 
             List<Microsoft.Maui.Controls.Shapes.Geometry> sets = new List<Microsoft.Maui.Controls.Shapes.Geometry>();
-            Thread.Sleep(100);
+            List<Microsoft.Maui.Controls.Shapes.Geometry> line = new List<Microsoft.Maui.Controls.Shapes.Geometry>();
+            //Thread.Sleep(10);
             while (total < 360)
             {
                 CurveSet set = GetNextBasicCurve(new PointF(150, 150), degrees, angle, 100, 150);
 
                 string curv = set.GetCurve();
+                string spce = set.GetSpace();
 
-                Microsoft.Maui.Controls.Shapes.Geometry pathLine =
+                Microsoft.Maui.Controls.Shapes.Geometry pathCurve =
                     (Microsoft.Maui.Controls.Shapes.Geometry)new PathGeometryConverter()
                     .ConvertFromString(curv);
 
-                sets.Add(pathLine);
+                sets.Add(pathCurve);
 
+                Microsoft.Maui.Controls.Shapes.Geometry pathLine =
+                    (Microsoft.Maui.Controls.Shapes.Geometry)new PathGeometryConverter()
+                    .ConvertFromString(spce);
 
-                //angleStart = angle;
+                line.Add(pathLine);
+
                 degrees += mv;
 
                 total += mv;
             }
 
-            return sets;
+            geometryContainer.LoadingCircle = sets;
+            geometryContainer.LoadingLine = line;
+
+            return geometryContainer;
         }
 
         public static CurveSet GetNextBasicCurve(PointF Center, float degrees, float startAngle, float InnerRadius, float OuterRadius)
@@ -149,5 +159,11 @@ namespace APP.Code.Data.Orders
 
             return Intersect;
         }
+    }
+
+    public class GeometryContainer
+    {
+        public List<Microsoft.Maui.Controls.Shapes.Geometry> LoadingCircle = null;
+        public List<Microsoft.Maui.Controls.Shapes.Geometry> LoadingLine = null;
     }
 }

@@ -27,7 +27,7 @@
                 <RowDefinition Height="100"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
                 <RowDefinition Height="80"></RowDefinition>
-                <RowDefinition Height="60"></RowDefinition>
+                <RowDefinition Height="10"></RowDefinition>
             </Grid.RowDefinitions>
             <ImageButton Clicked="ImageButton_Clicked_1" WidthRequest="60" ZIndex="20" HorizontalOptions="End" Margin="0,20,50,0" Source="slider.png" Grid.Row="0"></ImageButton>
             <Label Text="{Binding Name}" ZIndex="20" Margin="48,52,0,0"></Label>
@@ -35,8 +35,8 @@
             <Label x:Name="SymbolNameNum"  TextColor="{Binding HtmlColor}" Text="{Binding Symbol}" FontSize="20" Margin="0,50,0,0" Grid.Row="1" FontFamily="GuidaNormal" VerticalOptions="Start" HorizontalOptions="Center" ZIndex="20"></Label>
             <Rectangle VerticalOptions="Start" Fill="{StaticResource Gray2F}" Margin="10" HeightRequest="540" RadiusX="40"></Rectangle>
 
-            <controls:NumberPad Grid.Row="1" Margin="0,90,0,0"></controls:NumberPad>
-            <controls:PoweredBy Grid.Row="3" VerticalOptions="Center"></controls:PoweredBy>
+            <controls:NumberPad x:Name="numberPad" Grid.Row="1" Margin="0,90,0,0"></controls:NumberPad>
+            <controls:PoweredBy Grid.Row="2" Margin="0,0,0,0" VerticalOptions="Center"></controls:PoweredBy>
 
         </Grid>
         <controls:BottomThreeButtons BindingContext="trade" x:Name="ThreeButtons" VerticalOptions="Center"></controls:BottomThreeButtons>

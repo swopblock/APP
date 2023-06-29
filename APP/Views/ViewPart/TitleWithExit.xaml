@@ -3,23 +3,17 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="APP.Views.TitleWithExit"
              Shell.FlyoutHeight="0">
-    <VerticalStackLayout ZIndex="100000" VerticalOptions="Start" HeightRequest="40" HorizontalOptions="FillAndExpand" Margin="0,-25,10,10">
-
-        <Grid VerticalOptions="Center" HorizontalOptions="FillAndExpand">
-            <Button
-                Pressed="Button_Pressed_1"
+    <VerticalStackLayout ZIndex="100000" VerticalOptions="Start" HeightRequest="40" HorizontalOptions="Fill" Margin="0,0,10,10">
+        <Grid VerticalOptions="Center" HorizontalOptions="Start">
+            <Grid WidthRequest="400">
+                <Button
+                Pressed="Button_Pressed"
                 TextColor="{StaticResource White}"
                 Text="Order details"
-                VerticalOptions="Start" 
-                HorizontalOptions="Center" />
-            <Grid ZIndex="100" Padding="0,12,0,0" VerticalOptions="Center" HorizontalOptions="End"  HeightRequest="30">
-                <Grid.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"></TapGestureRecognizer>
-                    <PanGestureRecognizer PanUpdated="PanGestureRecognizer_PanUpdated"></PanGestureRecognizer>
-                    <ClickGestureRecognizer Clicked="ClickGestureRecognizer_Clicked"></ClickGestureRecognizer>
-                </Grid.GestureRecognizers>
-                <Path Scale="1.4" Data="M 0,0l10,10M10,0l-10,10" Stroke="{StaticResource GrayA1}"></Path>
+                VerticalOptions="Fill" 
+                HorizontalOptions="Fill" />
             </Grid>
+            <Path HorizontalOptions="End" Scale="1.4" TranslationX="-20" TranslationY="27" Data="M 0,0l10,10M10,0l-10,10" Stroke="{StaticResource White}"></Path>
         </Grid>
     </VerticalStackLayout>
 </ContentView>

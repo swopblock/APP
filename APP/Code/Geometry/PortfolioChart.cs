@@ -139,6 +139,12 @@ namespace APP.Code
         public static float GetTranslateX(float x, float low, float hi)
         {
             float dif = (low - hi);
+
+            if(dif == 0)
+            {
+                return (low + hi) / 4;
+            }
+
             if (dif < 0) dif *= -1;
 
             float dfx = (x - low);
@@ -152,6 +158,12 @@ namespace APP.Code
         public static float GetTranslateY(float y, float low, float hi, bool yFlip = false)
         {
             float dif = (low - hi);
+
+            if (dif == 0)
+            {
+                return (low + hi) / 4;
+            }
+
             if (dif < 0) dif *= -1;
 
             float dfy = (y - low);

@@ -1,6 +1,7 @@
 ﻿using APP.Code;
 using APP.Views;
 using APP.Views.ViewPart;
+using System.Runtime.CompilerServices;
 
 namespace APP;
 
@@ -9,6 +10,7 @@ public static class MauiProgram
 	public static MauiApp CreateMauiApp()
 	{
 		var builder = MauiApp.CreateBuilder();
+
 		builder
 			.UseMauiApp<App>()
 			.ConfigureFonts(fonts =>

@@ -15,21 +15,21 @@
                     <RowDefinition Height="80"></RowDefinition>
                     <RowDefinition Height="60"></RowDefinition>
                 </Grid.RowDefinitions>
-                <Label Text="{Binding Name}" TextColor="{Binding HtmlColor}" ZIndex="20" Margin="48,52,0,0"></Label>
+                <Label Text="{Binding Name}" TextColor="{StaticResource Gray71}" ZIndex="20" Margin="48,52,0,0"></Label>
                 <Label Text="{Binding Amount}"   TextColor="{Binding HtmlColor}" FontSize="40" Padding="0,0,0,60" Grid.Row="1" FontFamily="GuidaNormal" VerticalOptions="End" HorizontalOptions="Center" ZIndex="20"></Label>
                 <Label x:Name="SymbolName"   TextColor="{Binding HtmlColor}" Text="{Binding Symbol}" FontSize="20" Padding="0,0,0,40" Grid.Row="1" FontFamily="GuidaNormal" VerticalOptions="End" HorizontalOptions="Center" ZIndex="20"></Label>
                 <Rectangle VerticalOptions="Start" Fill="{StaticResource Gray2F}" Margin="10" HeightRequest="380" RadiusX="40"></Rectangle>
                 <controls:PoweredBy Grid.Row="3" VerticalOptions="Center"></controls:PoweredBy>
             </Grid>
-            <VerticalStackLayout HorizontalOptions="Fill">
-                <Label Text="Buy with" HorizontalOptions="Center" VerticalOptions="Center" Padding="40"></Label>
+            <VerticalStackLayout WidthRequest="300" HorizontalOptions="Fill">
+                <Label Text="Trade with" HorizontalOptions="Center" VerticalOptions="Center" Padding="0,40,0,25"></Label>
                 <Grid HeightRequest="70" Margin="10">
                     <Grid.GestureRecognizers>
                         <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped">
                             
                         </TapGestureRecognizer>
                     </Grid.GestureRecognizers>
-                    <Rectangle x:Name="firstRect" VerticalOptions="Start" Stroke="" Fill="{StaticResource Gray2F}" HeightRequest="70" RadiusX="40"></Rectangle>
+                    <Rectangle x:Name="firstRect" VerticalOptions="Start" Fill="{StaticResource Gray2FBrush}" HeightRequest="70" RadiusX="40"></Rectangle>
                     <Image x:Name="firstImage" Source="bitcoin.png" WidthRequest="20" VerticalOptions="Center" HorizontalOptions="Start" Margin="25,0,0,0"></Image>
                     <Label FontFamily="Guida" VerticalOptions="Center" Margin="0,0,60,0" HorizontalOptions="Center" FontSize="11">EST.</Label>
                     <Label x:Name="firstAmount" FontFamily="Guida" VerticalOptions="Center" Margin="0,0,30,0" HorizontalOptions="End" FontSize="16"></Label>

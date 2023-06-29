@@ -9,18 +9,20 @@ public partial class OrderDetailsPage : ContentPage
 	{
 		InitializeComponent();
 
-		
+        
 
 		this.BindingContext = UserProfileData.GetDemoOrders().First();
+    }
 
-		//Shell shell = Shell.Current;
+    protected override bool OnBackButtonPressed()
+    {
+        Navigation.PopToRootAsync();
 
-		//shell.ToolbarItems.Clear();
-		//shell.MenuBarItems.Clear();
-		//shell.InputTransparent = true;
+        return true;
+    }
 
-  //      ContentPage p = this;
-
-        //Application.Current.MainPage = this;
+    private void ImageButton_Pressed(object sender, EventArgs e)
+    {
+        Navigation.PopToRootAsync();
     }
 }

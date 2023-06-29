@@ -8,11 +8,21 @@
         <ScrollView HeightRequest="540">
             <VerticalStackLayout>
                 <Grid>
-                    <ImageButton HorizontalOptions="Start" Margin="30,0,0,0" WidthRequest="20" HeightRequest="20" Source="wallet.png"></ImageButton>
+                    <ImageButton Pressed="ImageButton_Pressed" HorizontalOptions="Start" Margin="30,0,0,0" WidthRequest="20" HeightRequest="20" Source="wallet.png"></ImageButton>
                     <BoxView Margin="0,50,0,0" Color="{StaticResource Gray2F}" HeightRequest="1" HorizontalOptions="FillAndExpand" />
                 </Grid>
-                <Label HorizontalOptions="Center" FontSize="24" VerticalOptions="Center" Margin="0,40,0,40" x:Name="CurrencyLabel" Text="Currency"></Label>
-                <VerticalStackLayout x:Name="CurrencyContainer">
+                <Label HorizontalOptions="Center" FontSize="24" VerticalOptions="Center" Margin="0,20,0,20" x:Name="CurrencyLabel" Text="Currency"></Label>
+                <VerticalStackLayout>
+                    <CarouselView Loop="True" x:Name="Carousel">
+                        <CarouselView.ItemTemplate>
+                            <DataTemplate>
+                                <controls:CryptoCard></controls:CryptoCard>
+                                <!--<VerticalStackLayout x:Name="CurrencyContainer">
+                                    
+                                </VerticalStackLayout>-->
+                            </DataTemplate>
+                        </CarouselView.ItemTemplate>
+                    </CarouselView>
                 </VerticalStackLayout>
             <Grid>
                 <Grid.RowDefinitions>
@@ -59,10 +69,10 @@
                 <Label Text="o" Grid.Column="3" Grid.Row="0" VerticalOptions="Center" HorizontalOptions="Center"></Label>
                 <Label Text="o" Grid.Column="4" Grid.Row="0" VerticalOptions="Center" HorizontalOptions="Center"></Label>-->
             </Grid>
-                <Grid>
+                <Grid HorizontalOptions="Fill" VerticalOptions="Center">
                     <HorizontalStackLayout HorizontalOptions="Center">
                         <Label Margin="3">Your</Label>
-                        <Label x:Name="CurencyNameBelow" Text="Currency" Margin="3"></Label>
+                        <Label x:Name="CurencyNameBelow" Text="" Margin="3"></Label>
                     </HorizontalStackLayout>
                 </Grid>
                 <Grid Margin="5,40,5,10" HeightRequest="370">
@@ -72,7 +82,7 @@
                             <StackLayout>
                                 <Grid Margin="25" HeightRequest="25">
                                     <Label>Quantity</Label>
-                                    <Label HorizontalOptions="End">0.37323943 BTC</Label>
+                                    <Label x:Name="amountText" Text="" HorizontalOptions="End"></Label>
                                     <BoxView Margin="0,50,0,0" Color="{StaticResource Gray2F}" HeightRequest="1" HorizontalOptions="FillAndExpand" />
                                 </Grid>
                                 <Grid Margin="25,0,25,0" HeightRequest="25">
@@ -87,9 +97,9 @@
                             </StackLayout>
                         </Grid>
                     <Grid>
-                        <Grid Margin="5" HorizontalOptions="StartAndExpand" VerticalOptions="EndAndExpand">
+                        <Grid Margin="5" HorizontalOptions="StartAndExpand" VerticalOptions="Fill">
                                 <Rectangle Fill="{StaticResource Gray27}" VerticalOptions="FillAndExpand" HeightRequest="170" WidthRequest="167.5" HorizontalOptions="FillAndExpand" RadiusX="40"></Rectangle>
-                                <controls:PercentCircle x:Name="Diversity" Margin="0,0,0,30"></controls:PercentCircle>
+                                <controls:PercentCircle x:Name="Diversity" VerticalOptions="Fill" HorizontalOptions="Fill" WidthRequest="100" HeightRequest="80"></controls:PercentCircle>
                                 <Label FontSize="14" VerticalOptions="End" HorizontalOptions="Center" Margin="0,0,0,40">Wallet Diversity</Label>
                         </Grid>
                         <Grid  Margin="5" HorizontalOptions="EndAndExpand" VerticalOptions="EndAndExpand">
@@ -99,8 +109,8 @@
                                         <Label FontSize="14">Today's Return</Label>
                                         <Grid VerticalOptions="Center">
                                             <HorizontalStackLayout>
-                                                <Path x:Name="ValueUp" Margin="3" WidthRequest="10" Data="M0,0l-4.5,-7.5l-4.5,7.5Z" Stroke="{StaticResource White}"  />
-                                                <Label FontSize="14" TextColor="White" Margin="10,0,10,0" HorizontalOptions="Center">$200 / </Label>
+                                                <Path x:Name="ValueUp" Margin="3" WidthRequest="12" Data="M0,8L5,0L10,8z" Stroke="{StaticResource White}"  />
+                                                <Label FontSize="14" TextColor="White" Margin="8,0,8,0" HorizontalOptions="Center" Text="$200   /"> </Label>
                                                 <Label FontSize="14" TextColor="White" HorizontalOptions="End">3.25%</Label>
                                             </HorizontalStackLayout>
                                         </Grid>
@@ -109,8 +119,8 @@
                                         <Label FontSize="14">Total Return</Label>
                                         <Grid>
                                             <HorizontalStackLayout>
-                                                <Path x:Name="ValueUpTotal" Margin="3" WidthRequest="10" Data="M0,0l-4.5,-7.5l-4.5,7.5Z" Stroke="{StaticResource White}"  />
-                                                <Label FontSize="14" TextColor="White" Margin="10,0,10,0" HorizontalOptions="Center">$200 /</Label>
+                                                <Path x:Name="ValueUpTotal" Margin="3" WidthRequest="12" Data="M0,8L5,0L10,8z" Stroke="{StaticResource White}"  />
+                                                <Label FontSize="14" TextColor="White" Margin="8,0,8,0" HorizontalOptions="Center" Text="$200   /"></Label>
                                                 <Label FontSize="14" TextColor="White" HorizontalOptions="End">3.25%</Label>
                                             </HorizontalStackLayout>
                                         </Grid>

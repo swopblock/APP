@@ -6,4 +6,12 @@ public partial class TradeCompletePage : ContentPage
 	{
 		InitializeComponent();
 	}
+
+    protected override bool OnBackButtonPressed()
+    {
+        Navigation.PopToRootAsync();
+
+        return true;
+    }
+
 }

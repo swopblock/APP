@@ -21,7 +21,8 @@ public partial class AppShell : Shell
 
         SetNavBarIsVisible(this, false);
         SetNavBarHasShadow(this, false);
-        
-       // this.InputTransparent = true;
+        SetBackgroundColor(this, Colors.Transparent);
+        this.ZIndex = -10;
+        InputTransparent = true;
 	}
 }

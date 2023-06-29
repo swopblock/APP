@@ -4,7 +4,7 @@
              x:Class="APP.SendingOrderPage"
              Title="SendingOrderPage">
     <VerticalStackLayout HeightRequest="400">
-        <Grid VerticalOptions="Center" HorizontalOptions="Center">
+        <Grid HeightRequest="300"  WidthRequest="300" VerticalOptions="Center" HorizontalOptions="Center">
             <Grid>
                 <Path x:Name="LineCurve">
                 </Path>

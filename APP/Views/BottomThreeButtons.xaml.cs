@@ -47,11 +47,6 @@ public partial class BottomThreeButtons : ContentView
             keyLabel.TextColor = Color.FromArgb("#ffffff");
         }
     }
-
-    private async void NavGoTo(string page)
-    {
-        await Shell.Current.GoToAsync(page);
-    }
     private void TradeTap_Tapped(object sender, EventArgs e)
     {
         PortfolioAsset asset = UserProfileData.LoadDemo().Where(x=>x.Symbol == currency).FirstOrDefault();
@@ -68,7 +63,7 @@ public partial class BottomThreeButtons : ContentView
 
         if (page != "currency")
         {
-            NavGoTo(nameof(CurrencyPage));
+            Navigation.PushAsync(new CurrencyPage());
         }
         
     }
@@ -77,6 +72,6 @@ public partial class BottomThreeButtons : ContentView
     {
         //Application.Current.MainPage = new MainPage();
         // NavGoTo(nameof(PortfolioPage));
-        Shell.Current.Navigation.PopToRootAsync();
+        Navigation.PopToRootAsync();
     }
 }

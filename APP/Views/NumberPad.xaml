@@ -5,7 +5,7 @@
     <VerticalStackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
         <Grid HorizontalOptions="FillAndExpand">
             
-        <Grid HorizontalOptions="Center" VerticalOptions="FillAndExpand">
+        <Grid ZIndex="100" HorizontalOptions="Center" VerticalOptions="FillAndExpand">
             <Grid.RowDefinitions>
                 <RowDefinition Height="70"></RowDefinition>
                 <RowDefinition Height="70"></RowDefinition>
@@ -18,21 +18,21 @@
                 <ColumnDefinition Width="70"></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
-            <Button Grid.Row="0" Grid.Column="0" HorizontalOptions="Center" VerticalOptions="Center" Text="1"/>
-            <Button Grid.Row="0" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center" Text="2"/>
-            <Button Grid.Row="0" Grid.Column="2" HorizontalOptions="Center" VerticalOptions="Center"  Text="3"/>
+                <Button Pressed="Button_Pressed_1" Grid.Row="0" Grid.Column="0" HorizontalOptions="Fill" VerticalOptions="Fill" Text="1"/>
+                <Button Pressed="Button_Pressed_2" Grid.Row="0" Grid.Column="1" HorizontalOptions="Fill" VerticalOptions="Fill" Text="2"/>
+                <Button Pressed="Button_Pressed_3" Grid.Row="0" Grid.Column="2" HorizontalOptions="Fill" VerticalOptions="Fill"  Text="3"/>
 
-            <Button Grid.Row="1" Grid.Column="0" HorizontalOptions="Center" VerticalOptions="Center" Text="4"/>
-            <Button Grid.Row="1" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center" Text="5"/>
-            <Button Grid.Row="1" Grid.Column="2" HorizontalOptions="Center" VerticalOptions="Center" Text="6"/>
+                <Button Pressed="Button_Pressed_4" Grid.Row="1" Grid.Column="0" HorizontalOptions="Fill" VerticalOptions="Fill" Text="4"/>
+                <Button Pressed="Button_Pressed_5" Grid.Row="1" Grid.Column="1" HorizontalOptions="Fill" VerticalOptions="Fill" Text="5"/>
+                <Button Pressed="Button_Pressed_6" Grid.Row="1" Grid.Column="2" HorizontalOptions="Fill" VerticalOptions="Fill" Text="6"/>
 
-            <Button Grid.Row="2" Grid.Column="0" HorizontalOptions="Center" VerticalOptions="Center" Text="7"/>
-            <Button Grid.Row="2" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center" Text="8"/>
-            <Button Grid.Row="2" Grid.Column="2" HorizontalOptions="Center" VerticalOptions="Center" Text="9"/>
+                <Button Pressed="Button_Pressed_7" Grid.Row="2" Grid.Column="0" HorizontalOptions="Fill" VerticalOptions="Fill" Text="7"/>
+                <Button Pressed="Button_Pressed_8" Grid.Row="2" Grid.Column="1" HorizontalOptions="Fill" VerticalOptions="Fill" Text="8"/>
+                <Button Pressed="Button_Pressed_9" Grid.Row="2" Grid.Column="2" HorizontalOptions="Fill" VerticalOptions="Fill" Text="9"/>
 
-            <Button Grid.Row="3" Grid.Column="0" HorizontalOptions="Center" VerticalOptions="Center" Text="."/>
-            <Button Grid.Row="3" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center" Text="0"/>
-            <Button Grid.Row="3" Grid.Column="2" HorizontalOptions="Center" VerticalOptions="Center" Text="&lt;-"/>
+                <Button Pressed="Button_Pressed_10" Grid.Row="3" Grid.Column="0" HorizontalOptions="Fill" VerticalOptions="Fill" Text="."/>
+                <Button Pressed="Button_Pressed" Grid.Row="3" Grid.Column="1" HorizontalOptions="Fill" VerticalOptions="Fill" Text="0"/>
+                <Button Pressed="Button_Pressed_11" Grid.Row="3" Grid.Column="2" HorizontalOptions="Fill" VerticalOptions="Fill" Text="&lt;-"/>
 
 
 

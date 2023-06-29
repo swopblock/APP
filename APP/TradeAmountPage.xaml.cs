@@ -5,7 +5,15 @@ namespace APP;
 
 public partial class TradeAmountPage : ContentPage
 {
-    OrderDetail detail = new OrderDetail();
+
+    /*
+     * 
+     * Amount page has to come first because you dont know
+     * how much currency you can afford to buy until 
+     * you select what you are buying it with
+     * 
+     */
+    public OrderDetail detail = new OrderDetail();
     PortfolioAsset SelectedAsset { get; set; }
 
     PortfolioAsset Asset { get; set; }
@@ -21,10 +29,15 @@ public partial class TradeAmountPage : ContentPage
 
         this.Loaded += TradeAmountPage_Loaded;
 
-
-
         went = false;
 	}
+
+    protected override bool OnBackButtonPressed()
+    {
+        Navigation.RemovePage(this);
+
+        return true;
+    }
 
     private void TradeAmountPage_Loaded(object sender, EventArgs e)
     {
@@ -36,11 +49,14 @@ public partial class TradeAmountPage : ContentPage
 
         slider.symbol = SelectedAsset.Symbol;
         slider.altSymbol = Asset.Symbol;
+
+        numberPad.symbol = SelectedAsset.Symbol;
+        numberPad.altSymbol = Asset.Symbol;
     }
 
-    public void UpdateAmount(double amount, string symbol)
+    public void UpdateAmount(double amount, string symbol, bool percent = true, bool endsInDot = false)
     {
-        detail.Amount = (decimal)amount;
+        decimal amt = (decimal)amount;
 
         SymbolName.Text = symbol;
         SymbolNameNum.Text = symbol;
@@ -54,6 +70,16 @@ public partial class TradeAmountPage : ContentPage
 
             submitColor.Stroke = Asset.HtmlColor;
             submitImage.Source = Asset.Image;
+
+            if (percent)
+            {
+                detail.Amount = SelectedAsset.Amount * amt;
+            }
+            else
+            {
+                amt = Math.Clamp(amt, 0, SelectedAsset.Amount);
+                detail.Amount = amt;
+            }
         }
         else
         {
@@ -64,6 +90,16 @@ public partial class TradeAmountPage : ContentPage
 
             submitImage.Source= SelectedAsset.Image;
             submitColor.Stroke= SelectedAsset.HtmlColor;
+
+            if (percent)
+            {
+                detail.Amount = Asset.Amount * amt;
+            }
+            else
+            {
+                amt = Math.Clamp(amt, 0, Asset.Amount);
+                detail.Amount = amt;
+            }
         }
 
         amountSlide.Text = Math.Round(detail.Amount, 6).ToString();
@@ -117,14 +153,16 @@ public partial class TradeAmountPage : ContentPage
 
         if(margin < 0)  margin = 0;
 
-        CompleteSlider.Margin = new Thickness(margin, 0, 0, 0);
-
         if (margin > (SubmitOrder.Width - 70) && !went)
         {
             SendingOrderPage page = new SendingOrderPage();
             page.BindingContext = SelectedAsset;
             Navigation.PushAsync(page);
             went = true;
+        }
+        else
+        {
+            CompleteSlider.Margin = new Thickness(margin, 0, 0, 0);
         }
     }
 

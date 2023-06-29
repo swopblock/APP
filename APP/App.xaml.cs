@@ -1,4 +1,6 @@
 ﻿using APP.Code.Data.Orders;
+using Microsoft.Maui;
+using Microsoft.Maui.Controls;
 using Microsoft.Maui.Controls.PlatformConfiguration;
 
 namespace APP;
@@ -9,13 +11,12 @@ public partial class App : Application
 	{
 		InitializeComponent();
 
-        if (StaticTest.LoadingCircle == null)
+        if (StaticTest.GeometryContainer == null)
         {
-            StaticTest.LoadingCircle = StaticTest.GetCurves(270, 0);
+            StaticTest.GeometryContainer = StaticTest.GetCurves(270, 0);
         }
 
         AppShell shell = new AppShell();
-
         shell.InputTransparent = true;  
 
         MainPage = shell;

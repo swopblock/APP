@@ -77,12 +77,17 @@ namespace APP.Code
         {
             decimal ttl = GetTotal();
 
+            float startang = -90;
+
             for (int i = 0; i < UserProfileData.PortfolioAssets.Count; i++)
             {
                 UserProfileData.PortfolioAssets[i].Percentage = 
                     (decimal)((UserProfileData.PortfolioAssets[i].Amount *
                     (decimal)charts.GetPrice(UserProfileData.PortfolioAssets[i].Symbol))
                     / ttl);
+                UserProfileData.PortfolioAssets[i].StartAngle = startang;
+
+                startang += (float)(UserProfileData.PortfolioAssets[i].Percentage * 360);
             }
         }
 
@@ -219,7 +224,7 @@ namespace APP.Code
             return CurvePathLine;
         }
 
-        public string GetSubtractedCircle()
+        public string GetSubtractedCircle(float heightOverride = 0)
         {
             string CurvePathLine = "";
 
@@ -238,12 +243,23 @@ namespace APP.Code
             }
 
             InnerP1 = GetCirclePoint(InnerRadius, 0f);
+
             CurvePathLine += BuildSVG.LineTo(InnerP1.X, InnerP1.Y);
 
             CurvePathLine += BuildSVG.LineTo(InnerP1.X, 0);
             CurvePathLine += BuildSVG.LineTo(0, 0);
-            CurvePathLine += BuildSVG.LineTo(0, wLimit);
-            CurvePathLine += BuildSVG.LineTo(wLimit, wLimit);
+
+            if(heightOverride > 0)
+            {
+                CurvePathLine += BuildSVG.LineTo(0, heightOverride);
+                CurvePathLine += BuildSVG.LineTo(wLimit, heightOverride);
+            }
+            else
+            {
+                CurvePathLine += BuildSVG.LineTo(0, hLimit);
+                CurvePathLine += BuildSVG.LineTo(wLimit, hLimit);
+            }
+
             CurvePathLine += BuildSVG.LineTo(wLimit, 0);
             CurvePathLine += BuildSVG.LineTo(InnerP1.X, InnerP1.Y);
             CurvePathLine += " Z ";

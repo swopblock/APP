@@ -14,7 +14,7 @@ namespace APP.Code
             BTC,
             ETH,
             SWOBL,
-            SWOBLR
+            YOUR_REWARDS
         }
 
         private List<Pack> packs = new List<Pack>();
@@ -24,7 +24,7 @@ namespace APP.Code
             new ChartData("BTC", (int) ExchangeData.CoinTimeScale.FiveMinute, 200),
             new ChartData("ETH", (int) ExchangeData.CoinTimeScale.FiveMinute, 200),
             new ChartData("SWOBL", (int) ExchangeData.CoinTimeScale.FifteenMinute, 200, false),
-            new ChartData("SWOBLR", (int) ExchangeData.CoinTimeScale.FifteenMinute, 200, false)
+            new ChartData("YOUR REWARDS", (int) ExchangeData.CoinTimeScale.FifteenMinute, 200, false)
         };
 
         public void StartData()
@@ -159,10 +159,10 @@ namespace APP.Code
                     }
                 }
 
-                hi /= total;
-                lw /= total;
-                op /= total;
-                cl /= total;
+                //hi /= total;
+                //lw /= total;
+                //op /= total;
+                //cl /= total;
 
                 can.open = op;
                 can.close = cl;

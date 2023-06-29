@@ -27,6 +27,8 @@ public partial class PortfolioPage : ContentPage
     float width = 0;
     float height = 0;
 
+    bool reloadable = true;
+
     bool added = false;
 
     int timerState = 0;
@@ -39,12 +41,29 @@ public partial class PortfolioPage : ContentPage
 
         currentPage = true;
 
+        this.Loaded += PortfolioPage_Loaded;
+
+        this.NavigatedTo += PortfolioPage_NavigatedTo;
+
         this.NavigatedFrom += PortfolioPage_NavigatedFrom;
 
         //Application.Current.MainPage.Title =
 
+        if (reloadable)
+        {
+            StartTimer();
+            reloadable = false;
+        }
+    }
 
-        StartTimer();
+    private void PortfolioPage_NavigatedTo(object sender, NavigatedToEventArgs e)
+    {
+
+    }
+
+    private void PortfolioPage_Loaded(object sender, EventArgs e)
+    {
+        Debug.WriteLine("");
     }
 
     private void PortfolioPage_NavigatedFrom(object sender, NavigatedFromEventArgs e)
@@ -77,7 +96,7 @@ public partial class PortfolioPage : ContentPage
     {
         Dispatcher.Dispatch(() =>
         {
-            UpdateValues();
+            //UpdateValues();
         });
 
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
@@ -117,7 +136,9 @@ public partial class PortfolioPage : ContentPage
 
             foreach (PortfolioAsset set in UserProfileData.PortfolioAssets)
             {
-                CryptoCard card = new CryptoCard(set);
+                CryptoCard card = new CryptoCard();
+
+                card.BindingContext = set;
 
                 card.Padding = new Thickness(0, 180 * row, 0, 0);
 
@@ -125,16 +146,12 @@ public partial class PortfolioPage : ContentPage
 
                 card.EnableClickable();
 
-                card.UpdateSize();
-
                 tempgrid.Children.Add(card);
 
                 if (set.Price == 0) added = false;
             }
 
-            WalletCards.Children.Add(tempgrid);
-
-            //  
+            WalletCards.Children.Add(tempgrid);  
         }
     }
 
@@ -190,15 +207,15 @@ public partial class PortfolioPage : ContentPage
                 );
 
                 portfolioShape.InnerRadius = w + (w * 0.8f);
-                portfolioShape.OuterRadius = w + (w * 1.6f);
+                portfolioShape.OuterRadius = w + (w * 1.9f);
 
                 double cbrx = 0.5f;// cnt.X / (w * mx);
-                double cbry = 0.525f;//cnt.Y / (w * my);
+                double cbry = 0.45f;//cnt.Y / (w * my);
 
                 centerPoint = new Point(cbrx, cbry);
 
                 rect = new Rect(
-                    1,
+                    10,
                     cnt.Y - (portfolioShape.InnerRadius * 0.5f),
                     portfolioShape.InnerRadius,
                     portfolioShape.InnerRadius);
@@ -238,7 +255,7 @@ public partial class PortfolioPage : ContentPage
             {
                 Geometry pathBackground =
                (Geometry)new PathGeometryConverter()
-               .ConvertFromString(portfolioCircle.GetSubtractedCircle());
+               .ConvertFromString(portfolioCircle.GetSubtractedCircle(height * 3));
 
                 Microsoft.Maui.Controls.Shapes.Path pathBack = new(pathBackground);
 
@@ -246,7 +263,7 @@ public partial class PortfolioPage : ContentPage
 
                 pathBack.Fill = bk;
 
-                pathBack.ZIndex = 0;
+                pathBack.ZIndex = 8;
 
                 grid.Children.Add(pathBack);
             }
@@ -270,8 +287,8 @@ public partial class PortfolioPage : ContentPage
 
                 LinearGradientBrush brush = new LinearGradientBrush(
                     GetLineGradient(st, bk),
-                    new Point(0, 0),
-                    new Point(0.75f, 0.75f));
+                    new Point(-0.44, -0.44),
+                    new Point(1.55, 1.55));
 
                 pathBack.Fill = brush;
 
@@ -328,10 +345,29 @@ public partial class PortfolioPage : ContentPage
 
                             Microsoft.Maui.Controls.Shapes.Path lineFill = new(pathFill);
 
+                            double start = cnds.First().close;
+                            double end = cnds.Last().close;
+
+                            double ratio = start / end;
+
+                            Point first = new Point();
+                            Point second = new Point(); 
+
+                            if(ratio > 1) // start is larger than end
+                            {
+                                first = new Point(0.5, 0.5);
+                                second = new Point(1.8, 1.8);
+                            }
+                            else
+                            {
+                                first = new Point(0.5, 0.5);
+                                second = new Point(1.8, 1.8);
+                            }
+
                             LinearGradientBrush brush = new LinearGradientBrush(
                             GetLineGradient(st, bk),
-                            new Point(0.5, 0.4),
-                            new Point(0.6, 0.9));
+                            first,
+                            second);
 
                             lineFill.Fill = brush;
 
@@ -372,8 +408,8 @@ public partial class PortfolioPage : ContentPage
         RadialGradientBrush Gbrush =
             new RadialGradientBrush(GetGradient(clr), Center, 1);
 
-        pathTest.Fill = Gbrush;
-        pathTest.ZIndex = 0;
+        pathTest.Fill = Gbrush; //Color.FromArgb("#55993333");// Gbrush;
+        pathTest.ZIndex = 12;
 
         Geometry lineData =
            (Geometry)new PathGeometryConverter()
@@ -382,26 +418,51 @@ public partial class PortfolioPage : ContentPage
         Microsoft.Maui.Controls.Shapes.Path pathLine = new(lineData);
 
         pathLine.Stroke = clr;
-        pathLine.ZIndex = 0;
+        pathLine.ZIndex = 15;
 
         grid.Children.Add(pathTest);
         grid.Children.Add(pathLine);
+
+        Debug.WriteLine(asset.Name);
     }
 
 
     public GradientStopCollection GetGradient(Color clr)
     {
-        Color clrh = clr.MultiplyAlpha(0.4f);
-        Color clrm = clr.MultiplyAlpha(0.1f);
+        Color clr1 = clr.MultiplyAlpha(0.91f);
+        Color clr2 = clr.MultiplyAlpha(0.67f);
+        Color clr3 = clr.MultiplyAlpha(0.47f);
+        Color clr4 = clr.MultiplyAlpha(0.30f);
+        Color clr5 = clr.MultiplyAlpha(0.17f);
+        Color clr6 = clr.MultiplyAlpha(0.08f);
+        Color clr7 = clr.MultiplyAlpha(0.02f);
 
         GradientStopCollection collection = new GradientStopCollection
         {
-            new GradientStop(clr, 0f),
-            new GradientStop(clr, 0.1f),
-            new GradientStop(clrh, 0.24f),
-            new GradientStop(clrm, 0.4f),
-            new GradientStop(Colors.Transparent, 0.45f),
+            new GradientStop(clr, 0.12f),
+            new GradientStop(clr1, 0.14f),
+            new GradientStop(clr2, 0.19f),
+            new GradientStop(clr3, 0.25f),
+            new GradientStop(clr4, 0.30f),
+            new GradientStop(clr5, 0.35f),
+            new GradientStop(clr6, 0.40f),
+            new GradientStop(clr7, 0.44f),
+            new GradientStop(Colors.Transparent, 0.48f),
         };
+
+        /*
+         * <radialGradient xmlns="http://www.w3.org/2000/svg" id="radial-gradient-5" cx="108.38" cy="230.55" fx="108.38" fy="230.55" r="154.06" gradientUnits="userSpaceOnUse">
+         * <stop offset=".57" stop-color="#f2a900"/>
+         * <stop offset=".59" stop-color="#f2a900" stop-opacity=".91"/>
+         * <stop offset=".64" stop-color="#f2a900" stop-opacity=".67"/>
+         * <stop offset=".7" stop-color="#f2a900" stop-opacity=".47"/>
+         * <stop offset=".75" stop-color="#f2a900" stop-opacity=".3"/>
+         * <stop offset=".8" stop-color="#f2a900" stop-opacity=".17"/>
+         * <stop offset=".85" stop-color="#f2a900" stop-opacity=".08"/>
+         * <stop offset=".89" stop-color="#f2a900" stop-opacity=".02"/>
+         * <stop offset=".93" stop-color="#f2a900" stop-opacity="0"/>
+         * </radialGradient>
+         */
 
         return collection;
     }

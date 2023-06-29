@@ -114,7 +114,7 @@ public partial class SliderTrade : ContentView
         }
 
         var Trade = (TradeAmountPage)Parent.Parent.Parent;
-        Trade.UpdateAmount(amount, sym);
+        Trade.UpdateAmount(amount/100, sym);
     }
 
     private double GetPercent(double xpos, double low, double high)

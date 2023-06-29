@@ -10,11 +10,10 @@ public partial class CryptoCard : ContentView
 {
     ChartContainer chartContainer = new ChartContainer();
 
-    PortfolioCircle portfolioCircle = null;
-
     PortfolioAsset assetDisplayed = null;
 
     bool isClickable = false;
+    bool ShowGain = true;
 
     Rect rect = new Rect();
     Point centerPoint = new Point();
@@ -24,18 +23,55 @@ public partial class CryptoCard : ContentView
 
     float width = 0;
     float height = 0;
-    public CryptoCard(PortfolioAsset asset)
+    public CryptoCard()
 	{
 		InitializeComponent();
 
-        assetDisplayed = asset; 
+        this.Loaded += CryptoCard_Loaded;
 
-        BindingContext = asset;
-  
         TapGestureRecognizer tap = new TapGestureRecognizer();
         tap.Tapped += Tap_Tapped;
 
         ContainerForGrids.GestureRecognizers.Add(tap);
+    }
+
+    private void CryptoCard_Loaded(object sender, EventArgs e)
+    {
+        PortfolioAsset asset = (PortfolioAsset)BindingContext;
+
+        if (asset != null)
+        {
+            if (!isClickable)
+            {
+                CurrencyPage page = (CurrencyPage)Parent.Parent.Parent.Parent.Parent.Parent;
+
+                if (page != null)
+                {
+                    page.LoadCurrency(asset.Symbol);
+                }
+            }
+
+            if (asset.Symbol == "YOUR REWARDS") ShowGain = false;
+
+            if(!ShowGain)
+            {
+                gainStack.Opacity = 0;
+            }
+
+            assetDisplayed = UserProfileData.PortfolioAssets.Where(x=>x.Symbol == asset.Symbol).FirstOrDefault();
+
+            if (assetDisplayed != null)
+            {
+                BindingContext = assetDisplayed;
+
+                UpdateSize();
+
+                if (!isClickable)
+                {
+                    MakeChart();
+                }
+            }
+        }
     }
 
     public void EnableClickable()
@@ -43,14 +79,14 @@ public partial class CryptoCard : ContentView
         isClickable = true;
     }
 
-    private async void ShowTransientPage()
+    private void ShowTransientPage()
     {
         if (isClickable)
         {
             CurrencyPage page = new CurrencyPage();
             page.asset = assetDisplayed.Symbol;
 
-            await Shell.Current.Navigation.PushAsync(page);
+            Navigation.PushAsync(page);
         }
     }
 
@@ -71,8 +107,14 @@ public partial class CryptoCard : ContentView
         float h = 0;
         float dense = 1;
 
-
-        Circle.UpdateValue(assetDisplayed, 25);
+        if (isClickable)
+        {
+            Circle.UpdateValue(assetDisplayed, 25, assetDisplayed.StartAngle);
+        }
+        else
+        {
+            Circle.Opacity = 0;
+        }
 
         SetValueDirection(assetDisplayed.Price - assetDisplayed.PurchasePrice);
 
@@ -110,24 +152,11 @@ public partial class CryptoCard : ContentView
 
                 PointF cnt = new PointF(w * mxH, w * myH);
 
-                PortfolioCircle portfolioShape = new PortfolioCircle
-                (
-                    cnt,
-                    chartContainer,
-                    UserProfileData.LoadDemo(),
-                    w * mx, w * mx
-                );
-
-                portfolioShape.InnerRadius = w + (w * 0.8f);
-                portfolioShape.OuterRadius = w + (w * 1.6f);
-
                 rect = new Rect(
                     10,
                     0,
                     width,
                     width);
-
-                portfolioCircle = portfolioShape;
 
                 Dispatcher.Dispatch(() => {
                     ContainerForGrids.HeightRequest = width;
@@ -141,7 +170,7 @@ public partial class CryptoCard : ContentView
     {
         PortfolioChart chart =
            new PortfolioChart(rect.Location,
-               width,
+               width * 1.28f,
                height * 0.6f
                );
 
@@ -173,9 +202,7 @@ public partial class CryptoCard : ContentView
 
                             Geometry pathFill =
                              (Geometry)new PathGeometryConverter()
-                             .ConvertFromString(curv.GetCurve());//
-
-                            // Microsoft.Maui.Controls.Shapes.Path lineFill = new(pathFill);
+                             .ConvertFromString(curv.GetCurve());
 
                             LinearGradientBrush brush = new LinearGradientBrush(
                             GetLineGradient(st, bk),
@@ -184,20 +211,13 @@ public partial class CryptoCard : ContentView
 
                             fillPath.Data = pathFill;
                             fillPath.Fill = brush;
-                            // gridCrypto.Children.Add(lineFill);
 
                             Geometry pathData =
                                (Geometry)new PathGeometryConverter()
                                .ConvertFromString(curv.GetSpace());//
 
-                            // Microsoft.Maui.Controls.Shapes.Path linepath = new(pathData);
-
                             linePath.Data = pathData;
                             linePath.Stroke = st;
-
-                            //test2.Data = pathData;
-
-                            //gridCrypto.Children.Add(linepath);
                         }
                     }
                 }

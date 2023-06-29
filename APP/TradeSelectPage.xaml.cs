@@ -17,34 +17,45 @@ public partial class TradeSelectPage : ContentPage
         this.Loaded += TradeSelectPage_Loaded;
     }
 
+    protected override bool OnBackButtonPressed()
+    {
+        Navigation.RemovePage(this);
+
+        return true;
+    }
+
+
     private void TradeSelectPage_Loaded(object sender, EventArgs e)
     {
-        Asset = (PortfolioAsset)BindingContext; 
+        Asset = (PortfolioAsset)BindingContext;
 
-        if(Asset.Symbol == "ETH")
+        if (Asset != null)
         {
-            first = UserProfileData.LoadDemo().Where(x => x.Symbol == "BTC").FirstOrDefault();
-            second = UserProfileData.LoadDemo().Where(x => x.Symbol == "SWOBL").FirstOrDefault();
-        }
-        else if(Asset.Symbol == "BTC")
-        {
-            first = UserProfileData.LoadDemo().Where(x => x.Symbol == "ETH").FirstOrDefault();
-            second = UserProfileData.LoadDemo().Where(x => x.Symbol == "SWOBL").FirstOrDefault();
-        }
-        else
-        {
-            first = UserProfileData.LoadDemo().Where(x => x.Symbol == "BTC").FirstOrDefault();
-            second = UserProfileData.LoadDemo().Where(x => x.Symbol == "ETH").FirstOrDefault();
-        }
+            if (Asset.Symbol == "ETH")
+            {
+                first = UserProfileData.LoadDemo().Where(x => x.Symbol == "BTC").FirstOrDefault();
+                second = UserProfileData.LoadDemo().Where(x => x.Symbol == "SWOBL").FirstOrDefault();
+            }
+            else if (Asset.Symbol == "BTC")
+            {
+                first = UserProfileData.LoadDemo().Where(x => x.Symbol == "ETH").FirstOrDefault();
+                second = UserProfileData.LoadDemo().Where(x => x.Symbol == "SWOBL").FirstOrDefault();
+            }
+            else
+            {
+                first = UserProfileData.LoadDemo().Where(x => x.Symbol == "BTC").FirstOrDefault();
+                second = UserProfileData.LoadDemo().Where(x => x.Symbol == "ETH").FirstOrDefault();
+            }
 
-        firstRect.Stroke = first.HtmlColor;
-        secondRect.Stroke = second.HtmlColor;
+            firstRect.Stroke = first.HtmlColor;
+            secondRect.Stroke = second.HtmlColor;
 
-        firstImage.Source = first.Image;
-        secondImage.Source = second.Image;
+            firstImage.Source = first.Image;
+            secondImage.Source = second.Image;
 
-        firstAmount.Text = first.Amount.ToString() + " " + first.Symbol;
-        secondAmount.Text = second.Amount.ToString() + " " + second.Symbol;   
+            firstAmount.Text = first.Amount.ToString() + " " + first.Symbol;
+            secondAmount.Text = second.Amount.ToString() + " " + second.Symbol;
+        }
     }
 
     private void TapGestureRecognizer_Tapped(object sender, EventArgs e)

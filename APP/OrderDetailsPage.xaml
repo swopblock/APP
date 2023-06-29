@@ -5,13 +5,11 @@
              xmlns:local="clr-namespace:APP.Code.Data.Orders"
              Title="OrderDetailsPage"
              xmlns:controls="clr-namespace:APP.Views"
-             x:DataType="local:OrderDetail"
-             Shell.FlyoutBehavior="Disabled"
-             Shell.FlyoutItemIsVisible="False">
-    <VerticalStackLayout HeightRequest="550" WidthRequest="330" HorizontalOptions="FillAndExpand" VerticalOptions="Fill">
+             x:DataType="local:OrderDetail">
+    <VerticalStackLayout>
         <controls:TitleWithExit></controls:TitleWithExit>
         <Grid HorizontalOptions="FillAndExpand">
-            <Rectangle Fill="{StaticResource Gray27}" HeightRequest="525" HorizontalOptions="FillAndExpand" RadiusX="40"></Rectangle>
+            <Rectangle Fill="{StaticResource Gray27}" HeightRequest="620" HorizontalOptions="FillAndExpand" RadiusX="40"></Rectangle>
             <VerticalStackLayout>
             <VerticalStackLayout Margin="20,30,20,30">
                 <Label 
@@ -32,12 +30,12 @@
             </VerticalStackLayout>
                 <VerticalStackLayout Margin="20,0,20,0">
                     <BoxView Color="{StaticResource Gray2F}" HeightRequest="1" HorizontalOptions="FillAndExpand" />
-                    <Grid Padding="0,10,0,10">
+                    <Grid Padding="0,15,0,15">
                         <Label TextColor="{StaticResource GrayA1}" FontSize="14" FontFamily="Guida" Text="Order Status" VerticalOptions="Center" HorizontalOptions="Start"></Label>
                         <Label TextColor="{StaticResource White}" FontSize="14" FontFamily="Guida" Text="{Binding ShowStatus}" VerticalOptions="Center" HorizontalOptions="End"></Label>
                     </Grid>
                     <BoxView Grid.Row="0" Color="{StaticResource Gray2F}" HeightRequest="1" HorizontalOptions="FillAndExpand" />
-                    <Grid Padding="0,10,0,10">
+                    <Grid Padding="0,15,0,15">
                         <Label TextColor="{StaticResource GrayA1}" FontSize="14" FontFamily="Guida" Text="{Binding SwapToName, StringFormat='Purchased {0}'}" VerticalOptions="Center" HorizontalOptions="Start" ></Label>
                         
                         <HorizontalStackLayout HorizontalOptions="End">
@@ -46,7 +44,7 @@
                         </HorizontalStackLayout>
                     </Grid>
                     <BoxView Grid.Row="0" Color="{StaticResource Gray2F}" HeightRequest="1" HorizontalOptions="FillAndExpand" />
-                    <Grid Padding="0,10,0,10">
+                    <Grid Padding="0,15,0,15">
                         <Label TextColor="{StaticResource GrayA1}" FontSize="14" FontFamily="Guida" Text="{Binding SymbolName, StringFormat='Sold {0}'}" VerticalOptions="Center" HorizontalOptions="Start"></Label>
                         
                         <HorizontalStackLayout HorizontalOptions="End">
@@ -55,32 +53,32 @@
                         </HorizontalStackLayout>
                     </Grid>
                     <BoxView Grid.Row="0" Color="{StaticResource Gray2F}" HeightRequest="1" HorizontalOptions="FillAndExpand" />
-                    <Grid Padding="0,10,0,10">
+                    <Grid Padding="0,15,0,15">
                         <Label TextColor="{StaticResource GrayA1}" FontSize="14" FontFamily="Guida" Text="Value" VerticalOptions="Center" HorizontalOptions="Start" ></Label>
                         <Label TextColor="{StaticResource White}" FontSize="14" FontFamily="Guida" Text="{Binding Value}"  VerticalOptions="Center" HorizontalOptions="End"></Label>
                     </Grid>
                     <BoxView Grid.Row="0" Color="{StaticResource Gray2F}" HeightRequest="1" HorizontalOptions="FillAndExpand" />
-                    <Grid Padding="0,10,0,10">
+                    <Grid Padding="0,15,0,15">
                         <Label TextColor="{StaticResource GrayA1}" FontSize="14" FontFamily="Guida" Text="Submitted" VerticalOptions="Center" HorizontalOptions="Start"></Label>
                         <Label TextColor="{StaticResource White}" FontSize="14" FontFamily="Guida" Text="{Binding SubmittedTime}" VerticalOptions="Center" HorizontalOptions="End"></Label>
                     </Grid>
                     <BoxView Grid.Row="0" Color="{StaticResource Gray2F}" HeightRequest="1" HorizontalOptions="FillAndExpand" />
-                    <Grid Padding="0,10,0,10">
+                    <Grid Padding="0,15,0,15">
                         <Label TextColor="{StaticResource GrayA1}" FontSize="14" FontFamily="Guida" Text="Filled" VerticalOptions="Center" HorizontalOptions="Start" ></Label>
                         <Label TextColor="{StaticResource White}" FontSize="14" FontFamily="Guida" Text="{Binding FilledTime}"  VerticalOptions="Center" HorizontalOptions="End"></Label>
                     </Grid>
                     <BoxView Grid.Row="0" Color="{StaticResource Gray2F}" HeightRequest="1" HorizontalOptions="FillAndExpand" />
-                    <Grid Padding="0,10,0,10">
+                    <Grid Padding="0,17,0,17">
                         <Label TextColor="{StaticResource GrayA1}" FontSize="14" FontFamily="Guida" Text="{Binding SymbolName, StringFormat='{0} Exchange Rate'}"  VerticalOptions="Center" HorizontalOptions="Start"></Label>
                         <Label TextColor="{StaticResource White}" FontSize="14" FontFamily="Guida" Text="{Binding SymbolExchangeRate}" VerticalOptions="Center" HorizontalOptions="End"></Label>
                     </Grid>
                     <BoxView Grid.Row="0" Color="{StaticResource Gray2F}" HeightRequest="1" HorizontalOptions="FillAndExpand" />
-                    <Grid Padding="0,10,0,10">
+                    <Grid Padding="0,15,0,15">
                         <Label TextColor="{StaticResource GrayA1}" FontSize="14" FontFamily="Guida" Text="{Binding SwapToSymbol, StringFormat='{0} Exchange Rate'}"  VerticalOptions="Center" HorizontalOptions="Start"></Label>
                         <Label TextColor="{StaticResource White}" FontSize="14" FontFamily="Guida" Text="{Binding SwapToExchangeRate}" VerticalOptions="Center" HorizontalOptions="End"></Label>
                     </Grid>
                     <BoxView Grid.Row="0" Color="{StaticResource Gray2F}" HeightRequest="1" HorizontalOptions="FillAndExpand" />
-                    <Grid Padding="0,10,0,10">
+                    <Grid Padding="0,15,0,15">
                         <Label TextColor="{StaticResource GrayA1}" FontSize="14" FontFamily="Guida" Text="Rewards earned" VerticalOptions="Center" HorizontalOptions="Start" ></Label>
                         <HorizontalStackLayout HorizontalOptions="End">
                             <Label TextColor="{StaticResource White}" FontSize="14" FontFamily="Guida" Text="{Binding RewardsEarnedText}"  VerticalOptions="Center" HorizontalOptions="End"></Label>

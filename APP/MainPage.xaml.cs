@@ -16,19 +16,13 @@ public partial class MainPage : ContentPage
         InitializeComponent();
 
         this.NavigatedTo += MainPage_NavigatedTo;
-
-        GoToPage();
     }
 
     private void MainPage_NavigatedTo(object sender, NavigatedToEventArgs e)
     {
-        GoToPage();
+       
     }
 
-    public async void GoToPage()
-    {
-        await Shell.Current.GoToAsync(nameof(PortfolioPage));
-    }
 
     //public async void GoToPage()
     //{

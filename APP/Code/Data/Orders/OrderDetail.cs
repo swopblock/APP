@@ -23,6 +23,10 @@ namespace APP.Code.Data.Orders
         public string SwapToExchangeRate { get; set; }
         public string RewardsEarnedText { get; set; }
 
+        public string LabelText { get; set; }
+        public string DateText { get; set; }
+        public string ValueText { get; set; }
+
         public string Value { get; set; }
 
         public decimal Amount { get; set; }
@@ -36,6 +40,7 @@ namespace APP.Code.Data.Orders
         public decimal SwapPrice { get; set; }
         public decimal RewardsEarned { get; set; }
 
+        public string IconStars { get; set; }
         public string Icon { get; set; }
         public string SwapIcon { get; set; }
         public string RewardIcon { get; set; }  

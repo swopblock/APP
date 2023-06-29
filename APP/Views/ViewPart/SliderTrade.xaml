@@ -8,24 +8,12 @@
             <Rectangle Fill="Black" Stroke="{StaticResource Gray27}" HeightRequest="50" RadiusX="25" RadiusY="25" HorizontalOptions="FillAndExpand" VerticalOptions="Center"></Rectangle>
             <ImageButton ZIndex="4" x:Name="ImgFinger" VerticalOptions="Center" HeightRequest="20" WidthRequest="20" Source="threebar.png"/>
             <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="100"></RowDefinition>
-            </Grid.RowDefinitions>
+                <Rectangle x:Name="FingerButton" ZIndex="8" Fill="white" HeightRequest="50" WidthRequest="50" RadiusX="25" RadiusY="25" HorizontalOptions="Center" VerticalOptions="Center">
 
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="50"></ColumnDefinition>
-                <ColumnDefinition Width="*"></ColumnDefinition>
-                <ColumnDefinition Width="50"></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-
-
-            <Rectangle x:Name="FingerButton" ZIndex="8" Grid.Column="1" Fill="white" HeightRequest="50" WidthRequest="50" RadiusX="25" RadiusY="25" HorizontalOptions="Center" VerticalOptions="Center">
-
-            </Rectangle>
-               
-            <Label FontSize="11" Text="Sell" VerticalOptions="Center" HorizontalOptions="Center" Grid.Row="0" Grid.Column="0"/>
-            <Label FontSize="11" Text="Buy" VerticalOptions="Center" HorizontalOptions="Center" Grid.Row="0" Grid.Column="2"/>
+                </Rectangle>
+                <Label ZIndex="4" Margin="20,0,0,0" FontSize="11" Text="Sell" VerticalOptions="Center" HorizontalOptions="Start"/>
+                <Label ZIndex="4" Margin="0,0,20,0" FontSize="11" Text="Buy" VerticalOptions="Center" HorizontalOptions="End" />
+            </Grid>
         </Grid>
-    </Grid>
     </VerticalStackLayout>
 </ContentView>

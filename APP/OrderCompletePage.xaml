@@ -48,10 +48,10 @@
                         
                     </TapGestureRecognizer>
                 </Grid.GestureRecognizers>
-                <Rectangle VerticalOptions="Start" Stroke="{StaticResource Secondary}" Fill="{StaticResource Gray27}" WidthRequest="190" HeightRequest="70" RadiusX="40"></Rectangle>
-                <Label FontFamily="Guida" VerticalOptions="Center" Margin="0,0,0,0" HorizontalOptions="Center" FontSize="18">Done</Label>
+                <Rectangle x:Name="button" VerticalOptions="Start" Stroke="{StaticResource Secondary}" Fill="{StaticResource Gray27}" WidthRequest="190" HeightRequest="70" RadiusX="40"></Rectangle>
+                <Label FontFamily="Guida" TextColor="{StaticResource White}" VerticalOptions="Center" Margin="0,0,0,0" HorizontalOptions="Center" FontSize="18">Done</Label>
             </Grid>
-            <Label Text="View details" HorizontalOptions="Center" VerticalOptions="Center" Padding="20">
+            <Label TextColor="{StaticResource White}" Text="View details" HorizontalOptions="Center" VerticalOptions="Center" Padding="20">
                 <Label.GestureRecognizers>
                     <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"></TapGestureRecognizer>
                 </Label.GestureRecognizers>

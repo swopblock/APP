@@ -7,7 +7,7 @@
 
     <ScrollView>
         <VerticalStackLayout HorizontalOptions="FillAndExpand">
-            <Label ZIndex="10" FontSize="18" FontFamily="GuidaBold" Margin="0,20,0,10" Text="Your Trade" VerticalOptions="Center" HorizontalOptions="Center"></Label>
+            <controls:TitleWithArrow BindingContext="Market Trade"></controls:TitleWithArrow>
             <Grid HeightRequest="380">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="100"></RowDefinition>
@@ -15,7 +15,7 @@
                     <RowDefinition Height="80"></RowDefinition>
                     <RowDefinition Height="60"></RowDefinition>
                 </Grid.RowDefinitions>
-                <Label Text="{Binding Name}" TextColor="{StaticResource Gray71}" ZIndex="20" Margin="48,52,0,0"></Label>
+                <Label Text="{Binding Name, StringFormat='Trade {0}'}" TextColor="{StaticResource Gray71}" ZIndex="20" Margin="48,52,0,0"></Label>
                 <Label Text="{Binding Amount}"   TextColor="{Binding HtmlColor}" FontSize="40" Padding="0,0,0,60" Grid.Row="1" FontFamily="GuidaNormal" VerticalOptions="End" HorizontalOptions="Center" ZIndex="20"></Label>
                 <Label x:Name="SymbolName"   TextColor="{Binding HtmlColor}" Text="{Binding Symbol}" FontSize="20" Padding="0,0,0,40" Grid.Row="1" FontFamily="GuidaNormal" VerticalOptions="End" HorizontalOptions="Center" ZIndex="20"></Label>
                 <Rectangle VerticalOptions="Start" Fill="{StaticResource Gray2F}" Margin="10" HeightRequest="380" RadiusX="40"></Rectangle>

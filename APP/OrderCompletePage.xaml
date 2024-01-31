@@ -3,11 +3,17 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="APP.OrderCompletePage"
              Title="OrderCompletePage"
-             xmlns:controls="clr-namespace:APP.Views">
-    <VerticalStackLayout HorizontalOptions="FillAndExpand">
-        <Label ZIndex="10" FontSize="16" FontFamily="Guida" Margin="0,50,0,0" Text="Your order" VerticalOptions="Center" HorizontalOptions="Center"></Label>
+             xmlns:controls="clr-namespace:APP.Views"
+             xmlns:animations="http://schemas.microsoft.com/dotnet/2021/maui/animations">
+    <Grid>
+    <VerticalStackLayout x:Name="MoveDownLabels" Margin="0,-110,0,0">
+        <Label ZIndex="10" FontSize="16" FontFamily="Guida" Margin="0,0,0,0" Text="Your order" VerticalOptions="Center" HorizontalOptions="Center"></Label>
         <Label TextColor="{StaticResource Secondary}" Text="completed" HorizontalOptions="Center" Margin="0,0,0,30" VerticalOptions="Center" FontSize="24"></Label>
-        <Grid HeightRequest="380">
+    </VerticalStackLayout>
+    
+    <VerticalStackLayout Margin="0,170,0,0" HorizontalOptions="FillAndExpand">
+       
+        <Grid x:Name="gridScale" Scale="0.4" HeightRequest="380">
             <Grid.RowDefinitions>
                 <RowDefinition Height="100"></RowDefinition>
                 <RowDefinition Height="160"></RowDefinition>
@@ -40,12 +46,13 @@
             <controls:PoweredBy ZIndex="10" Grid.Row="2"></controls:PoweredBy>
             <Rectangle VerticalOptions="Start" Fill="{StaticResource Gray27}" Margin="10" HeightRequest="330" RadiusX="40"></Rectangle>
         </Grid>
-        <VerticalStackLayout HorizontalOptions="Fill">
-            
+      
+    </VerticalStackLayout>
+        <VerticalStackLayout Margin="0,0,0,-175" x:Name="MoveUp" VerticalOptions="End" HorizontalOptions="Fill">
             <Grid HeightRequest="70" Margin="10">
                 <Grid.GestureRecognizers>
                     <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1">
-                        
+
                     </TapGestureRecognizer>
                 </Grid.GestureRecognizers>
                 <Rectangle x:Name="button" VerticalOptions="Start" Stroke="{StaticResource Secondary}" Fill="{StaticResource Gray27}" WidthRequest="190" HeightRequest="70" RadiusX="40"></Rectangle>
@@ -57,5 +64,5 @@
                 </Label.GestureRecognizers>
             </Label>
         </VerticalStackLayout>
-    </VerticalStackLayout>
+    </Grid>
 </ContentPage>

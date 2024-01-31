@@ -35,8 +35,11 @@
 
                 </Grid>
                 <Grid HorizontalOptions="Center" VerticalOptions="Center" ZIndex="1" Margin="0,110,0,0">
-                    <Path Margin="0,9,0,0" HorizontalOptions="Center" VerticalOptions="Center" Stroke="White" Data="M0,0l0,0m0,5l0,-100"></Path>
-                    <Rectangle HorizontalOptions="Center" VerticalOptions="Start" Margin="0,0,0,0" Stroke="White" WidthRequest="10" HeightRequest="10" RadiusX="5" ></Rectangle>
+                    <GraphicsView ZIndex="1000" WidthRequest="350" HeightRequest="350" DragInteraction="GraphicsView_DragInteraction">
+                        
+                    </GraphicsView>
+                    <!--<Path Margin="0,9,0,0" HorizontalOptions="Center" VerticalOptions="Center" Stroke="White" Data="M0,0l0,0m0,5l0,-100"></Path>
+                    <Rectangle HorizontalOptions="Center" VerticalOptions="Start" Margin="0,0,0,0" Stroke="White" WidthRequest="10" HeightRequest="10" RadiusX="5" ></Rectangle>-->
                 </Grid>
                 <controls:TimePeriodLabels ZIndex="100" VerticalOptions="End" HorizontalOptions="CenterAndExpand" Margin="0,0,0,90"/>
 

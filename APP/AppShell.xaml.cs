@@ -23,6 +23,6 @@ public partial class AppShell : Shell
         SetNavBarHasShadow(this, false);
         SetBackgroundColor(this, Colors.Transparent);
         this.ZIndex = -10;
-        InputTransparent = true;
+        //InputTransparent = true;
 	}
 }

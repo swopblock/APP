@@ -21,8 +21,8 @@ public partial class PortfolioPage : ContentPage
 
     bool currentPage = true;
 
-    int time = 300;
-    int candleCount = 60;
+    int time = (int)ExchangeData.CoinTimeScale.OneHour;
+    int candleCount = 24;
 
     float width = 0;
     float height = 0;
@@ -63,7 +63,7 @@ public partial class PortfolioPage : ContentPage
 
     private void PortfolioPage_Loaded(object sender, EventArgs e)
     {
-        Debug.WriteLine("");
+        //Debug.WriteLine("");
     }
 
     private void PortfolioPage_NavigatedFrom(object sender, NavigatedFromEventArgs e)
@@ -81,13 +81,13 @@ public partial class PortfolioPage : ContentPage
 
         AddWalletAssets();
 
-        //Dispatcher.StartTimer(TimeSpan.FromSeconds(5), () =>
-        //{
-        //    TimeValue = DateTime.Now.ToString("HH:mm:ss");
-        //    OnPropertyChanged(nameof(TimeValue));
+        Dispatcher.StartTimer(TimeSpan.FromSeconds(5), () =>
+        {
+            TimeValue = DateTime.Now.ToString("HH:mm:ss");
+            OnPropertyChanged(nameof(TimeValue));
 
-        //    return false;// currentPage; // Return true to keep the timer running
-        //});
+            return false;// currentPage; // Return true to keep the timer running
+        });
     }
 
     public event PropertyChangedEventHandler PropertyChanged;
@@ -96,7 +96,7 @@ public partial class PortfolioPage : ContentPage
     {
         Dispatcher.Dispatch(() =>
         {
-            //UpdateValues();
+            UpdateValues();
         });
 
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
@@ -108,7 +108,7 @@ public partial class PortfolioPage : ContentPage
         {
             UpdateCircle(portfolioCircle, rect, centerPoint);
 
-            //if (timerState == 0)
+            if (timerState == 0)
             {
                 AddWalletAssets();
             }
@@ -151,7 +151,7 @@ public partial class PortfolioPage : ContentPage
                 if (set.Price == 0) added = false;
             }
 
-            WalletCards.Children.Add(tempgrid);  
+            WalletCards.Children.Add(tempgrid);
         }
     }
 
@@ -225,7 +225,7 @@ public partial class PortfolioPage : ContentPage
         }
     }
 
-    public void UpdateCircle(PortfolioCircle portfolioShape, Rect rect, Point Center)
+    public void UpdateCircle(PortfolioCircle portfolioShape, Rect rect, Point Center, double mx = -1, double my = -1)
     {
         if (portfolioShape != null)
         {
@@ -234,7 +234,7 @@ public partial class PortfolioPage : ContentPage
 
             MakeBackCircle();
 
-            MakeChart(portfolioShape);
+            MakeChart(portfolioShape, mx, my);
 
             MakeBackground();
 
@@ -300,7 +300,7 @@ public partial class PortfolioPage : ContentPage
         catch { }
     }
 
-    public void MakeChart(PortfolioCircle portfolioShape)
+    public void MakeChart(PortfolioCircle portfolioShape, double mx = -1, double my = -1)
     {
         if (portfolioShape != null)
         {
@@ -309,6 +309,8 @@ public partial class PortfolioPage : ContentPage
                    portfolioShape.GetWidthLimit(),
                    portfolioShape.GetHeightLimit()
                    );
+
+            chart.SetFingerPosition(mx, my);
 
             Pack pk = null;
 
@@ -350,19 +352,19 @@ public partial class PortfolioPage : ContentPage
 
                             double ratio = start / end;
 
-                            Point first = new Point();
-                            Point second = new Point(); 
+                            Point first = new Point(0.3, 0.3);
+                            Point second = new Point(0.8, 1.15);
 
-                            if(ratio > 1) // start is larger than end
-                            {
-                                first = new Point(0.5, 0.5);
-                                second = new Point(1.8, 1.8);
-                            }
-                            else
-                            {
-                                first = new Point(0.5, 0.5);
-                                second = new Point(1.8, 1.8);
-                            }
+                            //if (ratio > 1) // start is larger than end
+                            //{
+                            //    first = new Point(0.5, 0.5);
+                            //    second = new Point(1.1, 1.1);
+                            //}
+                            //else
+                            //{
+                            //    first = new Point(0.5, 0.5);
+                            //    second = new Point(1.1, 1.1);
+                            //}
 
                             LinearGradientBrush brush = new LinearGradientBrush(
                             GetLineGradient(st, bk),
@@ -370,6 +372,7 @@ public partial class PortfolioPage : ContentPage
                             second);
 
                             lineFill.Fill = brush;
+                            //lineFill.SetValue(TitleProperty, "test");
 
                             lineFill.ZIndex = 0;
 
@@ -386,6 +389,35 @@ public partial class PortfolioPage : ContentPage
                             linepath.ZIndex = 0;
 
                             grid.Children.Add(linepath);
+
+                            LinearGradientBrush downbrush = new LinearGradientBrush(
+                           GetLineGradient(st, bk),
+                           new Point(0, 0.4),
+                           new Point(0, 1.1));
+
+                            Geometry downData =
+                               (Geometry)new PathGeometryConverter()
+                               .ConvertFromString(curv.GetLineDown());
+
+                            Microsoft.Maui.Controls.Shapes.Path linedown = new(downData);
+
+                           // linedown.Stroke = downbrush;
+                            linedown.Fill = downbrush;
+                            linedown.ZIndex = 0;
+
+                            grid.Children.Add(linedown);
+
+                            Geometry arcData =
+                              (Geometry)new PathGeometryConverter()
+                              .ConvertFromString(curv.GetArc());
+
+                            Microsoft.Maui.Controls.Shapes.Path arcline = new(arcData);
+
+                            arcline.Stroke = Colors.White;
+                            arcline.StrokeThickness = 2;
+                            arcline.ZIndex = 0;
+
+                            grid.Children.Add(arcline);
                         }
                     }
                 }
@@ -424,6 +456,17 @@ public partial class PortfolioPage : ContentPage
         grid.Children.Add(pathLine);
 
         Debug.WriteLine(asset.Name);
+    }
+
+    public void SetTime(int timePer, int candlesNumber)
+    {
+        time = timePer;
+        candleCount = candlesNumber;
+
+        if (portfolioCircle != null)
+        {
+            UpdateCircle(portfolioCircle, rect, centerPoint);
+        }
     }
 
 
@@ -476,5 +519,24 @@ public partial class PortfolioPage : ContentPage
         };
 
         return collection;
+    }
+
+    private void GraphicsView_DragInteraction(object sender, TouchEventArgs e)
+    {
+        if (e != null)
+        {
+            if (e.Touches != null)
+            {
+                if (e.Touches.Length > 0)
+                {
+                    PointF touch = e.Touches.FirstOrDefault();
+
+                    if (PortfolioAmount != null)
+                    {
+                        UpdateCircle(portfolioCircle, rect, centerPoint, touch.X, touch.Y);
+                    }
+                }
+            }
+        }
     }
 }

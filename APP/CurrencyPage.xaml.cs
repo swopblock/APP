@@ -34,6 +34,12 @@ public partial class CurrencyPage : ContentPage
     private void Carousel_Loaded(object sender, EventArgs e)
     {
         Carousel.PropertyChanged += Carousel_PropertyChanged;
+        Carousel.CurrentItemChanged += Carousel_CurrentItemChanged;
+    }
+
+    private void Carousel_CurrentItemChanged(object sender, CurrentItemChangedEventArgs e)
+    {
+        LoadCurrency(((PortfolioAsset)e.CurrentItem).Symbol);
     }
 
     private void Carousel_PropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -130,5 +136,31 @@ public partial class CurrencyPage : ContentPage
     private void ImageButton_Pressed(object sender, EventArgs e)
     {
         Navigation.PopToRootAsync();
+    }
+
+    private async void FadeSwap(bool down)
+    {
+        if (down) 
+        {
+            await gridButtons.FadeTo(0, 250);
+            await gridLabel.FadeTo(1, 250);
+        }
+        else 
+        {
+            await gridButtons.FadeTo(1, 250);
+            await gridLabel.FadeTo(0, 250);
+        }
+    }
+
+    private void ScrollView_Scrolled(object sender, ScrolledEventArgs e)
+    {
+        if(e.ScrollY > 70) 
+        { 
+           FadeSwap(true);
+        }
+        else
+        {
+            FadeSwap(false);
+        }
     }
 }

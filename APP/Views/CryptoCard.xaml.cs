@@ -18,8 +18,8 @@ public partial class CryptoCard : ContentView
     Rect rect = new Rect();
     Point centerPoint = new Point();
 
-    int time = 300;
-    int candleCount = 60;
+    int time = (int)ExchangeData.CoinTimeScale.OneHour;
+    int candleCount = 24;
 
     float width = 0;
     float height = 0;
@@ -43,13 +43,17 @@ public partial class CryptoCard : ContentView
         {
             if (!isClickable)
             {
-                CurrencyPage page = (CurrencyPage)Parent.Parent.Parent.Parent.Parent.Parent;
-
-                if (page != null)
+                try
                 {
-                    page.LoadCurrency(asset.Symbol);
+                    CurrencyPage page = (CurrencyPage)Parent.Parent.Parent.Parent.Parent.Parent;
+
+                    if (page != null)
+                    {
+                        page.LoadCurrency(asset.Symbol);
+                    }
                 }
-            }
+                catch { }
+                }
 
             if (asset.Symbol == "YOUR REWARDS") ShowGain = false;
 
@@ -72,6 +76,14 @@ public partial class CryptoCard : ContentView
                 }
             }
         }
+    }
+
+    public void SetTime(int timePer, int candlesNumber)
+    {
+        time = timePer;
+        candleCount = candlesNumber;
+
+        MakeChart();
     }
 
     public void EnableClickable()
@@ -171,7 +183,7 @@ public partial class CryptoCard : ContentView
         PortfolioChart chart =
            new PortfolioChart(rect.Location,
                width * 1.28f,
-               height * 0.6f
+               height * 0.5f
                );
 
         Pack pk = null;
@@ -206,8 +218,8 @@ public partial class CryptoCard : ContentView
 
                             LinearGradientBrush brush = new LinearGradientBrush(
                             GetLineGradient(st, bk),
-                            new Point(0.1, 0.1),
-                            new Point(0.6, 0.9));
+                            new Point(0.2, 0.2),
+                            new Point(0.5, 1.55));
 
                             fillPath.Data = pathFill;
                             fillPath.Fill = brush;

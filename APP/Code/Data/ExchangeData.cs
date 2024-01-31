@@ -87,7 +87,31 @@ namespace APP.Code
 
             #region TEMPORARY WHILE NETWORK ISNT LIVE
 
-            if (symbol.ToUpper() == "SWOBL")
+            if (symbol.ToUpper() == "BTC")
+            {
+                candls.Add(new Candle
+                {
+                    close = 29888,
+                    open = 29888,
+                    hi = 29888,
+                    low = 29888,
+                    TimeStamp = (long)ConvertToEpochTime(DateTime.Now),
+                    volume = 1
+                });
+            }
+            else if (symbol.ToUpper() == "ETH")
+            {
+                candls.Add(new Candle
+                {
+                    close = 1875,
+                    open = 1875,
+                    hi = 1875,
+                    low = 1875,
+                    TimeStamp = (long)ConvertToEpochTime(DateTime.Now),
+                    volume = 1
+                });
+            }
+            else if (symbol.ToUpper() == "SWOBL")
             {
                 candls.Add(new Candle
                 {

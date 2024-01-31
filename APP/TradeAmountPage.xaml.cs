@@ -162,12 +162,13 @@ public partial class TradeAmountPage : ContentPage
         }
         else
         {
-            CompleteSlider.Margin = new Thickness(margin, 0, 0, 0);
-        }
-    }
+            double valu = 1 - (margin / (SubmitOrder.Width - 70));
+            if(valu < 0) valu = 0;
 
-    private async void NavGoTo(string page)
-    {
-        await Shell.Current.GoToAsync(page);
+            CompleteSlider.Margin = new Thickness(margin, 0, 0, 0);
+            controlsBody.Scale = valu;
+            BackSilder.Opacity = valu;
+            TopFade.Opacity = valu;
+        }
     }
 }

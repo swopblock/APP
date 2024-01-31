@@ -5,8 +5,11 @@
              xmlns:controls="clr-namespace:APP.Views"
              Title="TradeAmountPage">
     <VerticalStackLayout HorizontalOptions="FillAndExpand">
-        <Label ZIndex="10" FontSize="18" FontFamily="GuidaBold" Margin="0,20,0,10" Text="Your Trade" VerticalOptions="Center" HorizontalOptions="Center"></Label>
-        <Grid x:Name="slideTrade" HeightRequest="540">
+        <VerticalStackLayout x:Name="TopFade">
+            <controls:TitleWithArrow BindingContext="Market Trade"></controls:TitleWithArrow>
+        </VerticalStackLayout>
+        <VerticalStackLayout x:Name="controlsBody">
+            <Grid x:Name="slideTrade" HeightRequest="540">
             <Grid.RowDefinitions>
                 <RowDefinition Height="100"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
@@ -39,18 +42,22 @@
             <controls:PoweredBy Grid.Row="2" Margin="0,0,0,0" VerticalOptions="Center"></controls:PoweredBy>
 
         </Grid>
-        <controls:BottomThreeButtons BindingContext="trade" x:Name="ThreeButtons" VerticalOptions="Center"></controls:BottomThreeButtons>
-        <Grid x:Name="SubmitOrder" HeightRequest="70" Margin="30,20,30,0">
+        <controls:BottomThreeButtons Margin="0,20,0,0" BindingContext="trade" x:Name="ThreeButtons" VerticalOptions="End"></controls:BottomThreeButtons>
+        </VerticalStackLayout>
+        <Grid VerticalOptions="End" x:Name="SubmitOrder" IsVisible="false" HeightRequest="70" Margin="30,40,30,0">
             <GraphicsView ZIndex="10" VerticalOptions="Fill" HorizontalOptions="Fill" DragInteraction="GraphicsView_DragInteraction"></GraphicsView>
-            <Rectangle VerticalOptions="Start" Stroke="{StaticResource Gray27}" Fill="{StaticResource Black}" HeightRequest="70" RadiusX="40"></Rectangle>
+
             <Grid ZIndex="9" x:Name="CompleteSlider">
                 <Rectangle x:Name="submitColor" HorizontalOptions="Start" VerticalOptions="Start" Stroke="{StaticResource Primary}" Fill="{StaticResource Gray2F}" HeightRequest="70" WidthRequest="70" RadiusX="40"></Rectangle>
                 <Image x:Name="submitImage" Source="swopblock.png" WidthRequest="20" VerticalOptions="Center" HorizontalOptions="Start" Margin="25,0,0,0"></Image>
             </Grid>
-            <Label FontFamily="Guida" VerticalOptions="Center" Margin="50,0,0,0" HorizontalOptions="Center" FontSize="16">Submit order</Label>
-            <HorizontalStackLayout HorizontalOptions="End" Margin="0,0,30,0">
-            <Path Data="M 0 0 l 7 7 l -7 7" Stroke="{StaticResource Gray54}" HorizontalOptions="End" VerticalOptions="Center" />
-            </HorizontalStackLayout>
+            <Grid x:Name="BackSilder">
+                <Rectangle VerticalOptions="Start" Stroke="{StaticResource Gray27}" Fill="{StaticResource Black}" HeightRequest="70" RadiusX="40"></Rectangle>
+                <Label FontFamily="Guida" VerticalOptions="Center" Margin="50,0,0,0" HorizontalOptions="Center" FontSize="16">Submit order</Label>
+                <HorizontalStackLayout HorizontalOptions="End" Margin="0,0,30,0">
+                <Path Data="M 0 0 l 7 7 l -7 7" Stroke="{StaticResource Gray54}" HorizontalOptions="End" VerticalOptions="Center" />
+                </HorizontalStackLayout>
+            </Grid>
         </Grid>
     </VerticalStackLayout>
 </ContentPage>

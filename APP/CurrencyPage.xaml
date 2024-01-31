@@ -5,7 +5,7 @@
              Title="CurrencyPage"
              xmlns:controls="clr-namespace:APP.Views">
     <VerticalStackLayout>
-        <ScrollView HeightRequest="540">
+        <ScrollView HeightRequest="540" Scrolled="ScrollView_Scrolled">
             <VerticalStackLayout>
                 <Grid>
                     <ImageButton Pressed="ImageButton_Pressed" HorizontalOptions="Start" Margin="30,0,0,0" WidthRequest="20" HeightRequest="20" Source="wallet.png"></ImageButton>
@@ -24,7 +24,7 @@
                         </CarouselView.ItemTemplate>
                     </CarouselView>
                 </VerticalStackLayout>
-            <Grid>
+            <Grid x:Name="gridButtons">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="80"></RowDefinition>
                 </Grid.RowDefinitions>
@@ -69,13 +69,13 @@
                 <Label Text="o" Grid.Column="3" Grid.Row="0" VerticalOptions="Center" HorizontalOptions="Center"></Label>
                 <Label Text="o" Grid.Column="4" Grid.Row="0" VerticalOptions="Center" HorizontalOptions="Center"></Label>-->
             </Grid>
-                <Grid HorizontalOptions="Fill" VerticalOptions="Center">
+                <Grid x:Name="gridLabel" Opacity="0" Margin="0,-50,0,0" HorizontalOptions="Fill" VerticalOptions="Center">
                     <HorizontalStackLayout HorizontalOptions="Center">
                         <Label Margin="3">Your</Label>
                         <Label x:Name="CurencyNameBelow" Text="" Margin="3"></Label>
                     </HorizontalStackLayout>
                 </Grid>
-                <Grid Margin="5,40,5,10" HeightRequest="370">
+                <Grid Margin="5,40,5,10" HeightRequest="425">
                     <VerticalStackLayout>
                     <Grid HorizontalOptions="Center" VerticalOptions="Start">
                         <Rectangle Fill="{StaticResource Gray27}" HeightRequest="175" WidthRequest="340" RadiusX="40"></Rectangle>

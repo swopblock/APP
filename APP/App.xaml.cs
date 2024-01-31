@@ -17,7 +17,7 @@ public partial class App : Application
         }
 
         AppShell shell = new AppShell();
-        shell.InputTransparent = true;  
+       // shell.InputTransparent = true;  
 
         MainPage = shell;
 	}

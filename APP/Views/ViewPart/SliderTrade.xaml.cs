@@ -113,7 +113,7 @@ public partial class SliderTrade : ContentView
             sym = altSymbol;
         }
 
-        var Trade = (TradeAmountPage)Parent.Parent.Parent;
+        var Trade = (TradeAmountPage)Parent.Parent.Parent.Parent;
         Trade.UpdateAmount(amount/100, sym);
     }
 

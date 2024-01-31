@@ -16,7 +16,7 @@
                     <controls:PercentCircle x:Name="Circle"></controls:PercentCircle>
                 </VerticalStackLayout>
             </Grid>
-            <Grid Margin="0,60,0,0">
+            <Grid Margin="0,95,0,0">
                 
                 <Path x:Name="linePath"></Path>
                 <Path x:Name="fillPath"></Path>

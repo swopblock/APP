@@ -19,10 +19,24 @@ namespace APP.Code
 
         private List<Pack> packs = new List<Pack>();
 
+        private bool day = false;
+
         public List<ChartData> Charts = new List<ChartData>
         {
-            new ChartData("BTC", (int) ExchangeData.CoinTimeScale.FiveMinute, 200),
-            new ChartData("ETH", (int) ExchangeData.CoinTimeScale.FiveMinute, 200),
+            new ChartData("BTC", (int) ExchangeData.CoinTimeScale.FifteenMinute, 200, false),
+           // new ChartData("BTC", (int) ExchangeData.CoinTimeScale.OneDay, 200),
+            new ChartData("ETH", (int) ExchangeData.CoinTimeScale.FiveMinute, 200, false),
+            //new ChartData("ETH", (int) ExchangeData.CoinTimeScale.OneDay, 200),
+            new ChartData("SWOBL", (int) ExchangeData.CoinTimeScale.FifteenMinute, 200, false),
+            new ChartData("YOUR REWARDS", (int) ExchangeData.CoinTimeScale.FifteenMinute, 200, false)
+        };
+
+        public List<ChartData> ChartsDay = new List<ChartData>
+        {
+           // new ChartData("BTC", (int) ExchangeData.CoinTimeScale.FifteenMinute, 200),
+            new ChartData("BTC", (int) ExchangeData.CoinTimeScale.OneDay, 200, false),
+            //new ChartData("ETH", (int) ExchangeData.CoinTimeScale.FiveMinute, 200),
+            new ChartData("ETH", (int) ExchangeData.CoinTimeScale.OneDay, 200, false),
             new ChartData("SWOBL", (int) ExchangeData.CoinTimeScale.FifteenMinute, 200, false),
             new ChartData("YOUR REWARDS", (int) ExchangeData.CoinTimeScale.FifteenMinute, 200, false)
         };
@@ -35,17 +49,31 @@ namespace APP.Code
 
                 while (true)
                 {
-                    CheckData();
+                    CheckData(day);
                     Thread.Sleep(3000);
+
+                    day = !day;
                 }
 
             }).Start();
         }
-        public void CheckData()
+        public void CheckData(bool Day)
         {
-            foreach(ChartData chart in Charts) 
+            if (day) 
             {
-                chart.GetData();            
+                foreach (ChartData chart in ChartsDay)
+                {
+                    chart.GetData();
+                }
+            }
+            else
+            {
+
+
+                foreach (ChartData chart in Charts)
+                {
+                    chart.GetData();
+                }
             }
         }
         public List<Pack> CombinePacks(List<string> Symbols, int Time = 0, int Length = 0)

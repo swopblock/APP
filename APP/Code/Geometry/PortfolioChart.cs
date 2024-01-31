@@ -12,6 +12,8 @@ namespace APP.Code
     {
         private float wLimit = 0;
         private float hLimit = 0;
+        private double mx = -1;
+        private double my = -1;
         private PointF center = new PointF();
         public PortfolioChart(PointF Center, float WidthLimit, float HeightLimit)
         {
@@ -23,18 +25,23 @@ namespace APP.Code
         public CurveSet DrawLine(Point corner, List<Candle> candle)
         {
             Rect box = new Rect(corner, new Size(wLimit, hLimit * 0.5));
+
             string curve = "";
             string line = "";
+            string down = "";
+            string arc = "";
 
             float max = (float)GetMax(candle);
             float min = (float)GetMin(candle);
+
+            if (max == min) max += 0.1f;
 
             float w = (float)(box.Width / candle.Count) * 0.7f;
 
             float prx = 0;
             float pry = 0;
 
-            Candle prcan = null;
+            bool fset = false;
 
             for (int i = 0; i < candle.Count; i++)
             {
@@ -43,6 +50,23 @@ namespace APP.Code
                 float xc = (float)(i * w) + (float)box.X;
                 float yt = GetTranslateY((float)can.close, min, max, true);
                 float yc = (yt * (float)box.Height) + (float)(box.Y);
+
+                if(xc > mx && !fset && mx != -1)
+                {
+                    fset = true;
+
+                    float yff = (float)box.Height + (float)(box.Y + 100);
+
+                    down += BuildSVG.MoveTo(prx, pry);
+                    down += BuildSVG.LineTo(prx, yff);
+                    down += BuildSVG.LineTo(prx + 1.2f, yff);
+                    down += BuildSVG.LineTo(prx + 1.2f, pry);
+                    down += "z";
+
+                    arc += BuildSVG.MoveTo(prx + 1.2f, pry - 10);
+                    arc += "A 5 5, 1,1,1," + prx + "," + (pry - 10);
+                    arc += "z";
+                }
 
                 if (i != 0)
                 {
@@ -63,6 +87,8 @@ namespace APP.Code
 
                     line = BuildSVG.BoxValue(pf, center, wLimit, wLimit);
                     curve = BuildSVG.BoxValue(pf, center, wLimit, wLimit);
+                    down = BuildSVG.BoxValue(pf, center, wLimit, wLimit);
+                    arc = BuildSVG.BoxValue(pf, center, wLimit, wLimit);
                 }
 
                 prx = xc;
@@ -73,12 +99,25 @@ namespace APP.Code
 
             float yf = (float)(box.Y + (box.Height * 1.8));
 
+            if(!fset)
+            {
+                down += BuildSVG.MoveTo(prx, pry);
+                down += BuildSVG.LineTo(prx, yf);
+                down += BuildSVG.LineTo(prx + 1.2f, yf);
+                down += BuildSVG.LineTo(prx + 1.2f, pry);
+                down += "z";
+
+                arc += BuildSVG.MoveTo(prx + 1.2f, pry - 10);
+                arc += "A 5 5, 1,1,1," + prx + "," + (pry - 10);
+                arc += "z";
+            }
+
             curve += BuildSVG.LineTo(xf, yf);
             curve += BuildSVG.LineTo((float)box.X, yf);
 
             curve += " Z ";
 
-            CurveSet set = new CurveSet(curve, line);
+            CurveSet set = new CurveSet(curve, line, down, arc);
 
             if (curve.Contains("NaN") || line.Contains("NaN"))
             {
@@ -125,6 +164,12 @@ namespace APP.Code
             max = data.Max();
 
             return max;
+        }
+
+        public void SetFingerPosition(double x, double y)
+        {
+            mx = x;
+            my = y;
         }
 
         public static float GetMin(List<float> data)

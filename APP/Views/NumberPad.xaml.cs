@@ -94,10 +94,18 @@ public partial class NumberPad : ContentView
 
         bool doesEnd = GetEnding();
 
-        var Trade = (TradeAmountPage)Parent.Parent.Parent;
-        Trade.UpdateAmount((double)amount, symbol, false, doesEnd);
+        try
+        {
 
-        textamount = Trade.detail.Amount.ToString();
+            var Trade = (TradeAmountPage)Parent.Parent.Parent.Parent;
+            Trade.UpdateAmount((double)amount, symbol, false, doesEnd);
+
+            textamount = Trade.detail.Amount.ToString();
+        }
+        catch
+        {
+
+        }
 
         if(doesEnd) { textamount += "."; }
     }

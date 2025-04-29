@@ -8,7 +8,7 @@ using APP.Code.Data.User;
 
 namespace APP.Code
 {
-    public class PortfolioCircle
+    public class WalletCircle
     { 
 
         public float totalSegments = 360;
@@ -24,7 +24,7 @@ namespace APP.Code
         private float hLimit = -1;
         private float wLimit = -1;
 
-        public PortfolioCircle(PointF center, ChartContainer ChartValues, List<PortfolioAsset> assets = null, float HeightLimit = -1, float WidthLimit = -1)
+        public WalletCircle(PointF center, ChartContainer ChartValues, List<WalletAsset> assets = null, float HeightLimit = -1, float WidthLimit = -1)
         {
             Center = center;
 
@@ -36,18 +36,18 @@ namespace APP.Code
             if (this.hLimit < 0) this.hLimit = OuterRadius;
             if (this.wLimit < 0) this.wLimit = OuterRadius;
 
-            if (UserProfileData.PortfolioAssets == null)
+            if (UserProfileData.WalletAssets == null)
             {
                 if (assets != null)
                 {
 
-                    UserProfileData.PortfolioAssets = assets;
+                    UserProfileData.WalletAssets = assets;
 
                     UpdateValues();
                 }
                 else
                 {
-                    UserProfileData.PortfolioAssets = UserProfileData.LoadDemo();
+                    UserProfileData.WalletAssets = UserProfileData.LoadDemo();
 
                     UpdateValues();
                 }
@@ -61,13 +61,13 @@ namespace APP.Code
         {
             decimal total = 0;
 
-            for (int i = 0; i < UserProfileData.PortfolioAssets.Count; i++)
+            for (int i = 0; i < UserProfileData.WalletAssets.Count; i++)
             {
-                decimal price = (decimal)charts.GetPrice(UserProfileData.PortfolioAssets[i].Symbol);
+                decimal price = (decimal)charts.GetPrice(UserProfileData.WalletAssets[i].Symbol);
 
-                UserProfileData.PortfolioAssets[i].Price = price;
+                UserProfileData.WalletAssets[i].Price = price;
 
-                total += (UserProfileData.PortfolioAssets[i].Amount * price);
+                total += (UserProfileData.WalletAssets[i].Amount * price);
             }
 
             return total;
@@ -79,15 +79,15 @@ namespace APP.Code
 
             float startang = -90;
 
-            for (int i = 0; i < UserProfileData.PortfolioAssets.Count; i++)
+            for (int i = 0; i < UserProfileData.WalletAssets.Count; i++)
             {
-                UserProfileData.PortfolioAssets[i].Percentage = 
-                    (decimal)((UserProfileData.PortfolioAssets[i].Amount *
-                    (decimal)charts.GetPrice(UserProfileData.PortfolioAssets[i].Symbol))
+                UserProfileData.WalletAssets[i].Percentage = 
+                    (decimal)((UserProfileData.WalletAssets[i].Amount *
+                    (decimal)charts.GetPrice(UserProfileData.WalletAssets[i].Symbol))
                     / ttl);
-                UserProfileData.PortfolioAssets[i].StartAngle = startang;
+                UserProfileData.WalletAssets[i].StartAngle = startang;
 
-                startang += (float)(UserProfileData.PortfolioAssets[i].Percentage * 360);
+                startang += (float)(UserProfileData.WalletAssets[i].Percentage * 360);
             }
         }
 
@@ -104,7 +104,7 @@ namespace APP.Code
             if (ttl > 0)
             {
                 float per = 360 / totalSegments;
-                float perAmount = (float)UserProfileData.PortfolioAssets[curveIndex].Percentage * 360;
+                float perAmount = (float)UserProfileData.WalletAssets[curveIndex].Percentage * 360;
 
                 float totalAngle = 0;
 
@@ -125,7 +125,7 @@ namespace APP.Code
 
                 float cut = 1;
 
-                if (curveIndex == UserProfileData.PortfolioAssets.Count - 1) cut = (spacing * (curveIndex + 1));
+                if (curveIndex == UserProfileData.WalletAssets.Count - 1) cut = (spacing * (curveIndex + 1));
 
                 while (totalAngle <= (int)(perAmount - (per * cut)))
                 {
@@ -163,7 +163,7 @@ namespace APP.Code
                 // update circle points
                 if (!once)
                 {
-                    if (curveIndex == UserProfileData.PortfolioAssets.Count - 1)
+                    if (curveIndex == UserProfileData.WalletAssets.Count - 1)
                     {
                         InnerP2 = GetCirclePoint(InnerRadius, 270f - (per/2));
 

@@ -7,7 +7,7 @@ public partial class TimePeriodLabels : ContentView
 {
     public Color BasicColor = Color.FromArgb("#71868F");
 
-    private PortfolioPage portPage = null;
+    private WalletPage portPage = null;
     private CryptoCard cardPage = null;
     public TimePeriodLabels()
 	{
@@ -32,7 +32,7 @@ public partial class TimePeriodLabels : ContentView
 
             try
             {
-                portPage = (PortfolioPage)this.Parent.Parent.Parent.Parent;
+                portPage = (WalletPage)this.Parent.Parent.Parent.Parent;
             }
             catch
             {

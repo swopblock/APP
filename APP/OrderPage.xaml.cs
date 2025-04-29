@@ -4,17 +4,17 @@ using APP.Code.Data.User;
 
 namespace APP;
 
-public partial class TradeSelectPage : ContentPage
+public partial class OrderPage : ContentPage
 {
-    public PortfolioAsset Asset { get; set; }
-    public PortfolioAsset first { get; set; }
-    public PortfolioAsset second { get; set; }  
+    public WalletAsset Asset { get; set; }
+    public WalletAsset first { get; set; }
+    public WalletAsset second { get; set; }  
 
-	public TradeSelectPage()
+	public OrderPage()
 	{
 		InitializeComponent();
 
-        this.Loaded += TradeSelectPage_Loaded;
+        this.Loaded += OrderPage_Loaded;
     }
 
     protected override bool OnBackButtonPressed()
@@ -25,9 +25,9 @@ public partial class TradeSelectPage : ContentPage
     }
 
 
-    private void TradeSelectPage_Loaded(object sender, EventArgs e)
+    private void OrderPage_Loaded(object sender, EventArgs e)
     {
-        Asset = (PortfolioAsset)BindingContext;
+        Asset = (WalletAsset)BindingContext;
 
         if (Asset != null)
         {

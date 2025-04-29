@@ -21,11 +21,11 @@ public static class MauiProgram
                 fonts.AddFont("guida-light-pro.otf", "GuidaLight");
             });
 
-		builder.Services.AddTransient<PortfolioPage>();
-        builder.Services.AddTransient<CurrencyPage>();
+		builder.Services.AddTransient<WalletPage>();
+        builder.Services.AddTransient<MarketPage>();
         builder.Services.AddTransient<OrderDetailsPage>();
         builder.Services.AddTransient<OrderCompletePage>();
-        builder.Services.AddTransient<TradeSelectPage>();
+        builder.Services.AddTransient<OrderPage>();
         builder.Services.AddTransient<TradeAmountPage>();
         builder.Services.AddTransient<TradeCompletePage>();
         builder.Services.AddTransient<RewardsPage>();
@@ -37,7 +37,7 @@ public static class MauiProgram
         builder.Services.AddTransient<PoweredBy>();
         builder.Services.AddTransient<BottomThreeButtons>();
         builder.Services.AddTransient<OrderList>();
-        builder.Services.AddTransient<PortfolioAsset>();
+        builder.Services.AddTransient<WalletAsset>();
 
         return builder.Build();
 	}

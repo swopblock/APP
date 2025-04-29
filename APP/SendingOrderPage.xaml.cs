@@ -15,7 +15,7 @@ public partial class SendingOrderPage : ContentPage
 
     bool went = false;
 
-    PortfolioAsset asset = null;
+    WalletAsset asset = null;
     public SendingOrderPage()
 	{
 		InitializeComponent();
@@ -29,7 +29,7 @@ public partial class SendingOrderPage : ContentPage
     {
         StartTimer();
 
-        asset = (PortfolioAsset)BindingContext;
+        asset = (WalletAsset)BindingContext;
 
         RadialGradientBrush Gbrush =
             new RadialGradientBrush(

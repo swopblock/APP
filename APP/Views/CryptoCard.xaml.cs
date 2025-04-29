@@ -10,7 +10,7 @@ public partial class CryptoCard : ContentView
 {
     ChartContainer chartContainer = new ChartContainer();
 
-    PortfolioAsset assetDisplayed = null;
+    WalletAsset assetDisplayed = null;
 
     bool isClickable = false;
     bool ShowGain = true;
@@ -37,7 +37,7 @@ public partial class CryptoCard : ContentView
 
     private void CryptoCard_Loaded(object sender, EventArgs e)
     {
-        PortfolioAsset asset = (PortfolioAsset)BindingContext;
+        WalletAsset asset = (WalletAsset)BindingContext;
 
         if (asset != null)
         {
@@ -45,11 +45,11 @@ public partial class CryptoCard : ContentView
             {
                 try
                 {
-                    CurrencyPage page = (CurrencyPage)Parent.Parent.Parent.Parent.Parent.Parent;
+                    MarketPage page = (MarketPage)Parent.Parent.Parent.Parent.Parent.Parent;
 
                     if (page != null)
                     {
-                        page.LoadCurrency(asset.Symbol);
+                        page.LoadMarket(asset.Symbol);
                     }
                 }
                 catch { }
@@ -62,7 +62,7 @@ public partial class CryptoCard : ContentView
                 gainStack.Opacity = 0;
             }
 
-            assetDisplayed = UserProfileData.PortfolioAssets.Where(x=>x.Symbol == asset.Symbol).FirstOrDefault();
+            assetDisplayed = UserProfileData.WalletAssets.Where(x=>x.Symbol == asset.Symbol).FirstOrDefault();
 
             if (assetDisplayed != null)
             {
@@ -95,7 +95,7 @@ public partial class CryptoCard : ContentView
     {
         if (isClickable)
         {
-            CurrencyPage page = new CurrencyPage();
+            MarketPage page = new MarketPage();
             page.asset = assetDisplayed.Symbol;
 
             Navigation.PushAsync(page);
@@ -180,8 +180,8 @@ public partial class CryptoCard : ContentView
 
     public void MakeChart()
     {
-        PortfolioChart chart =
-           new PortfolioChart(rect.Location,
+        WalletChart chart =
+           new WalletChart(rect.Location,
                width * 1.28f,
                height * 0.5f
                );
@@ -189,7 +189,7 @@ public partial class CryptoCard : ContentView
         Pack pk = null;
 
         List<Pack> packCandles = chartContainer.CombinePacks(
-            UserProfileData.PortfolioAssets.Select(x => x.Symbol).ToList(),
+            UserProfileData.WalletAssets.Select(x => x.Symbol).ToList(),
             time,
             candleCount);
 
@@ -201,7 +201,7 @@ public partial class CryptoCard : ContentView
 
                 if (Selectedpack != null)
                 {
-                    List<Candle> cnds = Selectedpack.candles; //chartContainer.SumTotal(portfolioShape.Assets, packCandles);
+                    List<Candle> cnds = Selectedpack.candles; //chartContainer.SumTotal(walletShape.Assets, packCandles);
 
                     if (cnds.Count > 0)
                     {

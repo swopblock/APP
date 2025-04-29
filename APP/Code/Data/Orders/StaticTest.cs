@@ -10,7 +10,7 @@ namespace APP.Code.Data.Orders
 {
     public class StaticTest
     {
-        //public static PortfolioPage Portfolio = new PortfolioPage();
+        //public static WalletPage Wallet = new WalletPage();
 
         public static GeometryContainer GeometryContainer = null;
 

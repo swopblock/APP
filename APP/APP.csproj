@@ -1,8 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>net7.0-android;net7.0-ios;net7.0-maccatalyst</TargetFrameworks>
-		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net7.0-windows10.0.19041.0</TargetFrameworks>
+		<TargetFrameworks>net9.0-android;net9.0-ios;net9.0-maccatalyst;net9.0-windows10.0.19041.0</TargetFrameworks>
+		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net9.0-windows10.0.19041.0</TargetFrameworks>
 		<!-- Uncomment to also build the tizen app. You will need to install tizen by following this: https://github.com/Samsung/Tizen.NET -->
 		<!-- <TargetFrameworks>$(TargetFrameworks);net6.0-tizen</TargetFrameworks> -->
 		<OutputType>Exe</OutputType>
@@ -25,15 +25,21 @@
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">14.2</SupportedOSPlatformVersion>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">14.0</SupportedOSPlatformVersion>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
-		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
-		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.19041.0</SupportedOSPlatformVersion>
+		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.19041.0</TargetPlatformMinVersion>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
 	</PropertyGroup>
 
-	<PropertyGroup Condition="'$(TargetFramework)'=='net7.0-ios'">
+	<PropertyGroup Condition="'$(TargetFramework)'=='net9.0-ios'">
 	  <CodesignKey>Apple Development: Created via API (JASGC2MLL8)</CodesignKey>
 	  <CodesignProvision>VS: WildCard Development</CodesignProvision>
 	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.Maui.Controls" Version="9.0.0" />
+		<PackageReference Include="Microsoft.Maui.Graphics" Version="9.0.0" />
+		<PackageReference Include="Microsoft.Maui.Essentials" Version="9.0.0" />
+	</ItemGroup>
 
 	<ItemGroup>
 		<!-- App Icon -->
@@ -54,7 +60,19 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="CurrencyPage.xaml">
+	  <Compile Update="MarketPage.xaml.cs">
+	    <DependentUpon>MarketPage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="OrderPage.xaml.cs">
+	    <DependentUpon>OrderPage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="WalletPage.xaml.cs">
+	    <DependentUpon>WalletPage.xaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="MarketPageCurrencyMarket.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="OrderCompletePage.xaml">
@@ -63,7 +81,7 @@
 	  <MauiXaml Update="OrderDetailsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="PortfolioPage.xaml">
+	  <MauiXaml Update="WalletPageWallet.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="RewardsPage.xaml">
@@ -78,7 +96,7 @@
 	  <MauiXaml Update="TradeCompletePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="TradeSelectPage.xaml">
+	  <MauiXaml Update="OrderPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\BottomThreeButtons.xaml">

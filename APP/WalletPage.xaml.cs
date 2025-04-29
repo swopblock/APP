@@ -8,9 +8,9 @@ using System.Diagnostics;
 
 namespace APP;
 
-public partial class PortfolioPage : ContentPage
+public partial class WalletPage : ContentPage
 {
-    PortfolioCircle portfolioCircle = null;
+    WalletCircle walletCircle = null;
 
     ChartContainer chartContainer = new ChartContainer();
 
@@ -33,7 +33,7 @@ public partial class PortfolioPage : ContentPage
 
     int timerState = 0;
 
-    public PortfolioPage()
+    public WalletPage()
     {
         InitializeComponent();
 
@@ -41,11 +41,11 @@ public partial class PortfolioPage : ContentPage
 
         currentPage = true;
 
-        this.Loaded += PortfolioPage_Loaded;
+        this.Loaded += WalletPage_Loaded;
 
-        this.NavigatedTo += PortfolioPage_NavigatedTo;
+        this.NavigatedTo += WalletPage_NavigatedTo;
 
-        this.NavigatedFrom += PortfolioPage_NavigatedFrom;
+        this.NavigatedFrom += WalletPage_NavigatedFrom;
 
         //Application.Current.MainPage.Title =
 
@@ -56,17 +56,17 @@ public partial class PortfolioPage : ContentPage
         }
     }
 
-    private void PortfolioPage_NavigatedTo(object sender, NavigatedToEventArgs e)
+    private void WalletPage_NavigatedTo(object sender, NavigatedToEventArgs e)
     {
 
     }
 
-    private void PortfolioPage_Loaded(object sender, EventArgs e)
+    private void WalletPage_Loaded(object sender, EventArgs e)
     {
         //Debug.WriteLine("");
     }
 
-    private void PortfolioPage_NavigatedFrom(object sender, NavigatedFromEventArgs e)
+    private void WalletPage_NavigatedFrom(object sender, NavigatedFromEventArgs e)
     {
         currentPage = false;
     }
@@ -104,9 +104,9 @@ public partial class PortfolioPage : ContentPage
 
     public void UpdateValues()
     {
-        if (PortfolioAmount != null)
+        if (WalletAmount != null)
         {
-            UpdateCircle(portfolioCircle, rect, centerPoint);
+            UpdateCircle(walletCircle, rect, centerPoint);
 
             if (timerState == 0)
             {
@@ -117,7 +117,7 @@ public partial class PortfolioPage : ContentPage
 
     public void AddWalletAssets()
     {
-        if (portfolioCircle != null)
+        if (walletCircle != null)
         {
             int row = 0;
 
@@ -127,14 +127,14 @@ public partial class PortfolioPage : ContentPage
 
             added = true;
 
-            double val = UserProfileData.PortfolioAssets.Count * 100;
+            double val = UserProfileData.WalletAssets.Count * 100;
 
             if (WalletCards.HeightRequest != val)
             {
                 WalletCards.HeightRequest = val;
             }
 
-            foreach (PortfolioAsset set in UserProfileData.PortfolioAssets)
+            foreach (WalletAsset set in UserProfileData.WalletAssets)
             {
                 CryptoCard card = new CryptoCard();
 
@@ -198,7 +198,7 @@ public partial class PortfolioPage : ContentPage
 
                 PointF cnt = new PointF(w * mxH, w * myH);
 
-                PortfolioCircle portfolioShape = new PortfolioCircle
+                WalletCircle walletShape = new WalletCircle
                 (
                     cnt,
                     chartContainer,
@@ -206,8 +206,8 @@ public partial class PortfolioPage : ContentPage
                     w * mx, w * mx
                 );
 
-                portfolioShape.InnerRadius = w + (w * 0.8f);
-                portfolioShape.OuterRadius = w + (w * 1.9f);
+                walletShape.InnerRadius = w + (w * 0.8f);
+                walletShape.OuterRadius = w + (w * 1.9f);
 
                 double cbrx = 0.5f;// cnt.X / (w * mx);
                 double cbry = 0.45f;//cnt.Y / (w * my);
@@ -216,46 +216,46 @@ public partial class PortfolioPage : ContentPage
 
                 rect = new Rect(
                     10,
-                    cnt.Y - (portfolioShape.InnerRadius * 0.5f),
-                    portfolioShape.InnerRadius,
-                    portfolioShape.InnerRadius);
+                    cnt.Y - (walletShape.InnerRadius * 0.5f),
+                    walletShape.InnerRadius,
+                    walletShape.InnerRadius);
 
-                portfolioCircle = portfolioShape;
+                walletCircle = walletShape;
             }
         }
     }
 
-    public void UpdateCircle(PortfolioCircle portfolioShape, Rect rect, Point Center, double mx = -1, double my = -1)
+    public void UpdateCircle(WalletCircle walletShape, Rect rect, Point Center, double mx = -1, double my = -1)
     {
-        if (portfolioShape != null)
+        if (walletShape != null)
         {
             if (grid.Children != null)
                 grid.Children.Clear();
 
             MakeBackCircle();
 
-            MakeChart(portfolioShape, mx, my);
+            MakeChart(walletShape, mx, my);
 
             MakeBackground();
 
-            for (int i = 0; i < UserProfileData.PortfolioAssets.Count; i++)
+            for (int i = 0; i < UserProfileData.WalletAssets.Count; i++)
             {
-                CurveSet curv = portfolioShape.GetNextCurve(i);
+                CurveSet curv = walletShape.GetNextCurve(i);
 
-                MakeCircle(curv, Center, UserProfileData.PortfolioAssets[i]);
+                MakeCircle(curv, Center, UserProfileData.WalletAssets[i]);
             }
         }
     }
 
     public void MakeBackground()
     {
-        if (portfolioCircle != null)
+        if (walletCircle != null)
         {
             try
             {
                 Geometry pathBackground =
                (Geometry)new PathGeometryConverter()
-               .ConvertFromString(portfolioCircle.GetSubtractedCircle(height * 3));
+               .ConvertFromString(walletCircle.GetSubtractedCircle(height * 3));
 
                 Microsoft.Maui.Controls.Shapes.Path pathBack = new(pathBackground);
 
@@ -274,11 +274,11 @@ public partial class PortfolioPage : ContentPage
     {
         try
         {
-            if (portfolioCircle != null)
+            if (walletCircle != null)
             {
                 Geometry pathBackground =
                (Geometry)new PathGeometryConverter()
-               .ConvertFromString(portfolioCircle.GetCircle());
+               .ConvertFromString(walletCircle.GetCircle());
 
                 Microsoft.Maui.Controls.Shapes.Path pathBack = new(pathBackground);
 
@@ -300,14 +300,14 @@ public partial class PortfolioPage : ContentPage
         catch { }
     }
 
-    public void MakeChart(PortfolioCircle portfolioShape, double mx = -1, double my = -1)
+    public void MakeChart(WalletCircle walletShape, double mx = -1, double my = -1)
     {
-        if (portfolioShape != null)
+        if (walletShape != null)
         {
-            PortfolioChart chart =
-               new PortfolioChart(portfolioShape.Center,
-                   portfolioShape.GetWidthLimit(),
-                   portfolioShape.GetHeightLimit()
+            WalletChart chart =
+               new WalletChart(walletShape.Center,
+                   walletShape.GetWidthLimit(),
+                   walletShape.GetHeightLimit()
                    );
 
             chart.SetFingerPosition(mx, my);
@@ -315,7 +315,7 @@ public partial class PortfolioPage : ContentPage
             Pack pk = null;
 
             List<Pack> packCandles = chartContainer.CombinePacks(
-                UserProfileData.PortfolioAssets.Select(x => x.Symbol).ToList(),
+                UserProfileData.WalletAssets.Select(x => x.Symbol).ToList(),
                 time,
                 candleCount);
 
@@ -323,7 +323,7 @@ public partial class PortfolioPage : ContentPage
             {
                 if (packCandles.Count > 0)
                 {
-                    List<Candle> cnds = chartContainer.SumTotal(UserProfileData.PortfolioAssets, packCandles);
+                    List<Candle> cnds = chartContainer.SumTotal(UserProfileData.WalletAssets, packCandles);
 
                     if (cnds.Count > 0)
                     {
@@ -332,7 +332,7 @@ public partial class PortfolioPage : ContentPage
                         {
                             double total = last.close;
 
-                            PortfolioAmount.Text = total.ToString("c");
+                            WalletAmount.Text = total.ToString("c");
                         }
                         CurveSet curv = chart.DrawLine(rect.Location, cnds);
 
@@ -424,7 +424,7 @@ public partial class PortfolioPage : ContentPage
             }
         }
     }
-    public void MakeCircle(CurveSet Set, Point Center, PortfolioAsset asset)
+    public void MakeCircle(CurveSet Set, Point Center, WalletAsset asset)
     {
         string path = Set.GetCurve();
         string spc = Set.GetSpace();
@@ -463,9 +463,9 @@ public partial class PortfolioPage : ContentPage
         time = timePer;
         candleCount = candlesNumber;
 
-        if (portfolioCircle != null)
+        if (walletCircle != null)
         {
-            UpdateCircle(portfolioCircle, rect, centerPoint);
+            UpdateCircle(walletCircle, rect, centerPoint);
         }
     }
 
@@ -531,9 +531,9 @@ public partial class PortfolioPage : ContentPage
                 {
                     PointF touch = e.Touches.FirstOrDefault();
 
-                    if (PortfolioAmount != null)
+                    if (WalletAmount != null)
                     {
-                        UpdateCircle(portfolioCircle, rect, centerPoint, touch.X, touch.Y);
+                        UpdateCircle(walletCircle, rect, centerPoint, touch.X, touch.Y);
                     }
                 }
             }

@@ -141,7 +141,7 @@ namespace APP.Code
             return pksCandle;
         }
 
-        public List<Candle> SumTotal(List<PortfolioAsset> assets, List<Pack> packs)
+        public List<Candle> SumTotal(List<WalletAsset> assets, List<Pack> packs)
         {
             List<Candle> pks = new List<Candle>();
 
@@ -149,7 +149,7 @@ namespace APP.Code
 
             foreach(Pack p in packs)
             {
-                PortfolioAsset asset = assets.Where(x => x.Symbol == p.Symbol).FirstOrDefault();
+                WalletAsset asset = assets.Where(x => x.Symbol == p.Symbol).FirstOrDefault();
 
                 if(asset != null)
                 {

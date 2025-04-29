@@ -8,27 +8,27 @@ using System.Diagnostics;
 namespace APP;
 
 [QueryProperty(nameof(asset), nameof(asset))]
-public partial class CurrencyPage : ContentPage
+public partial class MarketPage : ContentPage
 {
     [Bindable(true)]
     public string asset { get; set; }
 
-    List<PortfolioAsset> assetList = UserProfileData.LoadDemo();
+    List<WalletAsset> assetList = UserProfileData.LoadDemo();
 
     public Color UnselectColor = Color.FromArgb("#2F323A");
-	public CurrencyPage()
+	public MarketPage()
 	{
 		InitializeComponent();
 
-        this.Loaded += CurrencyPage_Loaded;
+        this.Loaded += MarketPage_Loaded;
 
         Carousel.ItemsSource = assetList;
         Carousel.Loaded += Carousel_Loaded;
     }
 
-    private void CurrencyPage_Loaded(object sender, EventArgs e)
+    private void MarketPage_Loaded(object sender, EventArgs e)
     {
-        LoadCurrency(asset);
+        LoadMarket(asset);
     }
 
     private void Carousel_Loaded(object sender, EventArgs e)
@@ -39,7 +39,7 @@ public partial class CurrencyPage : ContentPage
 
     private void Carousel_CurrentItemChanged(object sender, CurrentItemChangedEventArgs e)
     {
-        LoadCurrency(((PortfolioAsset)e.CurrentItem).Symbol);
+        LoadMarket(((WalletAsset)e.CurrentItem).Symbol);
     }
 
     private void Carousel_PropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -69,10 +69,10 @@ public partial class CurrencyPage : ContentPage
 
     }
 
-    public void LoadCurrency(string asset)
+    public void LoadMarket(string asset)
 	{
 
-        PortfolioAsset assetAsset = UserProfileData.PortfolioAssets
+        WalletAsset assetAsset = UserProfileData.WalletAssets
             .Where(x=>x.Symbol == asset).FirstOrDefault();
 
         if (assetAsset != null)
@@ -114,11 +114,11 @@ public partial class CurrencyPage : ContentPage
                 RectThree.Stroke = Color.FromArgb("#6F89FF");
             }
 
-            btbuttons.currency = asset;
+            btbuttons.market = asset;
 
             amountText.Text = assetAsset.Amount + " " + assetAsset.Symbol;
-            CurrencyLabel.Text = assetAsset.Name;
-            CurrencyLabel.TextColor = assetAsset.HtmlColor;
+            MarketLabel.Text = assetAsset.Name;
+            MarketLabel.TextColor = assetAsset.HtmlColor;
             CurencyNameBelow.Text = assetAsset.Name;
             CurencyNameBelow.TextColor = assetAsset.HtmlColor;
 

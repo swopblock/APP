@@ -9,19 +9,19 @@ public partial class TradeAmountPage : ContentPage
     /*
      * 
      * Amount page has to come first because you dont know
-     * how much currency you can afford to buy until 
+     * how much you can afford to buy until 
      * you select what you are buying it with
      * 
      */
     public OrderDetail detail = new OrderDetail();
-    PortfolioAsset SelectedAsset { get; set; }
+    WalletAsset SelectedAsset { get; set; }
 
-    PortfolioAsset Asset { get; set; }
+    WalletAsset Asset { get; set; }
 
     double posX = 0;
 
     bool went = false;
-	public TradeAmountPage(PortfolioAsset asset)
+	public TradeAmountPage(WalletAsset asset)
 	{
 		InitializeComponent();
 
@@ -43,7 +43,7 @@ public partial class TradeAmountPage : ContentPage
     {
         slider.HtmlColor = SelectedAsset.HtmlColor;
 
-        Asset = (PortfolioAsset)BindingContext;
+        Asset = (WalletAsset)BindingContext;
 
         slider.AltColor = Asset.HtmlColor;
 

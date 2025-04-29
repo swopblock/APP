@@ -9,13 +9,13 @@ public partial class AppShell : Shell
 	{
 		InitializeComponent();
 
-        Routing.RegisterRoute(nameof(PortfolioPage), typeof(PortfolioPage));
-        Routing.RegisterRoute(nameof(CurrencyPage), typeof(CurrencyPage));
+        Routing.RegisterRoute(nameof(WalletPage), typeof(WalletPage));
+        Routing.RegisterRoute(nameof(MarketPage), typeof(MarketPage));
         Routing.RegisterRoute(nameof(OrderCompletePage), typeof(OrderCompletePage));
         Routing.RegisterRoute(nameof(OrderDetailsPage), typeof(OrderDetailsPage));
         Routing.RegisterRoute(nameof(SendingOrderPage), typeof(SendingOrderPage));
         Routing.RegisterRoute(nameof(TradeCompletePage), typeof(TradeCompletePage));
-        Routing.RegisterRoute(nameof(TradeSelectPage), typeof(TradeSelectPage));
+        Routing.RegisterRoute(nameof(OrderPage), typeof(OrderPage));
         Routing.RegisterRoute(nameof(TradeAmountPage), typeof(TradeAmountPage));
         Routing.RegisterRoute(nameof(RewardsPage), typeof(RewardsPage));
 

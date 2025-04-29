@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace APP.Code
 {
-    public class PortfolioAsset
+    public class WalletAsset
     {
         public string Name { get; set; }
         public string Symbol { get; set; }

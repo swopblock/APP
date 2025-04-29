@@ -14,13 +14,13 @@ namespace APP.Code.Data.User
 
         }
 
-        public static List<PortfolioAsset> PortfolioAssets = null;
+        public static List<WalletAsset> WalletAssets = null;
 
-        public static List<PortfolioAsset> LoadDemo()
+        public static List<WalletAsset> LoadDemo()
         {
-            return new List<PortfolioAsset>
+            return new List<WalletAsset>
                     {
-                new PortfolioAsset
+                new WalletAsset
                 {
                     Name = "Ethereum",
                     Symbol = "ETH",
@@ -30,7 +30,7 @@ namespace APP.Code.Data.User
                     Image = "ethereum.png",
                     Stars = ""
                 },
-                new PortfolioAsset
+                new WalletAsset
                 {
                     Name = "Bitcoin",
                     Symbol = "BTC",
@@ -40,7 +40,7 @@ namespace APP.Code.Data.User
                     Image = "bitcoin.png",
                     Stars = ""
                 },
-                new PortfolioAsset
+                new WalletAsset
                 {
                     Name = "Swobble",
                     Symbol = "SWOBL",
@@ -50,7 +50,7 @@ namespace APP.Code.Data.User
                     Image = "swopblock.png",
                     Stars = ""                    
                 },
-                new PortfolioAsset
+                new WalletAsset
                 {
                     Name = "Swobble Rewards",
                     Symbol = "YOUR REWARDS",

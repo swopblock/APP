@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="APP.CurrencyPage"
-             Title="CurrencyPage"
+             x:Class="APP.MarketPage"
+             Title="MarketPage"
              xmlns:controls="clr-namespace:APP.Views">
     <VerticalStackLayout>
         <ScrollView HeightRequest="540" Scrolled="ScrollView_Scrolled">
@@ -11,13 +11,13 @@
                     <ImageButton Pressed="ImageButton_Pressed" HorizontalOptions="Start" Margin="30,0,0,0" WidthRequest="20" HeightRequest="20" Source="wallet.png"></ImageButton>
                     <BoxView Margin="0,50,0,0" Color="{StaticResource Gray2F}" HeightRequest="1" HorizontalOptions="FillAndExpand" />
                 </Grid>
-                <Label HorizontalOptions="Center" FontSize="24" VerticalOptions="Center" Margin="0,20,0,20" x:Name="CurrencyLabel" Text="Currency"></Label>
+                <Label HorizontalOptions="Center" FontSize="24" VerticalOptions="Center" Margin="0,20,0,20" x:Name="MarketLabel" Text="Market"></Label>
                 <VerticalStackLayout>
                     <CarouselView Loop="True" x:Name="Carousel">
                         <CarouselView.ItemTemplate>
                             <DataTemplate>
                                 <controls:CryptoCard></controls:CryptoCard>
-                                <!--<VerticalStackLayout x:Name="CurrencyContainer">
+                                <!--<VerticalStackLayout x:Name="MarketContainer">
                                     
                                 </VerticalStackLayout>-->
                             </DataTemplate>
@@ -135,7 +135,7 @@
         <BoxView Margin="0,0,0,0" Color="{StaticResource Gray2F}" HeightRequest="0.5" HorizontalOptions="FillAndExpand" />
 
         <Grid Margin="0,20,0,10">
-            <controls:BottomThreeButtons x:Name="btbuttons" BindingContext="currency"></controls:BottomThreeButtons>
+            <controls:BottomThreeButtons x:Name="btbuttons" BindingContext="market"></controls:BottomThreeButtons>
         </Grid>
     </VerticalStackLayout>
 </ContentPage>

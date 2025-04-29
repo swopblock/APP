@@ -6,7 +6,7 @@ namespace APP.Views;
 
 public partial class BottomThreeButtons : ContentView
 {
-    public string currency = "";
+    public string market = "";
 	public BottomThreeButtons()
 	{
 		InitializeComponent();
@@ -31,7 +31,7 @@ public partial class BottomThreeButtons : ContentView
     {
         string value = (string)BindingContext;
 
-        if(value == "currency")
+        if(value == "market")
         {
             cryptoImage.Source = "circle_graph.png";
             cryptoLabel.TextColor = Color.FromArgb("#ffffff");
@@ -49,9 +49,9 @@ public partial class BottomThreeButtons : ContentView
     }
     private void TradeTap_Tapped(object sender, EventArgs e)
     {
-        PortfolioAsset asset = UserProfileData.LoadDemo().Where(x=>x.Symbol == currency).FirstOrDefault();
+        WalletAsset asset = UserProfileData.LoadDemo().Where(x=>x.Symbol == market).FirstOrDefault();
 
-        TradeSelectPage page = new TradeSelectPage();
+        OrderPage page = new OrderPage();
         page.BindingContext = asset;
 
         Navigation.PushAsync(page);
@@ -61,9 +61,9 @@ public partial class BottomThreeButtons : ContentView
     {
         string page = (string)BindingContext;
 
-        if (page != "currency")
+        if (page != "market")
         {
-            Navigation.PushAsync(new CurrencyPage());
+            Navigation.PushAsync(new MarketPage());
         }
         
     }
@@ -71,7 +71,7 @@ public partial class BottomThreeButtons : ContentView
     private void Tap_Tapped(object sender, EventArgs e)
     {
         //Application.Current.MainPage = new MainPage();
-        // NavGoTo(nameof(PortfolioPage));
+        // NavGoTo(nameof(WalletPage));
         Navigation.PopToRootAsync();
     }
 }

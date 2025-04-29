@@ -8,14 +8,14 @@ using System.Threading.Tasks;
 
 namespace APP.Code
 {
-    public class PortfolioChart
+    public class WalletChart
     {
         private float wLimit = 0;
         private float hLimit = 0;
         private double mx = -1;
         private double my = -1;
         private PointF center = new PointF();
-        public PortfolioChart(PointF Center, float WidthLimit, float HeightLimit)
+        public WalletChart(PointF Center, float WidthLimit, float HeightLimit)
         {
             wLimit = WidthLimit;
             hLimit = HeightLimit;

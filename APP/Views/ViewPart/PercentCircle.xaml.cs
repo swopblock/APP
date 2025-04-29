@@ -11,7 +11,7 @@ public partial class PercentCircle : ContentView
 		InitializeComponent();
     }
 
-    public void UpdateValue(PortfolioAsset asset, float size, float start = 0)
+    public void UpdateValue(WalletAsset asset, float size, float start = 0)
     {
         float per = (float)(asset.Percentage * 360);
 
